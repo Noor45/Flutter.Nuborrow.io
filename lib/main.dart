@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:nuborrow/pages/basic_detail_page.dart';
-import 'package:nuborrow/pages/complete_application_page.dart';
-import 'package:nuborrow/pages/contact_detail.dart';
-import 'package:nuborrow/pages/pick_mortgage_term.dart';
-import 'package:nuborrow/pages/rates_page.dart';
+import 'package:nuborrow/first_flow/basic_detail_page.dart';
+import 'package:nuborrow/first_flow/complete_application_page.dart';
+import 'package:nuborrow/first_flow/contact_detail.dart';
+import 'package:nuborrow/first_flow/pick_mortgage_term.dart';
+import 'package:nuborrow/first_flow/rates_page.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'pages/intro_page.dart';
-import 'pages/amount_detail.dart';
-import 'pages/basic_detail_page.dart';
-import 'pages/second_intro_page.dart';
+import 'first_flow/intro_page.dart';
+import 'first_flow/amount_detail.dart';
+import 'first_flow/basic_detail_page.dart';
+import 'first_flow/second_intro_page.dart';
 import 'dart:async';
 
 Future<void> main() async {

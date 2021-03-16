@@ -19,7 +19,18 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="adc6c275-5eb1-4d66-8810-ea9f08de588a" name="Default Changelist" comment="" />
+    <list default="true" id="adc6c275-5eb1-4d66-8810-ea9f08de588a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/lib/cards/second_intro_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/cards/second_intro_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/2nd_flow_code" beforeDir="false" afterPath="$PROJECT_DIR$/lib/first_flow/2nd_flow_code" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/amount_detail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/first_flow/amount_detail.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/basic_detail_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/first_flow/basic_detail_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/complete_application_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/first_flow/complete_application_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/contact_detail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/first_flow/contact_detail.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/intro_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/first_flow/intro_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/pick_mortgage_term.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/first_flow/pick_mortgage_term.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/rates_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/first_flow/rates_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/second_intro_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/first_flow/second_intro_page.dart" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -130,7 +141,7 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/pages/rates_page.dart</url>
+          <url>file://$PROJECT_DIR$/lib/first_flow/rates_page.dart</url>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

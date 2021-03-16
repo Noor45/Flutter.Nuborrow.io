@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nuborrow/cards/left_card.dart';
-import 'package:nuborrow/pages/pick_mortgage_term.dart';
+import 'package:nuborrow/first_flow/pick_mortgage_term.dart';
 import 'package:nuborrow/utils/colors.dart';
 import 'package:nuborrow/utils/style.dart';
 import 'package:nuborrow/widgets/input_fields.dart';

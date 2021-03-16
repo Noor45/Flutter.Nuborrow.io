@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:nuborrow/cards/left_card.dart';
-import 'package:nuborrow/pages/complete_application_page.dart';
+import 'package:nuborrow/first_flow/complete_application_page.dart';
 import 'package:nuborrow/utils/colors.dart';
 import 'package:nuborrow/widgets/input_fields.dart';
 import '../cards/rate_page_card.dart';
