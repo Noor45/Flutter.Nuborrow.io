@@ -50,13 +50,13 @@
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\FlutterWebApps\nuborrow\lib\utils" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\FlutterWebApps\nuborrow\lib\utils" />
       <recent name="E:\FlutterWebApps\nuborrow\lib" />
       <recent name="E:\FlutterWebApps\nuborrow\lib\widgets" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\FlutterWebApps\nuborrow\lib\utils" />
     </key>
   </component>
   <component name="SvnConfiguration">
