@@ -19,32 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="adc6c275-5eb1-4d66-8810-ea9f08de588a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/svg/like.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/svg/score.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/svg/secure.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/svg/sideIcon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/svg/web.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/cards/intro_page_card.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/cards/left_card.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/cards/rate_page_card.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/cards/second_intro_page.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pages/complete_application_page.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pages/rates_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/amount_detail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/amount_detail.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/basic_detail_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/basic_detail_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/contact_detail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/contact_detail.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/intro_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/intro_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/pick_mortgage_term.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/pick_mortgage_term.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/pages/second_intro_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/second_intro_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utils/colors.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils/colors.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/input_fields.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/input_fields.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/round_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/round_button.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
-    </list>
+    <list default="true" id="adc6c275-5eb1-4d66-8810-ea9f08de588a" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
