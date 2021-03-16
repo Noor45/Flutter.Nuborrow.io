@@ -4,11 +4,14 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:nuborrow/cards/left_card.dart';
 import 'package:nuborrow/pages/second_intro_page.dart';
 import 'package:nuborrow/widgets/round_button.dart';
+import 'package:page_transition/page_transition.dart';
 import '../cards/intro_page_card.dart';
+import '../utils/constants.dart';
 import '../utils/strings.dart';
 
 class IntroPage extends StatefulWidget {
   static const IntroPageId = 'continue';
+
   @override
   _IntroPageState createState() => _IntroPageState();
 }
@@ -16,6 +19,7 @@ class IntroPage extends StatefulWidget {
 class _IntroPageState extends State<IntroPage> {
   GlobalKey globalKey = new GlobalKey(debugLabel: 'btm_app_bar');
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   void initState() {
     super.initState();
@@ -31,7 +35,8 @@ class _IntroPageState extends State<IntroPage> {
         child: Container(
           height: height,
           width: width,
-          margin: EdgeInsets.only(top: width > 1100 ? 50 : 0, bottom: width > 1100 ? 50 : 0),
+          margin: EdgeInsets.only(
+              top: width > 1100 ? 50 : 0, bottom: width > 1100 ? 50 : 0),
           child: width > 700
               ? Row(
                   children: [
@@ -64,7 +69,7 @@ class _ViewContentState extends State<ViewContent> {
         child: Wrap(
           children: [
             Container(
-              height: width > 700 ? height : height/1.5,
+              height: width > 700 ? height : height / 1.5,
               width: width > 700 ? width / 2 : width,
               color: Colors.white,
               child: Column(
@@ -105,9 +110,8 @@ class _ViewContentState extends State<ViewContent> {
                 ],
               ),
             ),
-
             Container(
-              height: width > 700 ? height : height/2,
+              height: width > 700 ? height : height / 2,
               width: width > 700 ? width / 2 : width,
               color: Color(0xff2e184f),
               child: Column(
@@ -117,7 +121,11 @@ class _ViewContentState extends State<ViewContent> {
                   Flexible(
                     child: AutoSizeText(
                       'I’m Buying a Home',
-                      style: TextStyle(fontSize: 22, fontFamily: StringRefer.Poppins, fontWeight: FontWeight.bold, color: Colors.white),
+                      style: TextStyle(
+                          fontSize: 22,
+                          fontFamily: StringRefer.Poppins,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
                       softWrap: true,
                       textAlign: TextAlign.center,
                       maxLines: 3,
@@ -130,7 +138,11 @@ class _ViewContentState extends State<ViewContent> {
                       padding: const EdgeInsets.only(left: 50, right: 50),
                       child: AutoSizeText(
                         'I’m looking for a new mortgage for my new home.',
-                        style: TextStyle(fontSize: 18, fontFamily: StringRefer.SegoeUI, fontWeight: FontWeight.bold, color: Colors.white),
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontFamily: StringRefer.SegoeUI,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
                         softWrap: true,
                         maxLines: 3,
                         textAlign: TextAlign.center,
@@ -140,14 +152,15 @@ class _ViewContentState extends State<ViewContent> {
                   ),
                   SizedBox(height: 20),
                   Container(
-                    width: MediaQuery.of(context).size.width/5,
+                    width: MediaQuery.of(context).size.width / 5,
                     child: RoundedButton(
                       title: 'continue',
                       colour: Color(0xfffecf09),
                       buttonRadius: 5,
                       height: 60,
-                      onPressed: (){
-                        // Navigator.pushNamed(context, SecondIntroPage.SecondIntroPageId);
+                      onPressed: () {
+                        kNavigateNext(
+                            context: context, widget: SecondIntroPage());
                       },
                     ),
                   ),
@@ -160,4 +173,3 @@ class _ViewContentState extends State<ViewContent> {
     );
   }
 }
-
