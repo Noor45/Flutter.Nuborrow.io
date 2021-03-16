@@ -4,6 +4,7 @@ import 'package:nuborrow/first_flow/complete_application_page.dart';
 import 'package:nuborrow/first_flow/contact_detail.dart';
 import 'package:nuborrow/first_flow/pick_mortgage_term.dart';
 import 'package:nuborrow/first_flow/rates_page.dart';
+import 'package:nuborrow/first_flow/second_intro_page.dart';
 import 'package:nuborrow/second_flow/basic_detail_page.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'first_flow/intro_page.dart';

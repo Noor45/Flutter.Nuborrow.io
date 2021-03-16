@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:nuborrow/cards/left_card.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:nuborrow/first_flow/second_intro_page.dart';
 import 'package:nuborrow/widgets/round_button.dart';
 import '../cards/intro_page_card.dart';
@@ -147,7 +148,8 @@ class _ViewContentState extends State<ViewContent> {
                       buttonRadius: 5,
                       height: 60,
                       onPressed: (){
-                        Navigator.pushNamed(context, NextIntroPageFirstFlow.SecondIntroPageFirstFlowId);
+                        Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: NextIntroPageFirstFlow()));
+                        // Navigator.push(context, _createRoute());
                       },
                     ),
                   ),

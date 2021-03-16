@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:nuborrow/first_flow/basic_detail_page.dart';
 import 'package:nuborrow/widgets/round_button.dart';
 import '../utils/strings.dart';
-import '../first_flow/basic_detail_page.dart';
 
 
 class LeftCard extends StatefulWidget {

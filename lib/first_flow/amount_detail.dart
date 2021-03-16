@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nuborrow/cards/left_card.dart';
+import 'package:nuborrow/first_flow/contact_detail.dart';
 import 'package:nuborrow/first_flow/pick_mortgage_term.dart';
 import 'package:nuborrow/utils/colors.dart';
 import 'package:nuborrow/utils/style.dart';
 import 'package:nuborrow/widgets/input_fields.dart';
 import 'package:nuborrow/widgets/round_button.dart';
+import 'package:page_transition/page_transition.dart';
 import '../utils/strings.dart';
 
 class AmountDetailFirstFlow extends StatefulWidget {
@@ -184,8 +186,9 @@ class _ViewContentState extends State<ViewContent> {
                                       buttonRadius: 10,
                                       height: 60,
                                       onPressed: () {
-                                        Navigator.pushNamed(context,
-                                            MortgageTerms.MortgageTermsPageId);
+                                        Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: MortgageTerms()));
+                                        // Navigator.pushNamed(context,
+                                        //     MortgageTerms.MortgageTermsPageId);
                                       },
                                     ),
                                   ),
@@ -287,8 +290,7 @@ class _TextFieldCardState extends State<TextFieldCard> {
                               colour: Color(0xff705aa7),
                               buttonRadius: 10,
                               onPressed: () {
-                                Navigator.pushNamed(context,
-                                    MortgageTerms.MortgageTermsPageId);
+                                Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: MortgageTerms()));
                               },
                             ),
                           ),

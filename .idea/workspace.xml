@@ -20,10 +20,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="adc6c275-5eb1-4d66-8810-ea9f08de588a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/cards/second_intro_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/cards/second_intro_card.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/first_flow/amount_detail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/first_flow/amount_detail.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/first_flow/basic_detail_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/first_flow/basic_detail_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/first_flow/complete_application_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/first_flow/complete_application_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/first_flow/contact_detail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/first_flow/contact_detail.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/first_flow/intro_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/first_flow/intro_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/first_flow/pick_mortgage_term.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/first_flow/pick_mortgage_term.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/first_flow/rates_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/first_flow/rates_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/first_flow/second_intro_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/first_flow/second_intro_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/second_flow/basic_detail_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/second_flow/basic_detail_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/second_flow/second_intro_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/second_flow/second_intro_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,14 +65,14 @@
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\FlutterWebApps\nuborrow\lib\utils" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\FlutterWebApps\nuborrow\lib\second_flow" />
       <recent name="E:\FlutterWebApps\nuborrow\lib\utils" />
       <recent name="E:\FlutterWebApps\nuborrow\lib" />
       <recent name="E:\FlutterWebApps\nuborrow\lib\widgets" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\FlutterWebApps\nuborrow\lib\utils" />
     </key>
   </component>
   <component name="SvnConfiguration">
