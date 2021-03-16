@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nuborrow/cards/second_intro_page.dart';
-import 'package:nuborrow/first_flow/basic_detail_page.dart';
+import 'package:nuborrow/second_flow/basic_detail_page.dart';
 
-class NextIntroPageFirstFlow extends StatefulWidget {
-  static const SecondIntroPageFirstFlowId = 'intro';
+class NextIntroPage2ndFlow extends StatefulWidget {
+  static const SecondIntroPage2ndFlowId = 'intro2';
   @override
-  _NextIntroPageFirstFlowState createState() => _NextIntroPageFirstFlowState();
+  _NextIntroPage2ndFlowState createState() => _NextIntroPage2ndFlowState();
 }
 
-class _NextIntroPageFirstFlowState extends State<NextIntroPageFirstFlow> {
+class _NextIntroPage2ndFlowState extends State<NextIntroPage2ndFlow> {
   GlobalKey globalKey = new GlobalKey(debugLabel: 'btm_app_bar');
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
@@ -58,17 +58,17 @@ class _ViewContentState extends State<ViewContent> {
         child: Wrap(
           children: [
             LeftCard(
-              firstTitle: 'I’ve Found a Property',
-              firstSubtitle: 'Show my today’s lowest rates',
+              firstTitle: 'I want to refinance my mortgage',
+              firstSubtitle: 'Need to refinance your mortgage? Did you know you can refinance at a lower rate and access equity to pay off higher interest debt?',
               onPressed1: (){
-                Navigator.pushNamed(context, BasicDetailFirstFlow.BasicDetailPageFirstFlowId);
+                Navigator.pushNamed(context, BasicDetail2ndFlow.BasicDetailPageSecondFlowId);
               },
             ),
             RightCard(
-              SecondTitle: 'I’m still looking at homes or I’ve found a Property',
-              SecondSubtitle:'Show me what the monthly payments and rates could be for my price range',
+              SecondTitle: 'My mortgage is coming up for renewal',
+              SecondSubtitle:'Why settle for just one rate, from one bank when you may qualify for a lower rate?',
               onPressed2: (){
-                Navigator.pushNamed(context, BasicDetailFirstFlow.BasicDetailPageFirstFlowId);
+                Navigator.pushNamed(context, BasicDetail2ndFlow.BasicDetailPageSecondFlowId);
               },
             )
           ],
