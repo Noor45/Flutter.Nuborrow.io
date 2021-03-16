@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
         background: Container(color: Color(0xFFF5F5F5)),
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: IntroPage2ndFlow.IntroPageId2ndFlow,
+      initialRoute: IntroPageFirstFlow.IntroPageFirstFlowId,
       routes: {
         //First Flow Pages
         IntroPageFirstFlow.IntroPageFirstFlowId: (context) => IntroPageFirstFlow(),

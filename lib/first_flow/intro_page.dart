@@ -147,7 +147,7 @@ class _ViewContentState extends State<ViewContent> {
                       buttonRadius: 5,
                       height: 60,
                       onPressed: (){
-                        // Navigator.pushNamed(context, SecondIntroPage.SecondIntroPageId);
+                        Navigator.pushNamed(context, NextIntroPageFirstFlow.SecondIntroPageFirstFlowId);
                       },
                     ),
                   ),

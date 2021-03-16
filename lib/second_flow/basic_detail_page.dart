@@ -95,7 +95,7 @@ class _ViewContentState extends State<ViewContent> {
                     child: Padding(
                       padding: EdgeInsets.only(left: 30, right: 30),
                       child: Wrap(
-                        direction: width > 800 ? Axis.horizontal : width >  650 ? Axis.horizontal : Axis.vertical,
+                        direction:  width > 800 ? Axis.horizontal :   width >  650 ? Axis.horizontal : Axis.vertical ,
                         spacing: width > 800 ? 40 : 40,
                         children: [
                           AutoSizeText(
@@ -129,7 +129,7 @@ class _ViewContentState extends State<ViewContent> {
                       padding: EdgeInsets.only(left: 30, right: 30),
                       child: Wrap(
                         direction:
-                            width > 800 ? Axis.horizontal : Axis.vertical,
+                        width > 800 ? Axis.horizontal :   width >  650 ? Axis.horizontal : Axis.vertical,
                         spacing: width > 800 ? 40 : 40,
                         children: [
                           AutoSizeText(
@@ -224,7 +224,7 @@ class _TabCardState extends State<TabCard> {
     double width = MediaQuery.of(context).size.width;
     return InkWell(
       child: Container(
-        width: width > 800 ? width / 4 : width / 2,
+        width: width > 1200 ? width / 5 : width > 800 ? width :  width > 650 ? width/2.5  : width/1.1,
         height: 50,
         decoration:
             StyleRefer.kTabDecoration.copyWith(color: widget.labelColor),
