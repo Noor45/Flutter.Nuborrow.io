@@ -1,14 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:nuborrow/first_flow/basic_detail_page.dart';
 import 'package:nuborrow/widgets/round_button.dart';
-import '../utils/constants.dart';
 import '../utils/strings.dart';
-import '../first_flow/basic_detail_page.dart';
 
 class LeftCard extends StatefulWidget {
   LeftCard({this.firstSubtitle, this.firstTitle, this.onPressed1});
+
   final String firstTitle;
   final String firstSubtitle;
   final Function onPressed1;
@@ -34,17 +32,12 @@ class _LeftCardState extends State<LeftCard> {
             child: Padding(
               padding: EdgeInsets.only(left: 90, right: 90),
               child: AutoSizeText(
-<<<<<<< HEAD
-                'I’ve Found a Property\n',
+                widget.firstTitle,
                 style: TextStyle(
                     fontSize: 30,
                     fontFamily: StringRefer.Poppins,
                     fontWeight: FontWeight.w900,
                     color: Colors.white),
-=======
-                widget.firstTitle,
-                style: TextStyle(fontSize: 30, fontFamily: StringRefer.Poppins, fontWeight: FontWeight.w900, color: Colors.white),
->>>>>>> fcb961291a2381b707ae61ebc3c32e20c59d8f25
                 softWrap: true,
                 maxLines: 3,
                 textAlign: TextAlign.center,
@@ -57,16 +50,11 @@ class _LeftCardState extends State<LeftCard> {
             child: Padding(
               padding: EdgeInsets.only(left: 120, right: 120),
               child: AutoSizeText(
-<<<<<<< HEAD
-                'Show my today’s lowest rates\n',
+                widget.firstSubtitle,
                 style: TextStyle(
                     fontSize: 18,
                     fontFamily: StringRefer.SegoeUI,
                     color: Colors.white),
-=======
-                widget.firstSubtitle,
-                style: TextStyle(fontSize: 18, fontFamily: StringRefer.SegoeUI, color: Colors.white),
->>>>>>> fcb961291a2381b707ae61ebc3c32e20c59d8f25
                 softWrap: true,
                 maxLines: 3,
                 textAlign: TextAlign.center,
@@ -84,15 +72,7 @@ class _LeftCardState extends State<LeftCard> {
                 height: 60,
                 colour: Color(0xfffecf09),
                 buttonRadius: 5,
-<<<<<<< HEAD
-                onPressed: () {
-                  kNavigateNext(context: context, widget: BasicDetail());
-
-                  // Navigator.pushNamed(context, BasicDetail.BasicDetailPageId);
-                },
-=======
                 onPressed: widget.onPressed1,
->>>>>>> fcb961291a2381b707ae61ebc3c32e20c59d8f25
               ),
             ),
           ),
@@ -104,12 +84,13 @@ class _LeftCardState extends State<LeftCard> {
 
 class RightCard extends StatefulWidget {
   RightCard({this.onPressed2, this.SecondSubtitle, this.SecondTitle});
+
   final String SecondTitle;
   final String SecondSubtitle;
   final Function onPressed2;
-    @override
-  _RightCardState createState() => _RightCardState();
 
+  @override
+  _RightCardState createState() => _RightCardState();
 }
 
 class _RightCardState extends State<RightCard> {
@@ -129,17 +110,12 @@ class _RightCardState extends State<RightCard> {
             child: Padding(
               padding: EdgeInsets.only(left: 90, right: 90),
               child: AutoSizeText(
-<<<<<<< HEAD
-                'I’m still looking at homes or I’ve found a Property',
+                widget.SecondTitle,
                 style: TextStyle(
                     fontSize: 30,
                     fontFamily: StringRefer.Poppins,
                     fontWeight: FontWeight.w900,
                     color: Colors.white),
-=======
-                widget.SecondTitle,
-                style: TextStyle(fontSize: 30, fontFamily: StringRefer.Poppins, fontWeight: FontWeight.w900, color: Colors.white),
->>>>>>> fcb961291a2381b707ae61ebc3c32e20c59d8f25
                 softWrap: true,
                 textAlign: TextAlign.center,
                 maxLines: 3,
@@ -152,16 +128,11 @@ class _RightCardState extends State<RightCard> {
             child: Padding(
               padding: EdgeInsets.only(left: 120, right: 120),
               child: AutoSizeText(
-<<<<<<< HEAD
-                'Show me what the monthly payments and rates could be for my price range',
+                widget.SecondSubtitle,
                 style: TextStyle(
                     fontSize: 18,
                     fontFamily: StringRefer.SegoeUI,
                     color: Colors.white),
-=======
-                  widget.SecondSubtitle,
-                style: TextStyle(fontSize: 18, fontFamily: StringRefer.SegoeUI, color: Colors.white),
->>>>>>> fcb961291a2381b707ae61ebc3c32e20c59d8f25
                 softWrap: true,
                 textAlign: TextAlign.center,
                 maxLines: 3,
@@ -177,14 +148,7 @@ class _RightCardState extends State<RightCard> {
               colour: Color(0xfffecf09),
               height: 60,
               buttonRadius: 5,
-<<<<<<< HEAD
-              onPressed: () {
-                kNavigateNext(context: context, widget: BasicDetail());
-                // Navigator.pushNamed(context, BasicDetail.BasicDetailPageId);
-              },
-=======
               onPressed: widget.onPressed2,
->>>>>>> fcb961291a2381b707ae61ebc3c32e20c59d8f25
             ),
           ),
         ],
