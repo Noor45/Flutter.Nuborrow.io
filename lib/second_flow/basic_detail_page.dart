@@ -10,13 +10,13 @@ import 'package:nuborrow/widgets/input_fields.dart';
 import 'package:nuborrow/widgets/round_button.dart';
 import '../utils/strings.dart';
 
-class BasicDetailFirstFlow extends StatefulWidget {
-  static const BasicDetailPageFirstFlowId = 'basic_detail';
+class BasicDetail2ndFlow extends StatefulWidget {
+  static const BasicDetailPageSecondFlowId = 'basic_detail2';
   @override
-  _BasicDetailFirstFlowState createState() => _BasicDetailFirstFlowState();
+  _BasicDetail2ndFlowState createState() => _BasicDetail2ndFlowState();
 }
 
-class _BasicDetailFirstFlowState extends State<BasicDetailFirstFlow> {
+class _BasicDetail2ndFlowState extends State<BasicDetail2ndFlow> {
   GlobalKey globalKey = new GlobalKey(debugLabel: 'btm_app_bar');
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
@@ -95,8 +95,7 @@ class _ViewContentState extends State<ViewContent> {
                     child: Padding(
                       padding: EdgeInsets.only(left: 30, right: 30),
                       child: Wrap(
-                        direction:
-                            width > 800 ? Axis.horizontal : Axis.vertical,
+                        direction: width > 800 ? Axis.horizontal : width >  650 ? Axis.horizontal : Axis.vertical,
                         spacing: width > 800 ? 40 : 40,
                         children: [
                           AutoSizeText(
@@ -112,7 +111,7 @@ class _ViewContentState extends State<ViewContent> {
                             overflow: TextOverflow.visible,
                           ),
                           Container(
-                            width: width > 800 ? width / 4 : width / 2,
+                            width: width > 1200 ? width / 5 : width > 800 ? width :  width > 650 ? width/2.5  : width/1.1,
                             child: InputField(
                               hintText: 'Enter here',
                               onChanged: (value) {},

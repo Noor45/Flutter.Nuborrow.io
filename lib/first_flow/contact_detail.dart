@@ -196,7 +196,7 @@ class _TextFieldCardState extends State<TextFieldCard> {
                               buttonRadius: 10,
                               onPressed: () {
                                 Navigator.pushNamed(
-                                    context, RatesPage.RatesPageId);
+                                    context, RatesPageFirstFlow.RatesPageFirstFlowId);
                               },
                             ),
                           ),

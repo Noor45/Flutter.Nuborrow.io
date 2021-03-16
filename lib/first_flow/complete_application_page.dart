@@ -10,13 +10,13 @@ import 'package:nuborrow/widgets/round_button.dart';
 import '../cards/intro_page_card.dart';
 import '../utils/strings.dart';
 
-class LastPage extends StatefulWidget {
-  static const LastPageId = 'complete_application';
+class LastPageFirstFlow extends StatefulWidget {
+  static const LastPageFirstFlowId = 'complete_application';
   @override
-  _LastPageState createState() => _LastPageState();
+  _LastPageFirstFlowState createState() => _LastPageFirstFlowState();
 }
 
-class _LastPageState extends State<LastPage> {
+class _LastPageFirstFlowState extends State<LastPageFirstFlow> {
   GlobalKey globalKey = new GlobalKey(debugLabel: 'btm_app_bar');
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
