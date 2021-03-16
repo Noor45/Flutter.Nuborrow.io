@@ -3,20 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nuborrow/cards/left_card.dart';
-import 'package:nuborrow/pages/amount_detail.dart';
-import 'package:nuborrow/pages/pick_mortgage_term.dart';
+import 'package:nuborrow/first_flow/amount_detail.dart';
+import 'package:nuborrow/first_flow/pick_mortgage_term.dart';
 import 'package:nuborrow/utils/style.dart';
 import 'package:nuborrow/widgets/input_fields.dart';
 import 'package:nuborrow/widgets/round_button.dart';
 import '../utils/strings.dart';
 
-class BasicDetail extends StatefulWidget {
-  static const BasicDetailPageId = 'basic_detail';
+class BasicDetail2ndFlow extends StatefulWidget {
+  static const BasicDetailPageSecondFlowId = 'basic_detail2';
   @override
-  _BasicDetailState createState() => _BasicDetailState();
+  _BasicDetail2ndFlowState createState() => _BasicDetail2ndFlowState();
 }
 
-class _BasicDetailState extends State<BasicDetail> {
+class _BasicDetail2ndFlowState extends State<BasicDetail2ndFlow> {
   GlobalKey globalKey = new GlobalKey(debugLabel: 'btm_app_bar');
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
@@ -95,8 +95,7 @@ class _ViewContentState extends State<ViewContent> {
                     child: Padding(
                       padding: EdgeInsets.only(left: 30, right: 30),
                       child: Wrap(
-                        direction:
-                            width > 800 ? Axis.horizontal : Axis.vertical,
+                        direction: width > 800 ? Axis.horizontal : width >  650 ? Axis.horizontal : Axis.vertical,
                         spacing: width > 800 ? 40 : 40,
                         children: [
                           AutoSizeText(
@@ -112,7 +111,7 @@ class _ViewContentState extends State<ViewContent> {
                             overflow: TextOverflow.visible,
                           ),
                           Container(
-                            width: width > 800 ? width / 4 : width / 2,
+                            width: width > 1200 ? width / 5 : width > 800 ? width :  width > 650 ? width/2.5  : width/1.1,
                             child: InputField(
                               hintText: 'Enter here',
                               onChanged: (value) {},
@@ -190,7 +189,7 @@ class _ViewContentState extends State<ViewContent> {
                                   buttonRadius: 10,
                                   onPressed: () {
                                     Navigator.pushNamed(context,
-                                        AmountDetail.AmountDetailPageId);
+                                        AmountDetailFirstFlow.AmountDetailPageFirstFlowId);
                                   },
                                 ),
                               ),

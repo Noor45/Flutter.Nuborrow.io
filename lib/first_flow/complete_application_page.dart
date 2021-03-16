@@ -3,20 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:nuborrow/pages/contact_detail.dart';
-import 'package:nuborrow/pages/second_intro_page.dart';
+import 'package:nuborrow/first_flow/contact_detail.dart';
+import 'package:nuborrow/first_flow/second_intro_page.dart';
 import 'package:nuborrow/utils/colors.dart';
 import 'package:nuborrow/widgets/round_button.dart';
 import '../cards/intro_page_card.dart';
 import '../utils/strings.dart';
 
-class LastPage extends StatefulWidget {
-  static const LastPageId = 'complete_application';
+class LastPageFirstFlow extends StatefulWidget {
+  static const LastPageFirstFlowId = 'complete_application';
   @override
-  _LastPageState createState() => _LastPageState();
+  _LastPageFirstFlowState createState() => _LastPageFirstFlowState();
 }
 
-class _LastPageState extends State<LastPage> {
+class _LastPageFirstFlowState extends State<LastPageFirstFlow> {
   GlobalKey globalKey = new GlobalKey(debugLabel: 'btm_app_bar');
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override

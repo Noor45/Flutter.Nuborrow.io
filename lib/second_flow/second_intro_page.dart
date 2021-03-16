@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nuborrow/cards/second_intro_page.dart';
+import 'package:nuborrow/second_flow/basic_detail_page.dart';
 
-class SecondIntroPage extends StatefulWidget {
-  static const SecondIntroPageId = 'intro';
+class NextIntroPage2ndFlow extends StatefulWidget {
+  static const SecondIntroPage2ndFlowId = 'intro2';
   @override
-  _SecondIntroPageState createState() => _SecondIntroPageState();
+  _NextIntroPage2ndFlowState createState() => _NextIntroPage2ndFlowState();
 }
 
-class _SecondIntroPageState extends State<SecondIntroPage> {
+class _NextIntroPage2ndFlowState extends State<NextIntroPage2ndFlow> {
   GlobalKey globalKey = new GlobalKey(debugLabel: 'btm_app_bar');
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
@@ -56,8 +57,20 @@ class _ViewContentState extends State<ViewContent> {
       child: SingleChildScrollView(
         child: Wrap(
           children: [
-            LeftCard(),
-            RightCard()
+            LeftCard(
+              firstTitle: 'I want to refinance my mortgage',
+              firstSubtitle: 'Need to refinance your mortgage? Did you know you can refinance at a lower rate and access equity to pay off higher interest debt?',
+              onPressed1: (){
+                Navigator.pushNamed(context, BasicDetail2ndFlow.BasicDetailPageSecondFlowId);
+              },
+            ),
+            RightCard(
+              SecondTitle: 'My mortgage is coming up for renewal',
+              SecondSubtitle:'Why settle for just one rate, from one bank when you may qualify for a lower rate?',
+              onPressed2: (){
+                Navigator.pushNamed(context, BasicDetail2ndFlow.BasicDetailPageSecondFlowId);
+              },
+            )
           ],
         ),
       ),

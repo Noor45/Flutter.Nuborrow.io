@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nuborrow/cards/left_card.dart';
-import 'package:nuborrow/pages/amount_detail.dart';
-import 'package:nuborrow/pages/pick_mortgage_term.dart';
-import 'package:nuborrow/pages/rates_page.dart';
+import 'package:nuborrow/first_flow/amount_detail.dart';
+import 'package:nuborrow/first_flow/pick_mortgage_term.dart';
+import 'package:nuborrow/first_flow/rates_page.dart';
 import 'package:nuborrow/widgets/input_fields.dart';
 import 'package:nuborrow/widgets/round_button.dart';
 import '../utils/strings.dart';
@@ -196,7 +196,7 @@ class _TextFieldCardState extends State<TextFieldCard> {
                               buttonRadius: 10,
                               onPressed: () {
                                 Navigator.pushNamed(
-                                    context, RatesPage.RatesPageId);
+                                    context, RatesPageFirstFlow.RatesPageFirstFlowId);
                               },
                             ),
                           ),

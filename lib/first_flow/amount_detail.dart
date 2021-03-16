@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nuborrow/cards/left_card.dart';
-import 'package:nuborrow/pages/pick_mortgage_term.dart';
+import 'package:nuborrow/first_flow/pick_mortgage_term.dart';
 import 'package:nuborrow/utils/colors.dart';
 import 'package:nuborrow/utils/style.dart';
 import 'package:nuborrow/widgets/input_fields.dart';
@@ -11,14 +11,14 @@ import 'package:nuborrow/widgets/round_button.dart';
 import '../utils/constants.dart';
 import '../utils/strings.dart';
 
-class AmountDetail extends StatefulWidget {
-  static const AmountDetailPageId = 'amount_detail';
+class AmountDetailFirstFlow extends StatefulWidget {
+  static const AmountDetailPageFirstFlowId = 'amount_detail';
 
   @override
-  _AmountDetailState createState() => _AmountDetailState();
+  _AmountDetailFirstFlowState createState() => _AmountDetailFirstFlowState();
 }
 
-class _AmountDetailState extends State<AmountDetail> {
+class _AmountDetailFirstFlowState extends State<AmountDetailFirstFlow> {
   GlobalKey globalKey = new GlobalKey(debugLabel: 'btm_app_bar');
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
