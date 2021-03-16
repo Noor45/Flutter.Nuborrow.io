@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nuborrow/cards/left_card.dart';
 import 'package:nuborrow/pages/amount_detail.dart';
 import 'package:nuborrow/pages/pick_mortgage_term.dart';
+import 'package:nuborrow/pages/rates_page.dart';
 import 'package:nuborrow/widgets/input_fields.dart';
 import 'package:nuborrow/widgets/round_button.dart';
 import '../utils/strings.dart';
@@ -32,6 +34,7 @@ class _ContactDetailState extends State<ContactDetail> {
         child: Container(
           height: height,
           width: width,
+          margin: EdgeInsets.only(top: width > 1100 ? 50 : 0, bottom: width > 1100 ? 50 : 0),
           child: width > 800
               ? Row(
                   children: [
@@ -63,49 +66,13 @@ class _ViewContentState extends State<ViewContent> {
       child: SingleChildScrollView(
         child: Wrap(
           children: [
-            Container(
+            LeftSideCard(
+              title:'''Good news, we’ve found some of the best rates on the market for you.''',
+              topPadding: MediaQuery.of(context).size.height / 5,
               height: width > 900 ? height : height / 2,
-              width: width > 900 ? width / 2 : width,
-              color: Colors.white,
-              child: Padding(
-                padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height / 4,
-                    left: 40,
-                    right: 30),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Stack(
-                      children: [
-                        Positioned(
-                          child: SvgPicture.asset(
-                            'assets/svg/triangle.svg',
-                            width: 30,
-                            height: 30,
-                          ),
-                        ),
-                        Flexible(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 8),
-                            child: AutoSizeText(
-                              '''Good news, we’ve found some of the best rates on the market for you.''',
-                              style: TextStyle(
-                                  fontSize: 40,
-                                  fontFamily: StringRefer.Poppins,
-                                  fontWeight: FontWeight.w900,
-                                  color: Colors.black),
-                              softWrap: true,
-                              maxLines: 3,
-                              overflow: TextOverflow.visible,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+              font: 40,
+              showSubtitle: false,
+              subtitle: '',
             ),
             Container(
               height: width > 900 ? height : height,
@@ -154,18 +121,16 @@ class LabelCard extends StatelessWidget {
   final String label;
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: AutoSizeText(
-        label,
-        style: TextStyle(
-            fontSize: 18,
-            fontFamily: StringRefer.SegoeUI,
-            fontWeight: FontWeight.bold,
-            color: Colors.black),
-        softWrap: true,
-        maxLines: 3,
-        overflow: TextOverflow.visible,
-      ),
+    return AutoSizeText(
+      label,
+      style: TextStyle(
+          fontSize: 18,
+          fontFamily: StringRefer.SegoeUI,
+          fontWeight: FontWeight.bold,
+          color: Colors.black),
+      softWrap: true,
+      maxLines: 3,
+      overflow: TextOverflow.visible,
     );
   }
 }
@@ -206,41 +171,40 @@ class _TextFieldCardState extends State<TextFieldCard> {
             ),
             Container(
               width: width > 800 ? width / 5 : width / 2,
-              child: Flexible(
-                child: Wrap(
-                  direction: Axis.horizontal,
-                  children: [
-                    InputField(
-                      hintText: widget.hint,
-                      onChanged: widget.onChanged,
-                      textInputType: widget.textInputType,
-                    ),
-                    Visibility(
-                      visible: widget.showButton,
-                      child: Wrap(
-                        direction: Axis.horizontal,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 50),
-                            child: Container(
-                              width: width > 800 ? width / 5 : width / 2,
-                              child: RoundedButton(
-                                title: 'continue',
-                                textColor: Colors.white,
-                                colour: Color(0xff705aa7),
-                                buttonRadius: 10,
-                                onPressed: () {
-                                  Navigator.pushNamed(
-                                      context, AmountDetail.AmountDetailPageId);
-                                },
-                              ),
+              child: Wrap(
+                direction: Axis.horizontal,
+                children: [
+                  InputField(
+                    hintText: widget.hint,
+                    onChanged: widget.onChanged,
+                    textInputType: widget.textInputType,
+                  ),
+                  Visibility(
+                    visible: widget.showButton,
+                    child: Wrap(
+                      direction: Axis.horizontal,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 50),
+                          child: Container(
+                            width: width > 800 ? width / 5 : width / 2,
+                            child: RoundedButton(
+                              title: 'Yes, show me my rates  ',
+                              textColor: Colors.white,
+                              height: 60,
+                              colour: Color(0xff705aa7),
+                              buttonRadius: 10,
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                    context, RatesPage.RatesPageId);
+                              },
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ],

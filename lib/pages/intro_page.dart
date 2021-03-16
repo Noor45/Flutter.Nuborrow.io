@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nuborrow/cards/left_card.dart';
 import 'package:nuborrow/pages/second_intro_page.dart';
 import 'package:nuborrow/widgets/round_button.dart';
+import '../cards/intro_page_card.dart';
 import '../utils/strings.dart';
 
 class IntroPage extends StatefulWidget {
@@ -30,6 +31,7 @@ class _IntroPageState extends State<IntroPage> {
         child: Container(
           height: height,
           width: width,
+          margin: EdgeInsets.only(top: width > 1100 ? 50 : 0, bottom: width > 1100 ? 50 : 0),
           child: width > 700
               ? Row(
                   children: [
@@ -72,7 +74,7 @@ class _ViewContentState extends State<ViewContent> {
                   Container(
                     width: width > 700 ? width / 3 : width / 1.3,
                     child: LabelCard(
-                      icon: 'assets/svg/refinancing.svg',
+                      icon: 'assets/svg/home.svg',
                       label: 'Buying a home',
                     ),
                   ),
@@ -103,6 +105,7 @@ class _ViewContentState extends State<ViewContent> {
                 ],
               ),
             ),
+
             Container(
               height: width > 700 ? height : height/2,
               width: width > 700 ? width / 2 : width,
@@ -122,9 +125,9 @@ class _ViewContentState extends State<ViewContent> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 50, right: 50),
-                    child: Flexible(
+                  Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 50, right: 50),
                       child: AutoSizeText(
                         'I’m looking for a new mortgage for my new home.',
                         style: TextStyle(fontSize: 18, fontFamily: StringRefer.SegoeUI, fontWeight: FontWeight.bold, color: Colors.white),
@@ -142,8 +145,9 @@ class _ViewContentState extends State<ViewContent> {
                       title: 'continue',
                       colour: Color(0xfffecf09),
                       buttonRadius: 5,
+                      height: 60,
                       onPressed: (){
-                        Navigator.pushNamedAndRemoveUntil(context, SecondIntroPage.SecondIntroPageId, (route) => false);
+                        Navigator.pushNamed(context, SecondIntroPage.SecondIntroPageId);
                       },
                     ),
                   ),
@@ -157,48 +161,3 @@ class _ViewContentState extends State<ViewContent> {
   }
 }
 
-class LabelCard extends StatefulWidget {
-  LabelCard({this.icon, this.label});
-  final String icon;
-  final String label;
-  @override
-  _LabelCardState createState() => _LabelCardState();
-}
-
-class _LabelCardState extends State<LabelCard> {
-  @override
-  Widget build(BuildContext context) {
-    return Flexible(
-      child: Row(
-        children: [
-          CircleAvatar(
-            backgroundColor: Color(0xfff7f9fc),
-            radius: 40,
-            child: CircleAvatar(
-              backgroundColor: Colors.white,
-              radius: 30,
-              child: Container(
-                child: SvgPicture.asset(
-                  widget.icon,
-                  width: 40,
-                  height: 40,
-                ),
-              ),
-            ),
-          ),
-          SizedBox(width: 20),
-          Flexible(
-            child: AutoSizeText(
-              widget.label,
-              style:
-                  TextStyle(fontSize: 18, fontFamily: StringRefer.PoppinMedium),
-              softWrap: true,
-              maxLines: 3,
-              overflow: TextOverflow.visible,
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}

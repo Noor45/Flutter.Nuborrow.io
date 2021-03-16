@@ -1,0 +1,42 @@
+[debug] [2021-03-15T14:43:34.129Z] ----------------------------------------------------------------------
+[debug] [2021-03-15T14:43:34.134Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Noor ul An\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2021-03-15T14:43:34.135Z] CLI Version:   9.6.1
+[debug] [2021-03-15T14:43:34.135Z] Platform:      win32
+[debug] [2021-03-15T14:43:34.135Z] Node Version:  v14.16.0
+[debug] [2021-03-15T14:43:34.136Z] Time:          Mon Mar 15 2021 19:43:34 GMT+0500 (Pakistan Standard Time)
+[debug] [2021-03-15T14:43:34.137Z] ----------------------------------------------------------------------
+[debug] [2021-03-15T14:43:34.137Z] 
+[debug] [2021-03-15T14:43:34.146Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-03-15T14:43:34.149Z] > authorizing via signed-in user
+[debug] [2021-03-15T14:43:34.150Z] [iam] checking project nubrrow-web-app for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2021-03-15T14:43:34.153Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/nubrrow-web-app:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2021-03-15T14:43:36.091Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Mon, 15 Mar 2021 14:43:35 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1204","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-03-15T14:43:36.094Z] > refreshing access token with scopes: []
+[debug] [2021-03-15T14:43:36.094Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-03-15T14:43:36.715Z] <<< HTTP RESPONSE 200 {"date":"Mon, 15 Mar 2021 14:43:36 GMT","pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-03-15T14:43:36.754Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/nubrrow-web-app [none]
+[debug] [2021-03-15T14:43:37.435Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/nubrrow-web-app 200
+[debug] [2021-03-15T14:43:37.435Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/nubrrow-web-app {"projectId":"nubrrow-web-app","projectNumber":"696690990810","displayName":"nubrrow-web-app","name":"projects/nubrrow-web-app","resources":{"hostingSite":"nubrrow-web-app"},"state":"ACTIVE"}
+[info] 
+[info] === Deploying to 'nubrrow-web-app'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2021-03-15T14:43:37.441Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-03-15T14:43:37.442Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-03-15T14:43:38.009Z] <<< HTTP RESPONSE 200 {"date":"Mon, 15 Mar 2021 14:43:37 GMT","pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-03-15T14:43:38.096Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/nubrrow-web-app/versions  
+ {"config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2021-03-15T14:43:40.455Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Mon, 15 Mar 2021 14:43:40 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  hosting[nubrrow-web-app]: beginning deploy... 
+[info] i  hosting[nubrrow-web-app]: found 1 files in public 
+[debug] [2021-03-15T14:43:40.471Z] > refreshing access token with scopes: []
+[debug] [2021-03-15T14:43:40.472Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-03-15T14:43:40.474Z] [hosting] hash cache [cHVibGlj] stored for 1 files
+[debug] [2021-03-15T14:43:40.474Z] [hosting][hash queue][FINAL] {"max":1,"min":1,"avg":1,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":4}
+[debug] [2021-03-15T14:43:41.049Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","date":"Mon, 15 Mar 2021 14:43:40 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-03-15T14:43:41.128Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/sites/nubrrow-web-app/versions/51dbbf55d5374c6f:populateFiles [none]
+[debug] [2021-03-15T14:43:41.129Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/sites/nubrrow-web-app/versions/51dbbf55d5374c6f:populateFiles {"files":{"/index.html":"bbcdaf9ffa9b90243dd4e1f1ca4646537af3f0fc13ac844724b8bfacf2ab4f65"}}

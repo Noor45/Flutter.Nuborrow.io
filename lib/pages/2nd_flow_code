@@ -68,14 +68,13 @@ class _ViewContentState extends State<ViewContent> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+
     return Flexible(
       child: SingleChildScrollView(
         child: Wrap(
           children: [
             LeftSideCard(
-              showSubtitle: false,
-              subtitle: '',
-              title:'''Let’s talk about your needs ''',
+              title:'''Let’s talk about how we can help you the Best''',
               topPadding: MediaQuery.of(context).size.height / 5,
               height: width > 900 ? height : height / 1.5,
               font: 40,
@@ -90,7 +89,7 @@ class _ViewContentState extends State<ViewContent> {
                 children: [
                   SizedBox(height: 20),
                   TextFieldCard(
-                    label: 'What is the price of your new home?',
+                    label: 'What is the current value of your home?',
                     hint: 'Enter amount',
                     textInputType: TextInputType.number,
                     onChanged: (value) {},
@@ -98,21 +97,15 @@ class _ViewContentState extends State<ViewContent> {
                   ),
                   SizedBox(height: 20),
                   TextFieldCard(
-                    label: 'How much do you have as a Down payment? (enter a %)',
+                    label: 'What is your current mortgage balance?',
                     hint: 'Enter amount',
                     textInputType: TextInputType.number,
                     onChanged: (value) {},
                     showButton: false,
                   ),
-                  SizedBox(height: 30),
-                  MortgageCard(),
-                  SizedBox(height: 30),
-                  DateTimeFieldCard(
-                    label: 'When do you want to move in?',
-                    hint: 'Enter Date',
-                    onChanged: (value) {},
-                    showButton: false,
-                  ),
+                  SizedBox(height: 20),
+                  AmountCard(),
+                  SizedBox(height: 20),
                   Container(
                     width: width > 800 ? width / 2 : width,
                     child: Padding(
@@ -125,7 +118,7 @@ class _ViewContentState extends State<ViewContent> {
                           Container(
                             width:width > 800  ? width/5 : width,
                             child: AutoSizeText(
-                              '''Will you be a first-time home buyer?''',
+                              '''Do you want to borrow any Extra funds?''',
                               style: TextStyle(
                                   fontSize: 18,
                                   fontFamily: StringRefer.SegoeUI,
@@ -150,7 +143,6 @@ class _ViewContentState extends State<ViewContent> {
                                     return Wrap(
                                       direction: Axis.vertical,
                                       children: [
-                                        SizedBox(height: 15),
                                         InkWell(
                                           onTap: () {
                                             setState(() {
@@ -169,26 +161,10 @@ class _ViewContentState extends State<ViewContent> {
                                                 : Colors.black,
                                           ),
                                         ),
+                                        SizedBox(height: 15),
                                       ],
                                     );
                                   }).toList(),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 40),
-                                  child: Container(
-                                    width: width > 800 ? width / 5 : width / 2,
-                                    child: RoundedButton(
-                                      title: 'continue',
-                                      textColor: Colors.white,
-                                      colour: Color(0xff705aa7),
-                                      buttonRadius: 10,
-                                      height: 60,
-                                      onPressed: () {
-                                        Navigator.pushNamed(context,
-                                            MortgageTerms.MortgageTermsPageId);
-                                      },
-                                    ),
-                                  ),
                                 ),
                               ],
                             ),
@@ -198,6 +174,16 @@ class _ViewContentState extends State<ViewContent> {
                     ),
                   ),
                   SizedBox(height: 20),
+                  MortgageCard(),
+                  SizedBox(height: 20),
+                  DateTimeFieldCard(
+                    label: 'When would you like to complete Your refinance?',
+                    hint: 'Enter Date',
+                    onChanged: (value) {},
+                    showButton: true,
+                  ),
+                  SizedBox(height: 20),
+
                 ],
               ),
             ),
@@ -282,7 +268,6 @@ class _TextFieldCardState extends State<TextFieldCard> {
                             width: width > 800 ? width / 5 : width / 2,
                             child: RoundedButton(
                               title: 'continue',
-                              height: 60,
                               textColor: Colors.white,
                               colour: Color(0xff705aa7),
                               buttonRadius: 10,
@@ -350,6 +335,30 @@ class _DateTimeFieldCardState extends State<DateTimeFieldCard> {
                     onChanged: widget.onChanged,
                     textInputType: widget.textInputType,
                   ),
+                  Visibility(
+                    visible: widget.showButton,
+                    child: Wrap(
+                      direction: Axis.horizontal,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 50),
+                          child: Container(
+                            width: width > 800 ? width / 5 : width / 2,
+                            child: RoundedButton(
+                              title: 'continue',
+                              textColor: Colors.white,
+                              colour: Color(0xff705aa7),
+                              buttonRadius: 10,
+                              onPressed: () {
+                                Navigator.pushNamed(context,
+                                    MortgageTerms.MortgageTermsPageId);
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -359,6 +368,7 @@ class _DateTimeFieldCardState extends State<DateTimeFieldCard> {
     );
   }
 }
+
 
 class PriceCard extends StatefulWidget {
   PriceCard({this.title, this.value, this.color});
@@ -491,6 +501,8 @@ class _MortgageCardState extends State<MortgageCard> {
       padding: const EdgeInsets.only(left: 30, right: 30),
       child: Container(
         width: MediaQuery.of(context).size.width,
+
+        // height: MediaQuery.of(context).size.height/3,
         decoration: BoxDecoration(
           color: Colors.white,
           border: Border(left: BorderSide(color: ColorRefer.kBorderColor, width: 1.0), right: BorderSide(color: ColorRefer.kBorderColor, width: 1.0), top: BorderSide(color: ColorRefer.kBorderColor, width: 1.0), bottom: BorderSide(color: ColorRefer.kBorderColor, width: 1.0),),
@@ -505,7 +517,7 @@ class _MortgageCardState extends State<MortgageCard> {
                 Container(
                   child: Center(
                     child: AutoSizeText(
-                      'Calculating your Mortgage needs',
+                      'Determining your required mortgage amount',
                       style: TextStyle(fontFamily: StringRefer.SegoeUI, fontSize: 20),
                     ),
                   ),
@@ -518,14 +530,14 @@ class _MortgageCardState extends State<MortgageCard> {
               child: Column(
                 children: [
                   PriceCard(
-                    title: 'Purchased Price',
-                    value: '\$0',
+                    title: 'Current mortgage',
+                    value: '\$20000',
                     color: Colors.black,
                   ),
                   SizedBox(height: 10),
                   PriceCard(
-                    title: '- Purchased Price',
-                    value: '\$0',
+                    title: '+ Additional equity ',
+                    value: '\$29300',
                     color: Colors.black,
                   ),
                   SizedBox(height: 20),
@@ -539,8 +551,8 @@ class _MortgageCardState extends State<MortgageCard> {
                 borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10.0), bottomRight: Radius.circular(10.0)),
               ),
               child: PriceCard(
-                title: '= Total mortgage required',
-                value: '\$0',
+                title: '= Total mortgage requested',
+                value: '\$125000',
                 color: Colors.white,
               ),
             ),
@@ -550,6 +562,8 @@ class _MortgageCardState extends State<MortgageCard> {
     );
   }
 }
+
+
 
 class TabCard extends StatefulWidget {
   TabCard({this.title, this.labelColor, this.textColor});

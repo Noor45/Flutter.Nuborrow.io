@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:nuborrow/pages/basic_detail_page.dart';
+import 'package:nuborrow/pages/complete_application_page.dart';
 import 'package:nuborrow/pages/contact_detail.dart';
 import 'package:nuborrow/pages/pick_mortgage_term.dart';
+import 'package:nuborrow/pages/rates_page.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'pages/intro_page.dart';
 import 'pages/amount_detail.dart';
@@ -46,6 +48,8 @@ class _MyAppState extends State<MyApp> {
         MortgageTerms.MortgageTermsPageId: (context) => MortgageTerms(),
         ContactDetail.ContactDetailPageId: (context) => ContactDetail(),
         AmountDetail.AmountDetailPageId: (context) => AmountDetail(),
+        RatesPage.RatesPageId: (context) => RatesPage(),
+        LastPage.LastPageId: (context) => LastPage(),
       },
     );
   }
