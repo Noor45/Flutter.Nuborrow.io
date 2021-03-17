@@ -3,10 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:nuborrow/widgets/round_button.dart';
 import '../utils/strings.dart';
-<<<<<<< HEAD:lib/cards/second_intro_card.dart
-
-=======
->>>>>>> main:lib/cards/second_intro_page.dart
 
 class LeftCard extends StatefulWidget {
   LeftCard({this.firstSubtitle, this.firstTitle, this.onPressed1});
