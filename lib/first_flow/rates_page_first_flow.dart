@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:nuborrow/cards/left_card.dart';
-import 'package:nuborrow/first_flow/complete_application_page.dart';
+import 'package:nuborrow/first_flow/complete_application_first_flow.dart';
 import 'package:nuborrow/utils/colors.dart';
 import 'package:nuborrow/widgets/input_fields.dart';
 import 'package:page_transition/page_transition.dart';
@@ -225,7 +225,6 @@ class _ViewContentState extends State<ViewContent> {
                       rateHold: 'Available',
                       onPressed: (){
                         Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: LastPageFirstFlow()));
-                        // Navigator.pushNamed(context, LastPageFirstFlow.LastPageFirstFlowId);
                       },
                     ),
                   ),

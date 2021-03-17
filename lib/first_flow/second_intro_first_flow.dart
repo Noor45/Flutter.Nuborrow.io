@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nuborrow/cards/second_intro_card.dart';
-import 'package:nuborrow/first_flow/basic_detail_page.dart';
+import 'package:nuborrow/first_flow/basic_detail_first_flow.dart';
 import 'package:page_transition/page_transition.dart';
 
 class NextIntroPageFirstFlow extends StatefulWidget {

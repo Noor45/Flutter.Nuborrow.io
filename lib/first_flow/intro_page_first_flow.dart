@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:nuborrow/cards/left_card.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:nuborrow/first_flow/second_intro_page.dart';
+import 'package:nuborrow/first_flow/second_intro_first_flow.dart';
 import 'package:nuborrow/widgets/round_button.dart';
 import 'package:page_transition/page_transition.dart';
 import '../cards/intro_page_card.dart';

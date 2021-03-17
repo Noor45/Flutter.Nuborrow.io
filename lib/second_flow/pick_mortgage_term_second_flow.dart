@@ -2,19 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:nuborrow/cards/left_card.dart';
-import 'package:nuborrow/utils/style.dart';
+import 'package:nuborrow/cards/pick_mortgage_card.dart';
+import 'package:nuborrow/second_flow/contact_detail_second_flow.dart';
 import 'package:page_transition/page_transition.dart';
-import 'contact_detail.dart';
+// import 'contact_detail_first_flow.dart';
 import 'package:nuborrow/widgets/round_button.dart';
 import '../utils/strings.dart';
 
-class MortgageTerms extends StatefulWidget {
-  static const MortgageTermsPageId = 'mortgage_terms';
+class MortgageTerms2ndFlow extends StatefulWidget {
+  static const MortgageTerms2ndFlowPageId = 'mortgage_terms2';
   @override
-  _MortgageTermsState createState() => _MortgageTermsState();
+  _MortgageTerms2ndFlowState createState() => _MortgageTerms2ndFlowState();
 }
 
-class _MortgageTermsState extends State<MortgageTerms> {
+class _MortgageTerms2ndFlowState extends State<MortgageTerms2ndFlow> {
   GlobalKey globalKey = new GlobalKey(debugLabel: 'btm_app_bar');
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
@@ -95,12 +96,10 @@ class _ViewContentState extends State<ViewContent> {
                     child: Padding(
                       padding: EdgeInsets.only(left: 30, right: 30),
                       child: Wrap(
-                        direction:
-                        width > 800 ? Axis.horizontal : Axis.vertical,
-                        spacing: width > 800 ? 40 : 40,
+                        direction: width > 1150 ? Axis.horizontal : width > 800 ? Axis.vertical : width >  650 ? Axis.horizontal : Axis.vertical ,
                         children: [
                           Container(
-                            width:width > 800  ? width/5 : width,
+                            width: width > 1150 ? width / 5 : width > 650 ? width / 2.5 : width,
                             child: AutoSizeText(
                               'Is this Property going to be?',
                               style: TextStyle(
@@ -113,8 +112,9 @@ class _ViewContentState extends State<ViewContent> {
                               overflow: TextOverflow.visible,
                             ),
                           ),
+                          SizedBox(height: 20, width: 50),
                           Container(
-                            width : width > 800  ? width/5 : width,
+                            width: width > 1150 ? width / 5 : width > 800 ? width/2.5 :  width > 650 ? width/2.5  : width/1.1,
                             child: Wrap(
                               direction: Axis.vertical,
                               children: [
@@ -163,11 +163,10 @@ class _ViewContentState extends State<ViewContent> {
                     child: Padding(
                       padding: EdgeInsets.only(left: 30, right: 30),
                       child: Wrap(
-                        direction: width > 800 ? Axis.horizontal : Axis.vertical,
-                        spacing: width > 800 ? 40 : 40,
+                        direction: width > 1150 ? Axis.horizontal : width > 800 ? Axis.vertical : width >  650 ? Axis.horizontal : Axis.vertical ,
                         children: [
                           Container(
-                            width:width > 800  ? width/5 : width,
+                            width: width > 1150 ? width / 5 : width > 650 ? width / 2.5 : width,
                             child: AutoSizeText(
                               'Which mortgage term suits your Needs?',
                               style: TextStyle(
@@ -180,8 +179,9 @@ class _ViewContentState extends State<ViewContent> {
                               overflow: TextOverflow.visible,
                             ),
                           ),
+                          SizedBox(height: 20, width: 50),
                           Container(
-                            width:width > 800  ? width/5 : width,
+                            width: width > 1150 ? width / 5 : width > 800 ? width/2.5 :  width > 650 ? width/2.5  : width/1.1,
                             child: Wrap(
                               direction: Axis.vertical,
                               children: [
@@ -219,7 +219,7 @@ class _ViewContentState extends State<ViewContent> {
                                 ),
                                 SizedBox(height: 50),
                                 Container(
-                                  width: width > 800 ? width / 5 : width / 2,
+                                  width: width > 1150 ? width / 5 : width > 800 ? width/2.5 :  width > 650 ? width/2.5  : width/1.1,
                                   child: RoundedButton(
                                     title: 'continue',
                                     textColor: Colors.white,
@@ -227,9 +227,11 @@ class _ViewContentState extends State<ViewContent> {
                                     colour: Color(0xff705aa7),
                                     buttonRadius: 10,
                                     onPressed: () {
-                                      Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: ContactDetail()));
-                                      // Navigator.pushNamed(context,
-                                      //     ContactDetail.ContactDetailPageId);
+                                      Navigator.push(context, PageTransition(
+                                          type: PageTransitionType.rightToLeft,
+                                          duration: Duration(seconds: 1),
+                                          child: ContactDetail2ndFlow())
+                                      );
                                     },
                                   ),
                                 ),
@@ -251,33 +253,3 @@ class _ViewContentState extends State<ViewContent> {
 }
 
 
-class TabCard extends StatefulWidget {
-  TabCard({this.title, this.labelColor, this.textColor});
-  final String title;
-  final Color textColor;
-  final Color labelColor;
-  @override
-  _TabCardState createState() => _TabCardState();
-}
-
-class _TabCardState extends State<TabCard> {
-  @override
-  Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    return InkWell(
-      child: Container(
-        width: width > 800 ? width / 5 : width / 2,
-        height: 50,
-        decoration:
-        StyleRefer.kTabDecoration.copyWith(color: widget.labelColor),
-        child: Center(
-          child: Text(
-            widget.title,
-            style: TextStyle(
-                fontFamily: StringRefer.Poppins, color: widget.textColor),
-          ),
-        ),
-      ),
-    );
-  }
-}

@@ -47,10 +47,8 @@ class DateTimeField extends StatefulWidget {
         this.hintText,
         this.onChanged,
         this.validator,
-        this.textInputType,
         this.maxLength});
   final TextEditingController controller;
-  final TextInputType textInputType;
   final String hintText;
   final String label;
   final int maxLength;

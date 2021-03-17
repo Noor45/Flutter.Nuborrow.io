@@ -1,20 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:nuborrow/cards/left_card.dart';
-import 'package:nuborrow/first_flow/second_intro_page.dart';
-import 'package:nuborrow/second_flow/second_intro_page.dart';
+import 'package:nuborrow/forth_flow/basic_detail_forth_flow.dart';
 import 'package:nuborrow/widgets/round_button.dart';
+import 'package:page_transition/page_transition.dart';
 import '../cards/intro_page_card.dart';
 import '../utils/strings.dart';
 
-class IntroPage2ndFlow extends StatefulWidget {
-  static const IntroPageId2ndFlow = 'continue2';
+class IntroPageForthFlow extends StatefulWidget {
+  static const IntroPageIdForthFlow = 'continue4';
   @override
-  _IntroPage2ndFlowState createState() => _IntroPage2ndFlowState();
+  _IntroPageForthFlowState createState() => _IntroPageForthFlowState();
 }
 
-class _IntroPage2ndFlowState extends State<IntroPage2ndFlow> {
+class _IntroPageForthFlowState extends State<IntroPageForthFlow> {
   GlobalKey globalKey = new GlobalKey(debugLabel: 'btm_app_bar');
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
@@ -116,13 +115,16 @@ class _ViewContentState extends State<ViewContent> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Flexible(
-                    child: AutoSizeText(
-                      'I’m need to refinance / renew',
-                      style: TextStyle(fontSize: 28, fontFamily: StringRefer.Poppins, fontWeight: FontWeight.bold, color: Colors.white),
-                      softWrap: true,
-                      textAlign: TextAlign.center,
-                      maxLines: 3,
-                      overflow: TextOverflow.visible,
+                    child: Padding(
+                      padding:  EdgeInsets.only(left: width/12, right: width/12),
+                      child: AutoSizeText(
+                        'I want to add a home equity loan or secondary product',
+                        style: TextStyle(fontSize: 33, fontFamily: StringRefer.Poppins, fontWeight: FontWeight.bold, color: Colors.white),
+                        softWrap: true,
+                        textAlign: TextAlign.center,
+                        maxLines: 3,
+                        overflow: TextOverflow.visible,
+                      ),
                     ),
                   ),
                   SizedBox(height: 20),
@@ -130,8 +132,8 @@ class _ViewContentState extends State<ViewContent> {
                     child: Padding(
                       padding:  EdgeInsets.only(left: width/12, right: width/12),
                       child: AutoSizeText(
-                        'I want to look at refinancing my Existing mortgage vs renewing my current mortgage',
-                        style: TextStyle(fontSize: 18, fontFamily: StringRefer.SegoeUI, color: Colors.white),
+                        '''Did you know you can unlock the equity In your home, gain access to extra cash to pay down Debt, pay for school or invest?  See today’s best Home equity loan rates.''',
+                        style: TextStyle(fontSize: 20, fontFamily: StringRefer.SegoeUI, color: Colors.white),
                         softWrap: true,
                         maxLines: 3,
                         textAlign: TextAlign.center,
@@ -148,7 +150,11 @@ class _ViewContentState extends State<ViewContent> {
                       buttonRadius: 5,
                       height: 60,
                       onPressed: (){
-                        Navigator.pushNamed(context, NextIntroPage2ndFlow.SecondIntroPage2ndFlowId);
+                        Navigator.push(context, PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            duration: Duration(seconds: 1),
+                            child: BasicDetailForthFlow())
+                        );
                       },
                     ),
                   ),

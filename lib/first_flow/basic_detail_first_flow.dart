@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nuborrow/cards/left_card.dart';
-import 'package:nuborrow/first_flow/amount_detail.dart';
-import 'package:nuborrow/first_flow/contact_detail.dart';
-import 'package:nuborrow/first_flow/pick_mortgage_term.dart';
+import 'package:nuborrow/first_flow/amount_detail_first_flow.dart';
+import 'package:nuborrow/first_flow/contact_detail_first_flow.dart';
+import 'package:nuborrow/first_flow/pick_mortgage_term_first_flow.dart';
 import 'package:nuborrow/utils/style.dart';
 import 'package:nuborrow/widgets/input_fields.dart';
 import 'package:nuborrow/widgets/round_button.dart';
@@ -97,9 +97,7 @@ class _ViewContentState extends State<ViewContent> {
                     child: Padding(
                       padding: EdgeInsets.only(left: 30, right: 30),
                       child: Wrap(
-                        direction:
-                            width > 800 ? Axis.horizontal : Axis.vertical,
-                        spacing: width > 800 ? 40 : 40,
+                        direction: width > 1350 ? Axis.horizontal : width > 800 ? Axis.vertical :   width >  650 ? Axis.horizontal : Axis.vertical ,
                         children: [
                           AutoSizeText(
                             'What city is the property in?',
@@ -113,8 +111,9 @@ class _ViewContentState extends State<ViewContent> {
                             textAlign: TextAlign.center,
                             overflow: TextOverflow.visible,
                           ),
+                          SizedBox(height: 20, width: 50),
                           Container(
-                            width: width > 800 ? width / 4 : width / 2,
+                            width: width > 1350 ? width / 4 : width > 800 ? width/2.5 :  width > 650 ? width/2.5  : width/1.1,
                             child: InputField(
                               hintText: 'Enter here',
                               onChanged: (value) {},
@@ -132,8 +131,7 @@ class _ViewContentState extends State<ViewContent> {
                       padding: EdgeInsets.only(left: 30, right: 30),
                       child: Wrap(
                         direction:
-                            width > 800 ? Axis.horizontal : Axis.vertical,
-                        spacing: width > 800 ? 40 : 40,
+                        width > 1350 ? Axis.horizontal : width > 800 ? Axis.vertical :   width >  650 ? Axis.horizontal : Axis.vertical ,
                         children: [
                           AutoSizeText(
                             'Is this Property going to be?',
@@ -147,6 +145,7 @@ class _ViewContentState extends State<ViewContent> {
                             textAlign: TextAlign.center,
                             overflow: TextOverflow.visible,
                           ),
+                          SizedBox(height: 20, width: 50),
                           Wrap(
                             direction: Axis.vertical,
                             children: [
@@ -183,7 +182,7 @@ class _ViewContentState extends State<ViewContent> {
                               ),
                               SizedBox(height: 50),
                               Container(
-                                width: MediaQuery.of(context).size.width / 4,
+                                width: width > 1350 ? width / 4 : width > 800 ? width/2.5 :  width > 650 ? width/2.5  : width/1.1,
                                 child: RoundedButton(
                                   title: 'continue',
                                   textColor: Colors.white,
@@ -192,9 +191,6 @@ class _ViewContentState extends State<ViewContent> {
                                   buttonRadius: 10,
                                   onPressed: () {
                                     Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: AmountDetailFirstFlow()));
-                                    // Navigator.pushNamed(context,
-                                    //     AmountDetailFirstFlow.AmountDetailPageFirstFlowId);
-
                                   },
                                 ),
                               ),
@@ -229,7 +225,7 @@ class _TabCardState extends State<TabCard> {
     double width = MediaQuery.of(context).size.width;
     return InkWell(
       child: Container(
-        width: width > 800 ? width / 4 : width / 2,
+        width: width > 1350 ? width / 4 : width > 800 ? width/2.5 :  width > 650 ? width/2.5  : width/1.1,
         height: 50,
         decoration:
             StyleRefer.kTabDecoration.copyWith(color: widget.labelColor),
