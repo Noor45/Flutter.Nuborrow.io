@@ -4,6 +4,7 @@ import 'package:nuborrow/first_flow/complete_application_page.dart';
 import 'package:nuborrow/first_flow/contact_detail.dart';
 import 'package:nuborrow/first_flow/pick_mortgage_term.dart';
 import 'package:nuborrow/first_flow/rates_page.dart';
+import 'package:nuborrow/first_flow/second_intro_page.dart';
 import 'package:nuborrow/second_flow/basic_detail_page.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'first_flow/intro_page.dart';
@@ -44,7 +45,7 @@ class _MyAppState extends State<MyApp> {
         background: Container(color: Color(0xFFF5F5F5)),
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: IntroPage2ndFlow.IntroPageId2ndFlow,
+      initialRoute: IntroPageFirstFlow.IntroPageFirstFlowId,
       routes: {
         //First Flow Pages
         IntroPageFirstFlow.IntroPageFirstFlowId: (context) => IntroPageFirstFlow(),

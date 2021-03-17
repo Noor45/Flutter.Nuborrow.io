@@ -5,6 +5,7 @@ import 'package:nuborrow/cards/left_card.dart';
 import 'package:nuborrow/first_flow/complete_application_page.dart';
 import 'package:nuborrow/utils/colors.dart';
 import 'package:nuborrow/widgets/input_fields.dart';
+import 'package:page_transition/page_transition.dart';
 import '../cards/rate_page_card.dart';
 import 'package:nuborrow/widgets/round_button.dart';
 import '../utils/strings.dart';
@@ -97,7 +98,7 @@ class _ViewContentState extends State<ViewContent> {
                         prePayment: 20,
                         rateHold: 'Available',
                         onPressed: (){
-                          Navigator.pushNamed(context, LastPageFirstFlow.LastPageFirstFlowId);
+                          Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: LastPageFirstFlow()));
                         },
                     ):
                     width > 800 ? MobileViewRateCard(
@@ -108,7 +109,7 @@ class _ViewContentState extends State<ViewContent> {
                       prePayment: 20,
                       rateHold: 'Available',
                       onPressed: (){
-                        Navigator.pushNamed(context, LastPageFirstFlow.LastPageFirstFlowId);
+                        Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft,duration: Duration(seconds: 1), child: LastPageFirstFlow()));
                       },
                     ) : width > 650 ?
                     DesktopRateCard(
@@ -119,7 +120,7 @@ class _ViewContentState extends State<ViewContent> {
                       prePayment: 20,
                       rateHold: 'Available',
                       onPressed: (){
-                        Navigator.pushNamed(context, LastPageFirstFlow.LastPageFirstFlowId);
+                        Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft,duration: Duration(seconds: 1), child: LastPageFirstFlow()));
                       },
                     ) : MobileViewRateCard(
                       cardWidth: width/4,
@@ -129,7 +130,7 @@ class _ViewContentState extends State<ViewContent> {
                       prePayment: 20,
                       rateHold: 'Available',
                       onPressed: (){
-                        Navigator.pushNamed(context, LastPageFirstFlow.LastPageFirstFlowId);
+                        Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft,duration: Duration(seconds: 1), child: LastPageFirstFlow()));
                       },
                     ),
                   ),
@@ -144,7 +145,7 @@ class _ViewContentState extends State<ViewContent> {
                       prePayment: 20,
                       rateHold: 'Available',
                       onPressed: (){
-                        Navigator.pushNamed(context, LastPageFirstFlow.LastPageFirstFlowId);
+                        Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft,duration: Duration(seconds: 1), child: LastPageFirstFlow()));
                       },
                     ):
                     width > 800 ? MobileViewRateCard(
@@ -155,7 +156,7 @@ class _ViewContentState extends State<ViewContent> {
                       prePayment: 20,
                       rateHold: 'Available',
                       onPressed: (){
-                        Navigator.pushNamed(context, LastPageFirstFlow.LastPageFirstFlowId);
+                        Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: LastPageFirstFlow()));
                       },
                     ) : width > 650 ?
                     DesktopRateCard(
@@ -166,7 +167,7 @@ class _ViewContentState extends State<ViewContent> {
                       prePayment: 20,
                       rateHold: 'Available',
                       onPressed: (){
-                        Navigator.pushNamed(context, LastPageFirstFlow.LastPageFirstFlowId);
+                        Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: LastPageFirstFlow()));
                       },
                     ) : MobileViewRateCard(
                       cardWidth: width/4,
@@ -176,7 +177,7 @@ class _ViewContentState extends State<ViewContent> {
                       prePayment: 20,
                       rateHold: 'Available',
                       onPressed: (){
-                        Navigator.pushNamed(context, LastPageFirstFlow.LastPageFirstFlowId);
+                        Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: LastPageFirstFlow()));
                       },
                     ),
                   ),
@@ -191,7 +192,7 @@ class _ViewContentState extends State<ViewContent> {
                       prePayment: 20,
                       rateHold: 'Available',
                       onPressed: (){
-                        Navigator.pushNamed(context, LastPageFirstFlow.LastPageFirstFlowId);
+                        Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: LastPageFirstFlow()));
                       },
                     ):
                     width > 800 ? MobileViewRateCard(
@@ -202,7 +203,7 @@ class _ViewContentState extends State<ViewContent> {
                       prePayment: 20,
                       rateHold: 'Available',
                       onPressed: (){
-                        Navigator.pushNamed(context, LastPageFirstFlow.LastPageFirstFlowId);
+                        Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: LastPageFirstFlow()));
                       },
                     ) : width > 650 ?
                     DesktopRateCard(
@@ -213,7 +214,7 @@ class _ViewContentState extends State<ViewContent> {
                       prePayment: 20,
                       rateHold: 'Available',
                       onPressed: (){
-                        Navigator.pushNamed(context, LastPageFirstFlow.LastPageFirstFlowId);
+                        Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: LastPageFirstFlow()));
                       },
                     ) : MobileViewRateCard(
                       cardWidth: width/4,
@@ -223,7 +224,8 @@ class _ViewContentState extends State<ViewContent> {
                       prePayment: 20,
                       rateHold: 'Available',
                       onPressed: (){
-                        Navigator.pushNamed(context, LastPageFirstFlow.LastPageFirstFlowId);
+                        Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: LastPageFirstFlow()));
+                        // Navigator.pushNamed(context, LastPageFirstFlow.LastPageFirstFlowId);
                       },
                     ),
                   ),

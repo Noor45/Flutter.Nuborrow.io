@@ -6,8 +6,10 @@ import 'package:nuborrow/cards/left_card.dart';
 import 'package:nuborrow/first_flow/amount_detail.dart';
 import 'package:nuborrow/first_flow/pick_mortgage_term.dart';
 import 'package:nuborrow/first_flow/rates_page.dart';
+import 'package:nuborrow/first_flow/second_intro_page.dart';
 import 'package:nuborrow/widgets/input_fields.dart';
 import 'package:nuborrow/widgets/round_button.dart';
+import 'package:page_transition/page_transition.dart';
 import '../utils/strings.dart';
 
 class ContactDetail extends StatefulWidget {
@@ -195,8 +197,9 @@ class _TextFieldCardState extends State<TextFieldCard> {
                               colour: Color(0xff705aa7),
                               buttonRadius: 10,
                               onPressed: () {
-                                Navigator.pushNamed(
-                                    context, RatesPageFirstFlow.RatesPageFirstFlowId);
+                                Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: RatesPageFirstFlow()));
+                                // Navigator.pushNamed(
+                                //     context, RatesPageFirstFlow.RatesPageFirstFlowId);
                               },
                             ),
                           ),

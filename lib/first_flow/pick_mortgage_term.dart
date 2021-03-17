@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:nuborrow/cards/left_card.dart';
 import 'package:nuborrow/utils/style.dart';
+import 'package:page_transition/page_transition.dart';
 import 'contact_detail.dart';
 import 'package:nuborrow/widgets/round_button.dart';
 import '../utils/strings.dart';
@@ -226,8 +227,9 @@ class _ViewContentState extends State<ViewContent> {
                                     colour: Color(0xff705aa7),
                                     buttonRadius: 10,
                                     onPressed: () {
-                                      Navigator.pushNamed(context,
-                                          ContactDetail.ContactDetailPageId);
+                                      Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: ContactDetail()));
+                                      // Navigator.pushNamed(context,
+                                      //     ContactDetail.ContactDetailPageId);
                                     },
                                   ),
                                 ),
