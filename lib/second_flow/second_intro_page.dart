@@ -27,18 +27,19 @@ class _NextIntroPage2ndFlowState extends State<NextIntroPage2ndFlow> {
         child: Container(
           height: height,
           width: width,
-          margin: EdgeInsets.only(top: width > 1100 ? 50 : 0, bottom: width > 1100 ? 50 : 0),
+          margin: EdgeInsets.only(
+              top: width > 1100 ? 50 : 0, bottom: width > 1100 ? 50 : 0),
           child: width > 700
               ? Row(
-            children: [
-              ViewContent(),
-            ],
-          )
+                  children: [
+                    ViewContent(),
+                  ],
+                )
               : Column(
-            children: [
-              ViewContent(),
-            ],
-          ),
+                  children: [
+                    ViewContent(),
+                  ],
+                ),
         ),
       ),
     );
@@ -60,8 +61,9 @@ class _ViewContentState extends State<ViewContent> {
             LeftCard(
               firstTitle: 'I want to refinance my mortgage',
               firstSubtitle: 'Need to refinance your mortgage? Did you know you can refinance at a lower rate and access equity to pay off higher interest debt?',
-              onPressed1: (){
-                Navigator.pushNamed(context, BasicDetail2ndFlow.BasicDetailPageSecondFlowId);
+              onPressed1: () {
+                Navigator.pushNamed(
+                    context, BasicDetail2ndFlow.BasicDetailPageSecondFlowId);
               },
             ),
             RightCard(
@@ -85,5 +87,3 @@ class _ViewContentState extends State<ViewContent> {
     );
   }
 }
-
-

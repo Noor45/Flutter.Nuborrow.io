@@ -20,13 +20,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="adc6c275-5eb1-4d66-8810-ea9f08de588a" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+<<<<<<< HEAD
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/cards/second_intro_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/cards/second_intro_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/amount_detail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/amount_detail.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/intro_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/intro_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utils/constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils/constants.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/lib/second_flow/basic_detail_page.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/second_flow/intro_page.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/second_flow/second_intro_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/cards/second_intro_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/cards/second_intro_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/first_flow/amount_detail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/first_flow/amount_detail.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/first_flow/basic_detail_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/first_flow/basic_detail_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/first_flow/complete_application_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/first_flow/complete_application_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/first_flow/contact_detail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/first_flow/contact_detail.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/first_flow/intro_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/first_flow/intro_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/first_flow/pick_mortgage_term.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/first_flow/pick_mortgage_term.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/first_flow/rates_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/first_flow/rates_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/first_flow/second_intro_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/first_flow/second_intro_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+>>>>>>> fcb961291a2381b707ae61ebc3c32e20c59d8f25
+>>>>>>> main
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="RF8N73C79BW" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -48,20 +78,26 @@
     <property name="dart.analysis.tool.window.force.activate" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
+<<<<<<< HEAD
+    <property name="last_opened_file_path" value="$USER_HOME$/Apps/nuborrow" />
+    <property name="settings.editor.selected.configurable" value="flutter.settings" />
+=======
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/second_flow" />
+>>>>>>> fcb961291a2381b707ae61ebc3c32e20c59d8f25
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\FlutterWebApps\nuborrow\lib\utils" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\FlutterWebApps\nuborrow\lib\second_flow" />
       <recent name="E:\FlutterWebApps\nuborrow\lib\utils" />
       <recent name="E:\FlutterWebApps\nuborrow\lib" />
       <recent name="E:\FlutterWebApps\nuborrow\lib\widgets" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\FlutterWebApps\nuborrow\lib\utils" />
-    </key>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -96,22 +132,30 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="580" y="185" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1615884111804" />
-    <state width="1557" height="389" key="GridCell.Tab.0.bottom" timestamp="1615634825485">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1877" height="208" key="GridCell.Tab.0.bottom" timestamp="1615902425199">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state width="1557" height="389" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1615634825485" />
-    <state width="1557" height="389" key="GridCell.Tab.0.center" timestamp="1615634825485">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1877" height="208" key="GridCell.Tab.0.bottom/0.0.1920.1160@0.0.1920.1160" timestamp="1615902425199" />
+    <state width="1877" height="208" key="GridCell.Tab.0.center" timestamp="1615902425199">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state width="1557" height="389" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1615634825485" />
-    <state width="1557" height="389" key="GridCell.Tab.0.left" timestamp="1615634825485">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1877" height="208" key="GridCell.Tab.0.center/0.0.1920.1160@0.0.1920.1160" timestamp="1615902425199" />
+    <state width="1877" height="208" key="GridCell.Tab.0.left" timestamp="1615902425199">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state width="1557" height="389" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1615634825485" />
-    <state width="1557" height="389" key="GridCell.Tab.0.right" timestamp="1615634825485">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1877" height="208" key="GridCell.Tab.0.left/0.0.1920.1160@0.0.1920.1160" timestamp="1615902425199" />
+    <state width="1877" height="208" key="GridCell.Tab.0.right" timestamp="1615902425199">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state width="1557" height="389" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1615634825485" />
+    <state width="1877" height="208" key="GridCell.Tab.0.right/0.0.1920.1160@0.0.1920.1160" timestamp="1615902425199" />
+    <state x="461" y="225" key="SettingsEditor" timestamp="1615893081069">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="461" y="225" key="SettingsEditor/0.0.1920.1160@0.0.1920.1160" timestamp="1615893081069" />
     <state x="92" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1615876595164">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -120,13 +164,18 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="888" y="89" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1600.860@0.0.1600.860" timestamp="1615888520725" />
+    <state x="667" y="313" width="585" height="534" key="find.popup" timestamp="1615897375413">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="667" y="313" width="585" height="534" key="find.popup/0.0.1920.1160@0.0.1920.1160" timestamp="1615897375413" />
     <state x="456" y="195" key="run.anything.popup" timestamp="1615871476423">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="456" y="195" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1615871476423" />
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup" timestamp="1615808896852">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="556" y="243" width="807" height="915" key="search.everywhere.popup" timestamp="1615899559477">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1615808896852" />
+    <state x="556" y="243" width="807" height="915" key="search.everywhere.popup/0.0.1920.1160@0.0.1920.1160" timestamp="1615899559477" />
   </component>
 </project>

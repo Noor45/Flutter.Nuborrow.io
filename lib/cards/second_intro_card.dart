@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:nuborrow/widgets/round_button.dart';
 import '../utils/strings.dart';
+<<<<<<< HEAD:lib/cards/second_intro_card.dart
 
+=======
+>>>>>>> main:lib/cards/second_intro_page.dart
 
 class LeftCard extends StatefulWidget {
   LeftCard({this.firstSubtitle, this.firstTitle, this.onPressed1});
+
   final String firstTitle;
   final String firstSubtitle;
   final Function onPressed1;
@@ -16,13 +20,12 @@ class LeftCard extends StatefulWidget {
 }
 
 class _LeftCardState extends State<LeftCard> {
-
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
-      height: width > 700 ? height : height/2,
+      height: width > 700 ? height : height / 2,
       width: width > 700 ? width / 2 : width,
       color: Color(0xff705aa7),
       child: Column(
@@ -34,7 +37,11 @@ class _LeftCardState extends State<LeftCard> {
               padding: EdgeInsets.only(left: 90, right: 90),
               child: AutoSizeText(
                 widget.firstTitle,
-                style: TextStyle(fontSize: 30, fontFamily: StringRefer.Poppins, fontWeight: FontWeight.w900, color: Colors.white),
+                style: TextStyle(
+                    fontSize: 30,
+                    fontFamily: StringRefer.Poppins,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white),
                 softWrap: true,
                 maxLines: 3,
                 textAlign: TextAlign.center,
@@ -48,7 +55,10 @@ class _LeftCardState extends State<LeftCard> {
               padding: EdgeInsets.only(left: 120, right: 120),
               child: AutoSizeText(
                 widget.firstSubtitle,
-                style: TextStyle(fontSize: 18, fontFamily: StringRefer.SegoeUI, color: Colors.white),
+                style: TextStyle(
+                    fontSize: 18,
+                    fontFamily: StringRefer.SegoeUI,
+                    color: Colors.white),
                 softWrap: true,
                 maxLines: 3,
                 textAlign: TextAlign.center,
@@ -60,7 +70,7 @@ class _LeftCardState extends State<LeftCard> {
           Padding(
             padding: const EdgeInsets.only(left: 50, right: 50),
             child: Container(
-              width: MediaQuery.of(context).size.width/5,
+              width: MediaQuery.of(context).size.width / 5,
               child: RoundedButton(
                 title: 'continue',
                 height: 60,
@@ -78,12 +88,13 @@ class _LeftCardState extends State<LeftCard> {
 
 class RightCard extends StatefulWidget {
   RightCard({this.onPressed2, this.SecondSubtitle, this.SecondTitle});
+
   final String SecondTitle;
   final String SecondSubtitle;
   final Function onPressed2;
-    @override
-  _RightCardState createState() => _RightCardState();
 
+  @override
+  _RightCardState createState() => _RightCardState();
 }
 
 class _RightCardState extends State<RightCard> {
@@ -92,7 +103,7 @@ class _RightCardState extends State<RightCard> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
-      height: width > 700 ? height : height/2,
+      height: width > 700 ? height : height / 2,
       width: width > 700 ? width / 2 : width,
       color: Color(0xff2e184f),
       child: Column(
@@ -104,7 +115,11 @@ class _RightCardState extends State<RightCard> {
               padding: EdgeInsets.only(left: 90, right: 90),
               child: AutoSizeText(
                 widget.SecondTitle,
-                style: TextStyle(fontSize: 30, fontFamily: StringRefer.Poppins, fontWeight: FontWeight.w900, color: Colors.white),
+                style: TextStyle(
+                    fontSize: 30,
+                    fontFamily: StringRefer.Poppins,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white),
                 softWrap: true,
                 textAlign: TextAlign.center,
                 maxLines: 3,
@@ -117,8 +132,11 @@ class _RightCardState extends State<RightCard> {
             child: Padding(
               padding: EdgeInsets.only(left: 120, right: 120),
               child: AutoSizeText(
-                  widget.SecondSubtitle,
-                style: TextStyle(fontSize: 18, fontFamily: StringRefer.SegoeUI, color: Colors.white),
+                widget.SecondSubtitle,
+                style: TextStyle(
+                    fontSize: 18,
+                    fontFamily: StringRefer.SegoeUI,
+                    color: Colors.white),
                 softWrap: true,
                 textAlign: TextAlign.center,
                 maxLines: 3,
@@ -128,7 +146,7 @@ class _RightCardState extends State<RightCard> {
           ),
           SizedBox(height: 20),
           Container(
-            width: MediaQuery.of(context).size.width/5,
+            width: MediaQuery.of(context).size.width / 5,
             child: RoundedButton(
               title: 'continue',
               colour: Color(0xfffecf09),
