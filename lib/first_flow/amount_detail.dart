@@ -8,17 +8,20 @@ import 'package:nuborrow/utils/colors.dart';
 import 'package:nuborrow/utils/style.dart';
 import 'package:nuborrow/widgets/input_fields.dart';
 import 'package:nuborrow/widgets/round_button.dart';
+import '../utils/constants.dart';
 import '../utils/strings.dart';
 
-class AmountDetail extends StatefulWidget {
-  static const AmountDetailPageId = 'amount_detail';
+class AmountDetailFirstFlow extends StatefulWidget {
+  static const AmountDetailPageFirstFlowId = 'amount_detail';
+
   @override
-  _AmountDetailState createState() => _AmountDetailState();
+  _AmountDetailFirstFlowState createState() => _AmountDetailFirstFlowState();
 }
 
-class _AmountDetailState extends State<AmountDetail> {
+class _AmountDetailFirstFlowState extends State<AmountDetailFirstFlow> {
   GlobalKey globalKey = new GlobalKey(debugLabel: 'btm_app_bar');
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   void initState() {
     super.initState();
@@ -35,18 +38,19 @@ class _AmountDetailState extends State<AmountDetail> {
           height: height,
           width: width,
           color: Colors.white,
-          margin: EdgeInsets.only(top: width > 1100 ? 50 : 0, bottom: width > 1100 ? 50 : 0),
+          margin: EdgeInsets.only(
+              top: width > 1100 ? 50 : 0, bottom: width > 1100 ? 50 : 0),
           child: width > 800
               ? Row(
-            children: [
-              ViewContent(),
-            ],
-          )
+                  children: [
+                    ViewContent(),
+                  ],
+                )
               : Column(
-            children: [
-              ViewContent(),
-            ],
-          ),
+                  children: [
+                    ViewContent(),
+                  ],
+                ),
         ),
       ),
     );
@@ -64,6 +68,8 @@ class _ViewContentState extends State<ViewContent> {
     'No',
   ];
   String firstSelectedValue;
+  String price = "50";
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -75,7 +81,7 @@ class _ViewContentState extends State<ViewContent> {
             LeftSideCard(
               showSubtitle: false,
               subtitle: '',
-              title:'''Let’s talk about your needs ''',
+              title: '''Let’s talk about your needs ''',
               topPadding: MediaQuery.of(context).size.height / 5,
               height: width > 900 ? height : height / 1.5,
               font: 40,
@@ -92,13 +98,20 @@ class _ViewContentState extends State<ViewContent> {
                   TextFieldCard(
                     label: 'What is the price of your new home?',
                     hint: 'Enter amount',
-                    textInputType: TextInputType.number,
-                    onChanged: (value) {},
+                    textInputType: TextInputType.text,
+                    value: price,
+                    onChanged: (value) {
+                      setState(() {
+                        price = moneyFormat(value);
+                        print(price);
+                      });
+                    },
                     showButton: false,
                   ),
                   SizedBox(height: 20),
                   TextFieldCard(
-                    label: 'How much do you have as a Down payment? (enter a %)',
+                    label:
+                        'How much do you have as a Down payment? (enter a %)',
                     hint: 'Enter amount',
                     textInputType: TextInputType.number,
                     onChanged: (value) {},
@@ -119,11 +132,11 @@ class _ViewContentState extends State<ViewContent> {
                       padding: EdgeInsets.only(left: 30, right: 30),
                       child: Wrap(
                         direction:
-                        width > 800 ? Axis.horizontal : Axis.vertical,
+                            width > 800 ? Axis.horizontal : Axis.vertical,
                         spacing: width > 800 ? 40 : 40,
                         children: [
                           Container(
-                            width:width > 800  ? width/5 : width,
+                            width: width > 800 ? width / 5 : width,
                             child: AutoSizeText(
                               '''Will you be a first-time home buyer?''',
                               style: TextStyle(
@@ -137,41 +150,44 @@ class _ViewContentState extends State<ViewContent> {
                             ),
                           ),
                           Container(
-                            width : width > 800  ? width/5 : width,
+                            width: width > 800 ? width / 5 : width,
                             child: Wrap(
                               direction: Axis.vertical,
                               children: [
                                 Wrap(
                                   direction: Axis.vertical,
                                   children: firstTabList == null ||
-                                      firstTabList.length == 0
+                                          firstTabList.length == 0
                                       ? [Container()]
                                       : firstTabList.map((element) {
-                                    return Wrap(
-                                      direction: Axis.vertical,
-                                      children: [
-                                        SizedBox(height: 15),
-                                        InkWell(
-                                          onTap: () {
-                                            setState(() {
-                                              firstSelectedValue = element;
-                                            });
-                                          },
-                                          child: TabCard(
-                                            title: element,
-                                            labelColor:
-                                            firstSelectedValue == element
-                                                ? Color(0xff705aa7)
-                                                : Colors.white,
-                                            textColor:
-                                            firstSelectedValue == element
-                                                ? Colors.white
-                                                : Colors.black,
-                                          ),
-                                        ),
-                                      ],
-                                    );
-                                  }).toList(),
+                                          return Wrap(
+                                            direction: Axis.vertical,
+                                            children: [
+                                              SizedBox(height: 15),
+                                              InkWell(
+                                                onTap: () {
+                                                  setState(() {
+                                                    firstSelectedValue =
+                                                        element;
+                                                  });
+                                                },
+                                                child: TabCard(
+                                                  title: element,
+                                                  labelColor:
+                                                      firstSelectedValue ==
+                                                              element
+                                                          ? Color(0xff705aa7)
+                                                          : Colors.white,
+                                                  textColor:
+                                                      firstSelectedValue ==
+                                                              element
+                                                          ? Colors.white
+                                                          : Colors.black,
+                                                ),
+                                              ),
+                                            ],
+                                          );
+                                        }).toList(),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 40),
@@ -210,7 +226,9 @@ class _ViewContentState extends State<ViewContent> {
 
 class LabelCard extends StatelessWidget {
   LabelCard({this.label});
+
   final String label;
+
   @override
   Widget build(BuildContext context) {
     return AutoSizeText(
@@ -230,20 +248,34 @@ class LabelCard extends StatelessWidget {
 class TextFieldCard extends StatefulWidget {
   TextFieldCard(
       {this.textInputType,
-        this.label,
-        this.hint,
-        this.onChanged,
-        this.showButton});
+      this.label,
+      this.hint,
+      this.value,
+      this.onChanged,
+      this.showButton});
+
   final String label;
+  final String value;
+
   final String hint;
   final Function onChanged;
   final TextInputType textInputType;
   final bool showButton;
+
   @override
   _TextFieldCardState createState() => _TextFieldCardState();
 }
 
 class _TextFieldCardState extends State<TextFieldCard> {
+  TextEditingController textEditingController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    textEditingController.text = widget.value;
+    print("updated" + TextInputType.text.toString());
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -268,6 +300,7 @@ class _TextFieldCardState extends State<TextFieldCard> {
                 children: [
                   InputField(
                     hintText: widget.hint,
+                    controller: textEditingController,
                     onChanged: widget.onChanged,
                     textInputType: widget.textInputType,
                   ),
@@ -287,8 +320,8 @@ class _TextFieldCardState extends State<TextFieldCard> {
                               colour: Color(0xff705aa7),
                               buttonRadius: 10,
                               onPressed: () {
-                                Navigator.pushNamed(context,
-                                    MortgageTerms.MortgageTermsPageId);
+                                Navigator.pushNamed(
+                                    context, MortgageTerms.MortgageTermsPageId);
                               },
                             ),
                           ),
@@ -309,15 +342,17 @@ class _TextFieldCardState extends State<TextFieldCard> {
 class DateTimeFieldCard extends StatefulWidget {
   DateTimeFieldCard(
       {this.textInputType,
-        this.label,
-        this.hint,
-        this.onChanged,
-        this.showButton});
+      this.label,
+      this.hint,
+      this.onChanged,
+      this.showButton});
+
   final String label;
   final String hint;
   final Function onChanged;
   final TextInputType textInputType;
   final bool showButton;
+
   @override
   _DateTimeFieldCardState createState() => _DateTimeFieldCardState();
 }
@@ -362,9 +397,11 @@ class _DateTimeFieldCardState extends State<DateTimeFieldCard> {
 
 class PriceCard extends StatefulWidget {
   PriceCard({this.title, this.value, this.color});
+
   final String title;
   final String value;
   final Color color;
+
   @override
   _PriceCardState createState() => _PriceCardState();
 }
@@ -384,10 +421,19 @@ class _PriceCardState extends State<PriceCard> {
               maxLines: 3,
               softWrap: true,
               overflow: TextOverflow.visible,
-              style: TextStyle(fontFamily: StringRefer.SegoeUI, fontSize: 18, color: widget.color),
+              style: TextStyle(
+                  fontFamily: StringRefer.SegoeUI,
+                  fontSize: 18,
+                  color: widget.color),
             ),
           ),
-          AutoSizeText(widget.value, style: TextStyle(fontFamily: StringRefer.SegoeUI, fontSize: 18, color: widget.color),),
+          AutoSizeText(
+            widget.value,
+            style: TextStyle(
+                fontFamily: StringRefer.SegoeUI,
+                fontSize: 18,
+                color: widget.color),
+          ),
         ],
       ),
     );
@@ -409,7 +455,12 @@ class _AmountCardState extends State<AmountCard> {
         // height: MediaQuery.of(context).size.height/2.5,
         decoration: BoxDecoration(
           color: Colors.white,
-          border: Border(left: BorderSide(color: ColorRefer.kBorderColor, width: 1.0), right: BorderSide(color: ColorRefer.kBorderColor, width: 1.0), top: BorderSide(color: ColorRefer.kBorderColor, width: 1.0), bottom: BorderSide(color: ColorRefer.kBorderColor, width: 1.0),),
+          border: Border(
+            left: BorderSide(color: ColorRefer.kBorderColor, width: 1.0),
+            right: BorderSide(color: ColorRefer.kBorderColor, width: 1.0),
+            top: BorderSide(color: ColorRefer.kBorderColor, width: 1.0),
+            bottom: BorderSide(color: ColorRefer.kBorderColor, width: 1.0),
+          ),
           borderRadius: BorderRadius.all(Radius.circular(10.0)),
         ),
         child: Column(
@@ -422,7 +473,8 @@ class _AmountCardState extends State<AmountCard> {
                   child: Center(
                     child: AutoSizeText(
                       'Your complete home equity picture',
-                      style: TextStyle(fontFamily: StringRefer.SegoeUI, fontSize: 20),
+                      style: TextStyle(
+                          fontFamily: StringRefer.SegoeUI, fontSize: 20),
                     ),
                   ),
                 ),
@@ -464,10 +516,13 @@ class _AmountCardState extends State<AmountCard> {
               height: 50,
               decoration: BoxDecoration(
                 color: Color(0xff9484be),
-                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10.0), bottomRight: Radius.circular(10.0)),
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(10.0),
+                    bottomRight: Radius.circular(10.0)),
               ),
               child: PriceCard(
-                title: '= Did you know you could borrow an additional [\$amount]',
+                title:
+                    '= Did you know you could borrow an additional [\$amount]',
                 value: '\$12660000',
                 color: Colors.white,
               ),
@@ -493,7 +548,12 @@ class _MortgageCardState extends State<MortgageCard> {
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           color: Colors.white,
-          border: Border(left: BorderSide(color: ColorRefer.kBorderColor, width: 1.0), right: BorderSide(color: ColorRefer.kBorderColor, width: 1.0), top: BorderSide(color: ColorRefer.kBorderColor, width: 1.0), bottom: BorderSide(color: ColorRefer.kBorderColor, width: 1.0),),
+          border: Border(
+            left: BorderSide(color: ColorRefer.kBorderColor, width: 1.0),
+            right: BorderSide(color: ColorRefer.kBorderColor, width: 1.0),
+            top: BorderSide(color: ColorRefer.kBorderColor, width: 1.0),
+            bottom: BorderSide(color: ColorRefer.kBorderColor, width: 1.0),
+          ),
           borderRadius: BorderRadius.all(Radius.circular(10.0)),
         ),
         child: Column(
@@ -506,7 +566,8 @@ class _MortgageCardState extends State<MortgageCard> {
                   child: Center(
                     child: AutoSizeText(
                       'Calculating your Mortgage needs',
-                      style: TextStyle(fontFamily: StringRefer.SegoeUI, fontSize: 20),
+                      style: TextStyle(
+                          fontFamily: StringRefer.SegoeUI, fontSize: 20),
                     ),
                   ),
                 ),
@@ -536,7 +597,9 @@ class _MortgageCardState extends State<MortgageCard> {
               height: 50,
               decoration: BoxDecoration(
                 color: Color(0xff9484be),
-                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10.0), bottomRight: Radius.circular(10.0)),
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(10.0),
+                    bottomRight: Radius.circular(10.0)),
               ),
               child: PriceCard(
                 title: '= Total mortgage required',
@@ -553,9 +616,11 @@ class _MortgageCardState extends State<MortgageCard> {
 
 class TabCard extends StatefulWidget {
   TabCard({this.title, this.labelColor, this.textColor});
+
   final String title;
   final Color textColor;
   final Color labelColor;
+
   @override
   _TabCardState createState() => _TabCardState();
 }
@@ -569,7 +634,7 @@ class _TabCardState extends State<TabCard> {
         width: width > 800 ? width / 5 : width / 2,
         height: 50,
         decoration:
-        StyleRefer.kTabDecoration.copyWith(color: widget.labelColor),
+            StyleRefer.kTabDecoration.copyWith(color: widget.labelColor),
         child: Center(
           child: Text(
             widget.title,

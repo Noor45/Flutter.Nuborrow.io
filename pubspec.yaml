@@ -35,7 +35,8 @@ dependencies:
   flutter_svg: ^0.19.3
   responsive_builder: ^0.3.0
   responsive_framework: ^0.0.15
-  responsive_layout_builder: ^0.5.0
+  responsive_layout_builder: ^0.5.00
+  page_transition: ^1.1.7+6
 
 dev_dependencies:
   flutter_test:

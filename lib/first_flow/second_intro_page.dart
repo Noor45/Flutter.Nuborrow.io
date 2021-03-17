@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nuborrow/cards/second_intro_page.dart';
+import 'package:nuborrow/first_flow/basic_detail_page.dart';
 
-class SecondIntroPage extends StatefulWidget {
-  static const SecondIntroPageId = 'intro';
+class NextIntroPageFirstFlow extends StatefulWidget {
+  static const SecondIntroPageFirstFlowId = 'intro';
   @override
-  _SecondIntroPageState createState() => _SecondIntroPageState();
+  _NextIntroPageFirstFlowState createState() => _NextIntroPageFirstFlowState();
 }
 
-class _SecondIntroPageState extends State<SecondIntroPage> {
+class _NextIntroPageFirstFlowState extends State<NextIntroPageFirstFlow> {
   GlobalKey globalKey = new GlobalKey(debugLabel: 'btm_app_bar');
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
@@ -56,8 +57,20 @@ class _ViewContentState extends State<ViewContent> {
       child: SingleChildScrollView(
         child: Wrap(
           children: [
-            LeftCard(),
-            RightCard()
+            LeftCard(
+              firstTitle: 'I’ve Found a Property',
+              firstSubtitle: 'Show my today’s lowest rates',
+              onPressed1: (){
+                Navigator.pushNamed(context, BasicDetailFirstFlow.BasicDetailPageFirstFlowId);
+              },
+            ),
+            RightCard(
+              SecondTitle: 'I’m still looking at homes or I’ve found a Property',
+              SecondSubtitle:'Show me what the monthly payments and rates could be for my price range',
+              onPressed2: (){
+                Navigator.pushNamed(context, BasicDetailFirstFlow.BasicDetailPageFirstFlowId);
+              },
+            )
           ],
         ),
       ),
