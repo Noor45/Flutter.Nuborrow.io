@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nuborrow/cards/second_intro_page.dart';
+import 'package:nuborrow/cards/second_intro_card.dart';
 import 'package:nuborrow/second_flow/basic_detail_page.dart';
 
 class NextIntroPage2ndFlow extends StatefulWidget {
@@ -60,8 +60,7 @@ class _ViewContentState extends State<ViewContent> {
           children: [
             LeftCard(
               firstTitle: 'I want to refinance my mortgage',
-              firstSubtitle:
-                  'Need to refinance your mortgage? Did you know you can refinance at a lower rate and access equity to pay off higher interest debt?',
+              firstSubtitle: 'Need to refinance your mortgage? Did you know you can refinance at a lower rate and access equity to pay off higher interest debt?',
               onPressed1: () {
                 Navigator.pushNamed(
                     context, BasicDetail2ndFlow.BasicDetailPageSecondFlowId);
@@ -69,16 +68,22 @@ class _ViewContentState extends State<ViewContent> {
             ),
             RightCard(
               SecondTitle: 'My mortgage is coming up for renewal',
-              SecondSubtitle:
-                  'Why settle for just one rate, from one bank when you may qualify for a lower rate?',
-              onPressed2: () {
-                Navigator.pushNamed(
-                    context, BasicDetail2ndFlow.BasicDetailPageSecondFlowId);
+              SecondSubtitle:'Why settle for just one rate, from one bank when you may qualify for a lower rate?',
+              onPressed2: (){
+                Navigator.push(context, _createRoute());
               },
             )
           ],
         ),
       ),
+    );
+  }
+  Route _createRoute() {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => BasicDetail2ndFlow(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        return child;
+      },
     );
   }
 }

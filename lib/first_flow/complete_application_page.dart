@@ -106,8 +106,8 @@ class _LastPageFirstFlowState extends State<LastPageFirstFlow> {
                 colour: Color(0xff705aa7),
                 buttonRadius: 10,
                 onPressed: () {
-                  Navigator.pushNamed(context,
-                      ContactDetail.ContactDetailPageId);
+                  // Navigator.pushNamed(context,
+                  //     ContactDetail.ContactDetailPageId);
                 },
               ),
               Container(
