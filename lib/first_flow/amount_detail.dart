@@ -9,11 +9,8 @@ import 'package:nuborrow/utils/colors.dart';
 import 'package:nuborrow/utils/style.dart';
 import 'package:nuborrow/widgets/input_fields.dart';
 import 'package:nuborrow/widgets/round_button.dart';
-<<<<<<< HEAD
 import 'package:page_transition/page_transition.dart';
-=======
 import '../utils/constants.dart';
->>>>>>> main
 import '../utils/strings.dart';
 
 class AmountDetailFirstFlow extends StatefulWidget {
@@ -206,8 +203,6 @@ class _ViewContentState extends State<ViewContent> {
                                       height: 60,
                                       onPressed: () {
                                         Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: MortgageTerms()));
-                                        // Navigator.pushNamed(context,
-                                        //     MortgageTerms.MortgageTermsPageId);
                                       },
                                     ),
                                   ),
@@ -326,12 +321,7 @@ class _TextFieldCardState extends State<TextFieldCard> {
                               colour: Color(0xff705aa7),
                               buttonRadius: 10,
                               onPressed: () {
-<<<<<<< HEAD
                                 Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: MortgageTerms()));
-=======
-                                Navigator.pushNamed(
-                                    context, MortgageTerms.MortgageTermsPageId);
->>>>>>> main
                               },
                             ),
                           ),

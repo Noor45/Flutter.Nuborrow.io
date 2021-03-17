@@ -159,14 +159,8 @@ class _ViewContentState extends State<ViewContent> {
                       colour: Color(0xfffecf09),
                       buttonRadius: 5,
                       height: 60,
-<<<<<<< HEAD
                       onPressed: (){
                         Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: NextIntroPageFirstFlow()));
-                        // Navigator.push(context, _createRoute());
-=======
-                      onPressed: () {
-                        // kNavigateNext(context: context, widget: fires());
->>>>>>> main
                       },
                     ),
                   ),
