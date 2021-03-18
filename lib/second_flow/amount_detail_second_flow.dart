@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:nuborrow/cards/amount_page_card.dart';
 import 'package:nuborrow/cards/left_card.dart';
-
+import 'package:intl/intl.dart';
 import 'package:nuborrow/second_flow/pick_mortgage_term_second_flow.dart';
 import 'package:nuborrow/utils/colors.dart';
+import 'package:nuborrow/utils/constants.dart';
 import 'package:page_transition/page_transition.dart';
 import '../utils/strings.dart';
 
@@ -64,6 +65,7 @@ class _ViewContentState extends State<ViewContent> {
     'No',
   ];
   String firstSelectedValue;
+  TextEditingController dateController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -196,7 +198,13 @@ class _ViewContentState extends State<ViewContent> {
                   DateTimeFieldCard(
                     label: 'When would you like to complete Your refinance?',
                     hint: 'Enter Date',
-                    onChanged: (value) {},
+                    onTab: () async {
+                      var date = await Constants.showDate(context);
+                      setState(() {
+                        dateController.text =
+                            DateFormat('yyyy-MM-dd').format(date);
+                      });
+                    },
                     showButton: true,
                     onPressed: () {
                       Navigator.push(

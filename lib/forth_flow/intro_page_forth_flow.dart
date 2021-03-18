@@ -150,11 +150,17 @@ class _ViewContentState extends State<ViewContent> {
                       buttonRadius: 5,
                       height: 60,
                       onPressed: (){
-                        Navigator.push(context, PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            duration: Duration(seconds: 1),
-                            child: BasicDetailForthFlow())
-                        );
+                        Navigator.pushAndRemoveUntil(context,
+                            PageTransition(
+                                type: PageTransitionType.rightToLeft,
+                                duration: Duration(seconds: 1),
+                                child: BasicDetailForthFlow()
+                            ), (route) => false);
+                        // Navigator.push(context, PageTransition(
+                        //     type: PageTransitionType.rightToLeft,
+                        //     duration: Duration(seconds: 1),
+                        //     child: BasicDetailForthFlow())
+                        // );
                       },
                     ),
                   ),

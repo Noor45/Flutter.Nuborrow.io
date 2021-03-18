@@ -5,6 +5,7 @@ import 'package:nuborrow/cards/amount_page_card.dart';
 import 'package:nuborrow/cards/left_card.dart';
 import 'package:nuborrow/first_flow/pick_mortgage_term_first_flow.dart';
 import 'package:nuborrow/utils/colors.dart';
+import 'package:intl/intl.dart';
 import 'package:nuborrow/widgets/round_button.dart';
 import 'package:page_transition/page_transition.dart';
 import '../utils/constants.dart';
@@ -67,8 +68,8 @@ class _ViewContentState extends State<ViewContent> {
     'No',
   ];
   String firstSelectedValue;
+  TextEditingController dateController = new TextEditingController();
   String price = "50";
-
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -119,9 +120,16 @@ class _ViewContentState extends State<ViewContent> {
                   MortgageCard(),
                   SizedBox(height: 30),
                   DateTimeFieldCard(
+                    controller: dateController,
                     label: 'When do you want to move in?',
                     hint: 'Enter Date',
-                    onChanged: (value) {},
+                    onTab: () async {
+                      var date = await Constants.showDate(context);
+                      setState(() {
+                        dateController.text =
+                            DateFormat('yyyy-MM-dd').format(date);
+                      });
+                    },
                     showButton: false,
                   ),
                   SizedBox(height: 20),
@@ -133,15 +141,15 @@ class _ViewContentState extends State<ViewContent> {
                         direction: width > 1100
                             ? Axis.horizontal
                             : width > 650
-                            ? Axis.horizontal
-                            : Axis.vertical,
+                                ? Axis.horizontal
+                                : Axis.vertical,
                         children: [
                           Container(
                             width: width > 1100
                                 ? width / 5
                                 : width > 650
-                                ? width / 2.5
-                                : width,
+                                    ? width / 2.5
+                                    : width,
                             child: AutoSizeText(
                               '''Will you be a first-time home buyer?''',
                               style: TextStyle(
@@ -164,40 +172,44 @@ class _ViewContentState extends State<ViewContent> {
                               Wrap(
                                 direction: Axis.vertical,
                                 children: firstTabList == null ||
-                                    firstTabList.length == 0
+                                        firstTabList.length == 0
                                     ? [Container()]
                                     : firstTabList.map((element) {
-                                  return Wrap(
-                                    direction: Axis.vertical,
-                                    children: [
-                                      InkWell(
-                                        onTap: () {
-                                          setState(() {
-                                            firstSelectedValue = element;
-                                          });
-                                        },
-                                        child: TabCard(
-                                          title: element,
-                                          labelColor:
-                                          firstSelectedValue ==
-                                              element
-                                              ? Color(0xff705aa7)
-                                              : Colors.white,
-                                          textColor: firstSelectedValue ==
-                                              element
-                                              ? Colors.white
-                                              : Colors.black,
-                                        ),
-                                      ),
-                                      SizedBox(height: 15),
-                                    ],
-                                  );
-                                }).toList(),
+                                        return Wrap(
+                                          direction: Axis.vertical,
+                                          children: [
+                                            InkWell(
+                                              onTap: () {
+                                                setState(() {
+                                                  firstSelectedValue = element;
+                                                });
+                                              },
+                                              child: TabCard(
+                                                title: element,
+                                                labelColor:
+                                                    firstSelectedValue ==
+                                                            element
+                                                        ? Color(0xff705aa7)
+                                                        : Colors.white,
+                                                textColor: firstSelectedValue ==
+                                                        element
+                                                    ? Colors.white
+                                                    : Colors.black,
+                                              ),
+                                            ),
+                                            SizedBox(height: 15),
+                                          ],
+                                        );
+                                      }).toList(),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(top: 40),
                                 child: Container(
-                                  width: width > 1100 ? width / 5 :  width > 650 ? width/2.5  : width/1.1,
+                                  width: width > 1100
+                                      ? width / 5
+                                      : width > 650
+                                          ? width / 2.5
+                                          : width / 1.1,
                                   child: RoundedButton(
                                     title: 'continue',
                                     textColor: Colors.white,
@@ -205,11 +217,13 @@ class _ViewContentState extends State<ViewContent> {
                                     buttonRadius: 10,
                                     height: 60,
                                     onPressed: () {
-                                      Navigator.push(context, PageTransition(
-                                          type: PageTransitionType.rightToLeft,
-                                          duration: Duration(seconds: 1),
-                                          child: MortgageTerms())
-                                      );
+                                      Navigator.push(
+                                          context,
+                                          PageTransition(
+                                              type: PageTransitionType
+                                                  .rightToLeft,
+                                              duration: Duration(seconds: 1),
+                                              child: MortgageTerms()));
                                     },
                                   ),
                                 ),
@@ -310,15 +324,3 @@ class _MortgageCardState extends State<MortgageCard> {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-

@@ -74,11 +74,12 @@ class _ViewContentState extends State<ViewContent> {
               SecondTitle: 'My mortgage is coming up for renewal',
               SecondSubtitle:'Why settle for just one rate, from one bank when you may qualify for a lower rate?',
               onPressed2: (){
-                Navigator.push(context, PageTransition(
-                    type: PageTransitionType.rightToLeft,
-                    duration: Duration(seconds: 1),
-                    child: BasicDetail2ndFlow())
-                );
+                Navigator.pushAndRemoveUntil(context,
+                    PageTransition(
+                        type: PageTransitionType.rightToLeft,
+                        duration: Duration(seconds: 1),
+                        child: BasicDetail2ndFlow()
+                    ), (route) => false);
               },
             )
           ],

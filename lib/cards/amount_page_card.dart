@@ -123,13 +123,15 @@ class DateTimeFieldCard extends StatefulWidget {
   DateTimeFieldCard(
       {this.label,
       this.hint,
-      this.onChanged,
+      this.onTab,
       this.showButton,
-      this.onPressed});
+      this.onPressed,
+      this.controller});
   final String label;
   final String hint;
-  final Function onChanged;
+  final Function onTab;
   final bool showButton;
+  final TextEditingController controller;
   final Function onPressed;
   @override
   _DateTimeFieldCardState createState() => _DateTimeFieldCardState();
@@ -159,8 +161,9 @@ class _DateTimeFieldCardState extends State<DateTimeFieldCard> {
                 direction: Axis.horizontal,
                 children: [
                   DateTimeField(
+                    controller: widget.controller,
                     hintText: widget.hint,
-                    onChanged: widget.onChanged,
+                    onTab: widget.onTab,
                   ),
                   Visibility(
                     visible: widget.showButton,

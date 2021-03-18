@@ -235,7 +235,6 @@ class _ViewContentState extends State<ViewContent> {
                       padding: EdgeInsets.only(left: 30, right: 30),
                       child: Wrap(
                         direction: width > 800 ? Axis.horizontal :   width >  650 ? Axis.horizontal: Axis.vertical ,
-                        spacing: width > 800 ? 50 : width >  650 ?  50 : 20 ,
                         children: [
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -262,6 +261,7 @@ class _ViewContentState extends State<ViewContent> {
                               ),
                             ],
                           ),
+                          SizedBox(height: 20, width: 50),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -298,10 +298,10 @@ class _ViewContentState extends State<ViewContent> {
                       padding: EdgeInsets.only(left: 30, right: 30),
                       child: Wrap(
                         direction: width > 800 ? Axis.horizontal :   width >  650 ? Axis.horizontal: Axis.vertical ,
-                        spacing: width > 800 ? 50 : width >  650 ?  50 : 20 ,
                         children: [
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
                                 width: width > 1200 ? width / 5 : width > 800 ? width : width > 650 ? width/2.5 : width/1.1,
@@ -328,21 +328,26 @@ class _ViewContentState extends State<ViewContent> {
                               ),
                             ],
                           ),
+                          SizedBox(height: 20, width: 50),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              AutoSizeText(
-                                'Rate Type',
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    fontFamily: StringRefer.SegoeUI,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
-                                softWrap: true,
-                                maxLines: 3,
-                                overflow: TextOverflow.visible,
+                              Container(
+                                width: width > 1200 ? width / 5 : width > 800 ? width : width > 650 ? width/2.5 : width/1.1,
+                                child: AutoSizeText(
+                                  'Rate Type                                    ',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontFamily: StringRefer.SegoeUI,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black),
+                                  softWrap: true,
+                                  maxLines: 3,
+                                  overflow: TextOverflow.visible,
+                                ),
                               ),
-                              SizedBox(height: 14),
+                              SizedBox(height: width > 1200 ? 36 : width > 800 ? 14: width > 650 ? 36: 14),
                               Container(
                                 width: width > 1200 ? width / 5 : width > 800 ? width :  width > 650 ? width/2.5  : width/1.1,
                                 child:   SelectField(

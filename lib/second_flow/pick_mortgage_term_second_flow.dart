@@ -101,7 +101,7 @@ class _ViewContentState extends State<ViewContent> {
                           Container(
                             width: width > 1150 ? width / 5 : width > 650 ? width / 2.5 : width,
                             child: AutoSizeText(
-                              'Is this Property going to be?',
+                              'What type of mortgage would you like?',
                               style: TextStyle(
                                   fontSize: 18,
                                   fontFamily: StringRefer.SegoeUI,
