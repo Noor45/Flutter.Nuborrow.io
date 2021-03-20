@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nuborrow/cards/second_intro_card.dart';
-import 'package:nuborrow/second_flow/basic_detail_page.dart';
+import 'package:nuborrow/second_flow/basic_detail_second_flow.dart';
+import 'package:page_transition/page_transition.dart';
 
 class NextIntroPage2ndFlow extends StatefulWidget {
   static const SecondIntroPage2ndFlowId = 'intro2';
@@ -62,28 +63,28 @@ class _ViewContentState extends State<ViewContent> {
               firstTitle: 'I want to refinance my mortgage',
               firstSubtitle: 'Need to refinance your mortgage? Did you know you can refinance at a lower rate and access equity to pay off higher interest debt?',
               onPressed1: () {
-                Navigator.pushNamed(
-                    context, BasicDetail2ndFlow.BasicDetailPageSecondFlowId);
+                Navigator.push(context, PageTransition(
+                    type: PageTransitionType.rightToLeft,
+                    duration: Duration(seconds: 1),
+                    child: BasicDetail2ndFlow())
+                );
               },
             ),
             RightCard(
               SecondTitle: 'My mortgage is coming up for renewal',
               SecondSubtitle:'Why settle for just one rate, from one bank when you may qualify for a lower rate?',
               onPressed2: (){
-                Navigator.push(context, _createRoute());
+                Navigator.pushAndRemoveUntil(context,
+                    PageTransition(
+                        type: PageTransitionType.rightToLeft,
+                        duration: Duration(seconds: 1),
+                        child: BasicDetail2ndFlow()
+                    ), (route) => false);
               },
             )
           ],
         ),
       ),
-    );
-  }
-  Route _createRoute() {
-    return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => BasicDetail2ndFlow(),
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        return child;
-      },
     );
   }
 }

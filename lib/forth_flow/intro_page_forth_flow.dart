@@ -1,26 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:nuborrow/cards/left_card.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:nuborrow/first_flow/second_intro_page.dart';
+import 'package:nuborrow/forth_flow/basic_detail_forth_flow.dart';
 import 'package:nuborrow/widgets/round_button.dart';
 import 'package:page_transition/page_transition.dart';
 import '../cards/intro_page_card.dart';
-import '../utils/constants.dart';
 import '../utils/strings.dart';
 
-class IntroPageFirstFlow extends StatefulWidget {
-  static const IntroPageFirstFlowId = 'continue';
-
+class IntroPageForthFlow extends StatefulWidget {
+  static const IntroPageIdForthFlow = 'continue4';
   @override
-  _IntroPageFirstFlowState createState() => _IntroPageFirstFlowState();
+  _IntroPageForthFlowState createState() => _IntroPageForthFlowState();
 }
 
-class _IntroPageFirstFlowState extends State<IntroPageFirstFlow> {
+class _IntroPageForthFlowState extends State<IntroPageForthFlow> {
   GlobalKey globalKey = new GlobalKey(debugLabel: 'btm_app_bar');
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-
   @override
   void initState() {
     super.initState();
@@ -36,8 +31,7 @@ class _IntroPageFirstFlowState extends State<IntroPageFirstFlow> {
         child: Container(
           height: height,
           width: width,
-          margin: EdgeInsets.only(
-              top: width > 1100 ? 50 : 0, bottom: width > 1100 ? 50 : 0),
+          margin: EdgeInsets.only(top: width > 1100 ? 50 : 0, bottom: width > 1100 ? 50 : 0),
           child: width > 700
               ? Row(
                   children: [
@@ -70,7 +64,7 @@ class _ViewContentState extends State<ViewContent> {
         child: Wrap(
           children: [
             Container(
-              height: width > 700 ? height : height / 1.5,
+              height: width > 700 ? height : height/1.5,
               width: width > 700 ? width / 2 : width,
               color: Colors.white,
               child: Column(
@@ -111,8 +105,9 @@ class _ViewContentState extends State<ViewContent> {
                 ],
               ),
             ),
+
             Container(
-              height: width > 700 ? height : height / 2,
+              height: width > 700 ? height : height/2,
               width: width > 700 ? width / 2 : width,
               color: Color(0xff2e184f),
               child: Column(
@@ -120,30 +115,25 @@ class _ViewContentState extends State<ViewContent> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Flexible(
-                    child: AutoSizeText(
-                      'I’m Buying a Home',
-                      style: TextStyle(
-                          fontSize: 22,
-                          fontFamily: StringRefer.Poppins,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                      softWrap: true,
-                      textAlign: TextAlign.center,
-                      maxLines: 3,
-                      overflow: TextOverflow.visible,
+                    child: Padding(
+                      padding:  EdgeInsets.only(left: width/12, right: width/12),
+                      child: AutoSizeText(
+                        'I want to add a home equity loan or secondary product',
+                        style: TextStyle(fontSize: 33, fontFamily: StringRefer.Poppins, fontWeight: FontWeight.bold, color: Colors.white),
+                        softWrap: true,
+                        textAlign: TextAlign.center,
+                        maxLines: 3,
+                        overflow: TextOverflow.visible,
+                      ),
                     ),
                   ),
                   SizedBox(height: 20),
                   Flexible(
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 50, right: 50),
+                      padding:  EdgeInsets.only(left: width/12, right: width/12),
                       child: AutoSizeText(
-                        'I’m looking for a new mortgage for my new home.',
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontFamily: StringRefer.SegoeUI,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                        '''Did you know you can unlock the equity In your home, gain access to extra cash to pay down Debt, pay for school or invest?  See today’s best Home equity loan rates.''',
+                        style: TextStyle(fontSize: 20, fontFamily: StringRefer.SegoeUI, color: Colors.white),
                         softWrap: true,
                         maxLines: 3,
                         textAlign: TextAlign.center,
@@ -153,14 +143,24 @@ class _ViewContentState extends State<ViewContent> {
                   ),
                   SizedBox(height: 20),
                   Container(
-                    width: MediaQuery.of(context).size.width / 5,
+                    width: MediaQuery.of(context).size.width/5,
                     child: RoundedButton(
                       title: 'continue',
                       colour: Color(0xfffecf09),
                       buttonRadius: 5,
                       height: 60,
                       onPressed: (){
-                        Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: NextIntroPageFirstFlow()));
+                        Navigator.pushAndRemoveUntil(context,
+                            PageTransition(
+                                type: PageTransitionType.rightToLeft,
+                                duration: Duration(seconds: 1),
+                                child: BasicDetailForthFlow()
+                            ), (route) => false);
+                        // Navigator.push(context, PageTransition(
+                        //     type: PageTransitionType.rightToLeft,
+                        //     duration: Duration(seconds: 1),
+                        //     child: BasicDetailForthFlow())
+                        // );
                       },
                     ),
                   ),
@@ -173,3 +173,4 @@ class _ViewContentState extends State<ViewContent> {
     );
   }
 }
+

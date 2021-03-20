@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nuborrow/cards/second_intro_card.dart';
-import 'package:nuborrow/first_flow/basic_detail_page.dart';
+import 'package:nuborrow/first_flow/basic_detail_first_flow.dart';
 import 'package:page_transition/page_transition.dart';
 
 class NextIntroPageFirstFlow extends StatefulWidget {
@@ -69,8 +69,13 @@ class _ViewContentState extends State<ViewContent> {
               SecondTitle: 'I’m still looking at homes or I’ve found a Property',
               SecondSubtitle:'Show me what the monthly payments and rates could be for my price range',
               onPressed2: (){
-                // Navigator.pushNamed(context, BasicDetailFirstFlow.BasicDetailPageFirstFlowId);
-                Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: BasicDetailFirstFlow()));
+                Navigator.pushAndRemoveUntil(context,
+                    PageTransition(
+                        type: PageTransitionType.rightToLeft,
+                        duration: Duration(seconds: 1),
+                        child: BasicDetailFirstFlow()
+                    ), (route) => false);
+                // Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: BasicDetailFirstFlow()));
               },
             )
           ],

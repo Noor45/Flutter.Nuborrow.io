@@ -46,7 +46,7 @@ class _DesktopRateCardState extends State<DesktopRateCard> {
                 children: [
                   Row(
                     children: [
-                      Image.asset('assets/images/sideIcon.png', width: 20, height: 20,),
+                      Image.asset('assets/images/sideIcon.png', width: 30, height: 30,),
                       SizedBox(width: 15),
                       AutoSizeText('Lorem ipsum', style: TextStyle(fontFamily: StringRefer.PoppinMedium, fontSize: 14),)
                     ],
@@ -69,9 +69,17 @@ class _DesktopRateCardState extends State<DesktopRateCard> {
                 ],
               ),
               Column(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Row(
+                    children: [
+                      Image.asset('assets/images/sideIcon.png', width: 25, height: 25, color: Colors.white,),
+                      SizedBox(width: 15),
+                      AutoSizeText('Lorem ipsum', style: TextStyle(fontFamily: StringRefer.PoppinMedium, fontSize: 14, color: Colors.white),)
+                    ],
+                  ),
+                  AutoSizeText('About this rate', style: TextStyle(fontFamily: StringRefer.PoppinMedium, fontSize: 14, color: Colors.white,),),
                   Row(
                     children: [
                       AutoSizeText('Lump sum prepayment:', style: TextStyle(fontFamily: StringRefer.PoppinMedium, fontSize: 14)),
@@ -79,7 +87,6 @@ class _DesktopRateCardState extends State<DesktopRateCard> {
                       AutoSizeText(widget.prePayment.toString()+'%', style: TextStyle(fontFamily: StringRefer.PoppinMedium, fontWeight: FontWeight.w900, fontSize: 14),)
                     ],
                   ),
-                  SizedBox(height: 18),
                   Row(
                     children: [
                       AutoSizeText('Rate hold:', style: TextStyle(fontFamily: StringRefer.PoppinMedium, fontSize: 14),),

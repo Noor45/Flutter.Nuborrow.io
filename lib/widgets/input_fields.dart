@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:nuborrow/utils/colors.dart';
 import 'package:nuborrow/utils/strings.dart';
 import '../utils/style.dart';
-import 'package:date_time_picker/date_time_picker.dart';
+import 'package:intl/intl.dart';
+import 'package:flutter_date_pickers/flutter_date_pickers.dart' as dp;
+
+// import 'package:date_time_picker/date_time_picker.dart';
 
 class InputField extends StatefulWidget {
   InputField(
@@ -11,23 +14,28 @@ class InputField extends StatefulWidget {
       this.hintText,
       this.onChanged,
       this.validator,
+      this.readOnly,
       this.textInputType,
       this.maxLength});
   final TextEditingController controller;
   final TextInputType textInputType;
   final String hintText;
   final String label;
+  final bool readOnly;
   final int maxLength;
   final Function onChanged;
   final Function validator;
+
   @override
   _InputFieldState createState() => _InputFieldState();
 }
 
 class _InputFieldState extends State<InputField> {
+
   @override
   Widget build(BuildContext context) {
     return TextField(
+      readOnly: widget.readOnly,
       controller: widget.controller,
       keyboardType: widget.textInputType,
       onChanged: widget.onChanged,
@@ -45,16 +53,14 @@ class DateTimeField extends StatefulWidget {
       {this.label,
         this.controller,
         this.hintText,
-        this.onChanged,
+        this.onTab,
         this.validator,
-        this.textInputType,
         this.maxLength});
   final TextEditingController controller;
-  final TextInputType textInputType;
   final String hintText;
   final String label;
   final int maxLength;
-  final Function onChanged;
+  final Function onTab;
   final Function validator;
   @override
   _DateTimeFieldState createState() => _DateTimeFieldState();
@@ -63,18 +69,15 @@ class DateTimeField extends StatefulWidget {
 class _DateTimeFieldState extends State<DateTimeField> {
   @override
   Widget build(BuildContext context) {
-    return DateTimePicker(
-      type: DateTimePickerType.date,
-      dateMask: 'd MMM, yyyy - hh:mm:ss a',
-      use24HourFormat: false,
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2100),
+    return TextField(
       controller: widget.controller,
-      onChanged: widget.onChanged,
+      readOnly: true,
+      // onChanged: widget.onChanged,
       maxLength: widget.maxLength,
       decoration: StyleRefer.kTextFieldDecoration.copyWith(
           hintText: widget.hintText,
           hintStyle: TextStyle(fontSize: 15, color: ColorRefer.kLabelColor)),
+      onTap: widget.onTab,
     );
   }
 }
