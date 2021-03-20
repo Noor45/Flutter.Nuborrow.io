@@ -9,6 +9,9 @@ import 'package:page_transition/page_transition.dart';
 import '../cards/rate_page_card.dart';
 import 'package:nuborrow/widgets/round_button.dart';
 import '../utils/strings.dart';
+import '../utils/NetworkUtils.dart';
+
+
 
 class RatesPageFirstFlow extends StatefulWidget {
   static const RatesPageFirstFlowId = 'rates';
@@ -65,6 +68,11 @@ class _ViewContentState extends State<ViewContent> {
   List<String> selectTermList = ['5 Year', '3 Year'];
   String selectedTermValue;
   @override
+  void initState() {
+    loadProductRate();
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
@@ -88,6 +96,188 @@ class _ViewContentState extends State<ViewContent> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(height: 30),
+                  // Container(
+                  //   width: width > 800 ? width / 2 : width,
+                  //   child: Padding(
+                  //     padding: EdgeInsets.only(left: 30, right: 30),
+                  //     child: Wrap(
+                  //       direction: width > 800 ? Axis.horizontal :   width >  650 ? Axis.horizontal: Axis.vertical ,
+                  //       children: [
+                  //         Column(
+                  //           crossAxisAlignment: CrossAxisAlignment.start,
+                  //           children: [
+                  //             AutoSizeText(
+                  //               'Purchase Price',
+                  //               style: TextStyle(
+                  //                   fontSize: 18,
+                  //                   fontFamily: StringRefer.SegoeUI,
+                  //                   fontWeight: FontWeight.bold,
+                  //                   color: Colors.black),
+                  //               softWrap: true,
+                  //               maxLines: 3,
+                  //               overflow: TextOverflow.visible,
+                  //             ),
+                  //             SizedBox(height: 14),
+                  //             Container(
+                  //               width: width > 1200 ? width / 5 : width > 800 ? width : width > 650 ? width/2.5 : width/1.1,
+                  //               child: InputField(
+                  //                 hintText: 'Enter here xxx',
+                  //                 onChanged: (value) {},
+                  //                 textInputType: TextInputType.text,
+                  //               ),
+                  //             ),
+                  //           ],
+                  //         ),
+                  //         SizedBox(height: 20, width: 50),
+                  //         Column(
+                  //           crossAxisAlignment: CrossAxisAlignment.start,
+                  //           children: [
+                  //             AutoSizeText(
+                  //               'Amount of down payment',
+                  //               style: TextStyle(
+                  //                   fontSize: 18,
+                  //                   fontFamily: StringRefer.SegoeUI,
+                  //                   fontWeight: FontWeight.bold,
+                  //                   color: Colors.black),
+                  //               softWrap: true,
+                  //               maxLines: 3,
+                  //               overflow: TextOverflow.visible,
+                  //             ),
+                  //             SizedBox(height: 14),
+                  //             Container(
+                  //               width: width > 1200 ? width / 5 : width > 800 ? width :  width > 650 ? width/2.5  : width/1.1,
+                  //               child: InputField(
+                  //                 hintText: 'Enter amount',
+                  //                 onChanged: (value) {},
+                  //                 textInputType: TextInputType.text,
+                  //               ),
+                  //             ),
+                  //           ],
+                  //         ),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
+                  // SizedBox(height: 20),
+                  // Container(
+                  //   width: width > 800 ? width / 2 : width,
+                  //   child: Padding(
+                  //     padding: EdgeInsets.only(left: 30, right: 30),
+                  //     child: Wrap(
+                  //       direction: width > 800 ? Axis.horizontal :   width >  650 ? Axis.horizontal: Axis.vertical ,
+                  //       children: [
+                  //         Column(
+                  //           crossAxisAlignment: CrossAxisAlignment.start,
+                  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //           children: [
+                  //             Container(
+                  //               width: width > 1200 ? width / 5 : width > 800 ? width : width > 650 ? width/2.5 : width/1.1,
+                  //               child: AutoSizeText(
+                  //                 'How much do you have as a down payment? ',
+                  //                 style: TextStyle(
+                  //                     fontSize: 18,
+                  //                     fontFamily: StringRefer.SegoeUI,
+                  //                     fontWeight: FontWeight.bold,
+                  //                     color: Colors.black),
+                  //                 softWrap: true,
+                  //                 maxLines: 3,
+                  //                 overflow: TextOverflow.visible,
+                  //               ),
+                  //             ),
+                  //             SizedBox(height: 14),
+                  //             Container(
+                  //               width: width > 1200 ? width / 5 : width > 800 ? width : width > 650 ? width/2.5 : width/1.1,
+                  //               child: InputField(
+                  //                 hintText: 'Enter a %',
+                  //                 onChanged: (value) {},
+                  //                 textInputType: TextInputType.text,
+                  //               ),
+                  //             ),
+                  //           ],
+                  //         ),
+                  //         SizedBox(height: 20, width: 50),
+                  //         Column(
+                  //           crossAxisAlignment: CrossAxisAlignment.start,
+                  //           mainAxisAlignment: MainAxisAlignment.end,
+                  //           children: [
+                  //             Container(
+                  //               width: width > 1200 ? width / 5 : width > 800 ? width : width > 650 ? width/2.5 : width/1.1,
+                  //               child: AutoSizeText(
+                  //                 'Rate Type                                    ',
+                  //                 style: TextStyle(
+                  //                     fontSize: 18,
+                  //                     fontFamily: StringRefer.SegoeUI,
+                  //                     fontWeight: FontWeight.bold,
+                  //                     color: Colors.black),
+                  //                 softWrap: true,
+                  //                 maxLines: 3,
+                  //                 overflow: TextOverflow.visible,
+                  //               ),
+                  //             ),
+                  //             SizedBox(height: width > 1200 ? 36 : width > 800 ? 14: width > 650 ? 36: 14),
+                  //             Container(
+                  //               width: width > 1200 ? width / 5 : width > 800 ? width :  width > 650 ? width/2.5  : width/1.1,
+                  //               child:   SelectField(
+                  //                 hintText: 'Select Rate Type',
+                  //                 value: selectedRateValue,
+                  //                 selectionList: selectRateList,
+                  //                 onChanged: (String newValue){
+                  //                   setState(() {
+                  //                     selectedRateValue = newValue;
+                  //                   });
+                  //                 },
+                  //               ),
+                  //             ),
+                  //           ],
+                  //         ),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
+                  // SizedBox(height: 20),
+                  // Container(
+                  //   width: width > 800 ? width / 2 : width,
+                  //   child: Padding(
+                  //     padding: EdgeInsets.only(left: 30, right: 30),
+                  //     child: Wrap(
+                  //       direction: width > 800 ? Axis.horizontal :   width >  650 ? Axis.horizontal : Axis.vertical ,
+                  //       spacing: width > 800 ? 50 : width >  650 ?  50 : 20 ,
+                  //       children: [
+                  //         Column(
+                  //           crossAxisAlignment: CrossAxisAlignment.start,
+                  //           children: [
+                  //             AutoSizeText(
+                  //               'Term',
+                  //               style: TextStyle(
+                  //                   fontSize: 18,
+                  //                   fontFamily: StringRefer.SegoeUI,
+                  //                   fontWeight: FontWeight.bold,
+                  //                   color: Colors.black),
+                  //               softWrap: true,
+                  //               maxLines: 3,
+                  //               overflow: TextOverflow.visible,
+                  //             ),
+                  //             SizedBox(height: 14),
+                  //             Container(
+                  //               width: width > 1200 ? width / 5 : width > 800 ? width :  width > 650 ? width/2.5  : width/1.1,
+                  //               child:   SelectField(
+                  //                 hintText: 'Select Terms',
+                  //                 value: selectedTermValue,
+                  //                 selectionList: selectTermList,
+                  //                 onChanged: (String newValue){
+                  //                   setState(() {
+                  //                     selectedTermValue = newValue;
+                  //                   });
+                  //                 },
+                  //               ),
+                  //             ),
+                  //           ],
+                  //         ),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
+                  // SizedBox(height: 30),
                   Container(
                     child: width > 1350 ?
                     DesktopRateCard(
@@ -228,189 +418,7 @@ class _ViewContentState extends State<ViewContent> {
                       },
                     ),
                   ),
-                  SizedBox(height: 20),
-                  Container(
-                    width: width > 800 ? width / 2 : width,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 30, right: 30),
-                      child: Wrap(
-                        direction: width > 800 ? Axis.horizontal :   width >  650 ? Axis.horizontal: Axis.vertical ,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              AutoSizeText(
-                                'Purchase Price',
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    fontFamily: StringRefer.SegoeUI,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
-                                softWrap: true,
-                                maxLines: 3,
-                                overflow: TextOverflow.visible,
-                              ),
-                              SizedBox(height: 14),
-                              Container(
-                                width: width > 1200 ? width / 5 : width > 800 ? width : width > 650 ? width/2.5 : width/1.1,
-                                child: InputField(
-                                  hintText: 'Enter here xxx',
-                                  onChanged: (value) {},
-                                  textInputType: TextInputType.text,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 20, width: 50),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              AutoSizeText(
-                                'Amount of down payment',
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    fontFamily: StringRefer.SegoeUI,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
-                                softWrap: true,
-                                maxLines: 3,
-                                overflow: TextOverflow.visible,
-                              ),
-                              SizedBox(height: 14),
-                              Container(
-                                width: width > 1200 ? width / 5 : width > 800 ? width :  width > 650 ? width/2.5  : width/1.1,
-                                child: InputField(
-                                  hintText: 'Enter amount',
-                                  onChanged: (value) {},
-                                  textInputType: TextInputType.text,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    width: width > 800 ? width / 2 : width,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 30, right: 30),
-                      child: Wrap(
-                        direction: width > 800 ? Axis.horizontal :   width >  650 ? Axis.horizontal: Axis.vertical ,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                width: width > 1200 ? width / 5 : width > 800 ? width : width > 650 ? width/2.5 : width/1.1,
-                                child: AutoSizeText(
-                                  'How much do you have as a down payment? ',
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontFamily: StringRefer.SegoeUI,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
-                                  softWrap: true,
-                                  maxLines: 3,
-                                  overflow: TextOverflow.visible,
-                                ),
-                              ),
-                              SizedBox(height: 14),
-                              Container(
-                                width: width > 1200 ? width / 5 : width > 800 ? width : width > 650 ? width/2.5 : width/1.1,
-                                child: InputField(
-                                  hintText: 'Enter a %',
-                                  onChanged: (value) {},
-                                  textInputType: TextInputType.text,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 20, width: 50),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Container(
-                                width: width > 1200 ? width / 5 : width > 800 ? width : width > 650 ? width/2.5 : width/1.1,
-                                child: AutoSizeText(
-                                  'Rate Type                                    ',
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontFamily: StringRefer.SegoeUI,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
-                                  softWrap: true,
-                                  maxLines: 3,
-                                  overflow: TextOverflow.visible,
-                                ),
-                              ),
-                              SizedBox(height: width > 1200 ? 36 : width > 800 ? 14: width > 650 ? 36: 14),
-                              Container(
-                                width: width > 1200 ? width / 5 : width > 800 ? width :  width > 650 ? width/2.5  : width/1.1,
-                                child:   SelectField(
-                                  hintText: 'Select Rate Type',
-                                  value: selectedRateValue,
-                                  selectionList: selectRateList,
-                                  onChanged: (String newValue){
-                                    setState(() {
-                                      selectedRateValue = newValue;
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    width: width > 800 ? width / 2 : width,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 30, right: 30),
-                      child: Wrap(
-                        direction: width > 800 ? Axis.horizontal :   width >  650 ? Axis.horizontal : Axis.vertical ,
-                        spacing: width > 800 ? 50 : width >  650 ?  50 : 20 ,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              AutoSizeText(
-                                'Term',
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    fontFamily: StringRefer.SegoeUI,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
-                                softWrap: true,
-                                maxLines: 3,
-                                overflow: TextOverflow.visible,
-                              ),
-                              SizedBox(height: 14),
-                              Container(
-                                width: width > 1200 ? width / 5 : width > 800 ? width :  width > 650 ? width/2.5  : width/1.1,
-                                child:   SelectField(
-                                  hintText: 'Select Terms',
-                                  value: selectedTermValue,
-                                  selectionList: selectTermList,
-                                  onChanged: (String newValue){
-                                    setState(() {
-                                      selectedTermValue = newValue;
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 30),
+
 
                 ],
               ),
@@ -420,5 +428,15 @@ class _ViewContentState extends State<ViewContent> {
       ),
     );
   }
+  void loadProductRate() async {
+    Map<String, dynamic> response = await NetworkUtil.internal().get("products/rates");
+    print(response);
+    // APIResponse apiResponse = APIResponse.fromJson(response);
+    // print(apiResponse.rates);
+    // setState(() {
+    //   rates = apiResponse.rates;
+    // });
+  }
+
 }
 

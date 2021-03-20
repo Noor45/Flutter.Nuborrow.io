@@ -67,6 +67,7 @@ class _TextFieldCardState extends State<TextFieldCard> {
                 direction: Axis.horizontal,
                 children: [
                   InputField(
+                    readOnly: true,
                     hintText: widget.hint,
                     onChanged: widget.onChanged,
                     textInputType: widget.textInputType,

@@ -53,7 +53,6 @@ class TextFieldCard extends StatefulWidget {
 
 class _TextFieldCardState extends State<TextFieldCard> {
   TextEditingController textEditingController = TextEditingController();
-
   @override
   void initState() {
     super.initState();

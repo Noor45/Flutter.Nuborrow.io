@@ -6,8 +6,12 @@ import 'package:nuborrow/cards/left_card.dart';
 import 'package:nuborrow/first_flow/pick_mortgage_term_first_flow.dart';
 import 'package:nuborrow/utils/colors.dart';
 import 'package:intl/intl.dart';
+import 'package:nuborrow/widgets/input_fields.dart';
 import 'package:nuborrow/widgets/round_button.dart';
 import 'package:page_transition/page_transition.dart';
+import '../utils/constants.dart';
+import '../utils/constants.dart';
+import '../utils/constants.dart';
 import '../utils/constants.dart';
 import '../utils/strings.dart';
 
@@ -69,7 +73,10 @@ class _ViewContentState extends State<ViewContent> {
   ];
   String firstSelectedValue;
   TextEditingController dateController = new TextEditingController();
-  String price = "50";
+  TextEditingController textDownPaymentController = TextEditingController();
+  TextEditingController textPercentageController = TextEditingController();
+  String price = '';
+  String percentage = '';
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -94,27 +101,144 @@ class _ViewContentState extends State<ViewContent> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(height: 20),
-                  TextFieldCard(
-                    label: 'What is the price of your new home?',
-                    hint: 'Enter amount',
-                    textInputType: TextInputType.number,
+                  TextFieldCardCurrency(
+                    label: 'What is the price of your new home?    ',
+                    hint: '\$ Enter amount',
+                    textInputType: TextInputType.text,
                     value: price,
-                    showButton: false,
                     onChanged: (value) {
                       setState(() {
-                        price = moneyFormat(value);
-                        print(price);
+                        value = value.replaceAll(RegExp(','), '');
+                        value = value.replaceAll(RegExp('\$'), '');
+                        ConstantValue.purchaseValue =
+                            value.replaceAll('\$', '');
+                        print(ConstantValue.purchaseValue);
                       });
                     },
+                    showButton: false,
                   ),
                   SizedBox(height: 20),
-                  TextFieldCard(
-                    label:
-                        'How much do you have as a Down payment? (enter a %)',
-                    hint: 'Enter amount',
-                    showButton: false,
-                    textInputType: TextInputType.number,
-                    onChanged: (value) {},
+                  Container(
+                    width: width > 900 ? width / 2 : width,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 30, right: 30),
+                      child: Wrap(
+                        direction: width > 1100
+                            ? Axis.horizontal
+                            : width > 650
+                                ? Axis.horizontal
+                                : Axis.vertical,
+                        children: [
+                          Container(
+                            width: width > 1100
+                                ? width / 5
+                                : width > 650
+                                    ? width / 2.5
+                                    : width,
+                            child: LabelCard(
+                              label:
+                                  'How much is your Down payment? Enter Percentage of amount',
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                            width: 50,
+                          ),
+                          Container(
+                            width: width > 1100
+                                ? width / 5
+                                : width > 650
+                                    ? width / 2.5
+                                    : width / 1.1,
+                            child: Wrap(
+                              direction: Axis.horizontal,
+                              children: [
+                                Column(
+                                  children: [
+                                    InputField(
+                                      hintText: '% Enter Percentage',
+                                      controller: textPercentageController,
+                                      readOnly:
+                                          ConstantValue.purchaseValue == ''
+                                              ? true
+                                              : false,
+                                      onChanged: (String value) {
+                                        textPercentageController.text =
+                                            numberFormat(value);
+                                        textPercentageController.text = moneyPercentageFormat(textPercentageController.text);
+                                        textPercentageController.selection =
+                                            TextSelection.fromPosition(
+                                                TextPosition(
+                                                    offset:
+                                                        textPercentageController
+                                                            .text.length));
+                                        setState(() {
+                                          String text = numberFormat(value);
+                                          print(text);
+                                          double purchaseValue = double.parse(
+                                              ConstantValue.purchaseValue);
+                                          print(purchaseValue);
+                                          double percentage =
+                                              double.parse(text);
+                                          double obtained = purchaseValue *
+                                              (percentage / 100);
+                                          print(obtained);
+                                          double totalMortgage =
+                                              purchaseValue - obtained;
+                                          ConstantValue.totalValue =
+                                              totalMortgage.toString();
+                                          ConstantValue.obtainedValue =
+                                              obtained.toString();
+                                          textDownPaymentController.text =
+                                              ConstantValue.obtainedValue;
+                                        });
+                                      },
+                                      textInputType: TextInputType.number,
+                                    ),
+                                    SizedBox(height: 5),
+                                    InputField(
+                                      hintText: '\$ Enter amount',
+                                      readOnly:
+                                          ConstantValue.purchaseValue == ''
+                                              ? true
+                                              : false,
+                                      controller: textDownPaymentController,
+                                      onChanged: (String value) {
+                                        textDownPaymentController.text =
+                                            numberFormat(value);
+                                        textDownPaymentController.selection =
+                                            TextSelection.fromPosition(
+                                                TextPosition(
+                                                    offset:
+                                                        textDownPaymentController
+                                                            .text.length));
+                                        String text = numberFormat(value);
+                                        setState(() {
+                                          double purchaseValue = double.parse(
+                                              ConstantValue.purchaseValue);
+                                          double obtained = double.parse(text);
+                                          double percentage =
+                                              (obtained / purchaseValue) * 100;
+                                          double totalMortgage =
+                                              purchaseValue - obtained;
+                                          ConstantValue.totalValue =
+                                              totalMortgage.toString();
+                                          ConstantValue.obtainedValue =
+                                              obtained.toString();
+                                          textPercentageController.text =
+                                              percentage.toStringAsFixed(2);
+                                        });
+                                      },
+                                      textInputType: TextInputType.number,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                   SizedBox(height: 30),
                   MortgageCard(),
@@ -291,13 +415,17 @@ class _MortgageCardState extends State<MortgageCard> {
                 children: [
                   PriceCard(
                     title: 'Purchased Price',
-                    value: '\$0',
+                    value: ConstantValue.purchaseValue == ''
+                        ? '\$0'
+                        : '\$' + ConstantValue.purchaseValue,
                     color: Colors.black,
                   ),
                   SizedBox(height: 10),
                   PriceCard(
-                    title: '- Purchased Price',
-                    value: '\$0',
+                    title: '- Down Payment',
+                    value: ConstantValue.obtainedValue == ''
+                        ? '\$0'
+                        : '\$' + ConstantValue.obtainedValue,
                     color: Colors.black,
                   ),
                   SizedBox(height: 20),
@@ -314,7 +442,9 @@ class _MortgageCardState extends State<MortgageCard> {
               ),
               child: PriceCard(
                 title: '= Total mortgage required',
-                value: '\$0',
+                value: ConstantValue.totalValue == ''
+                    ? '\$0'
+                    : '\$' + ConstantValue.totalValue,
                 color: Colors.white,
               ),
             ),
@@ -324,3 +454,241 @@ class _MortgageCardState extends State<MortgageCard> {
     );
   }
 }
+
+class TextFieldCardCurrency extends StatefulWidget {
+  TextFieldCardCurrency(
+      {this.textInputType,
+      this.label,
+      this.hint,
+      this.value,
+      this.onChanged,
+      this.showButton});
+  final String label;
+  final String value;
+  final String hint;
+  final Function onChanged;
+  final TextInputType textInputType;
+  final bool showButton;
+  FocusNode nextFocus;
+  @override
+  _TextFieldCardCurrencyState createState() => _TextFieldCardCurrencyState();
+}
+
+class _TextFieldCardCurrencyState extends State<TextFieldCardCurrency> {
+  TextEditingController textEditingController = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    textEditingController.text = widget.value;
+    print("updated" + TextInputType.text.toString());
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    return Container(
+      width: width > 900 ? width / 2 : width,
+      child: Padding(
+        padding: EdgeInsets.only(left: 30, right: 30),
+        child: Wrap(
+          direction: width > 1100
+              ? Axis.horizontal
+              : width > 650
+                  ? Axis.horizontal
+                  : Axis.vertical,
+          children: [
+            Container(
+              width: width > 1100
+                  ? width / 5
+                  : width > 650
+                      ? width / 2.5
+                      : width,
+              child: LabelCard(
+                label: widget.label,
+              ),
+            ),
+            SizedBox(
+              height: 20,
+              width: 50,
+            ),
+            Container(
+              width: width > 1100
+                  ? width / 5
+                  : width > 650
+                      ? width / 2.5
+                      : width / 1.1,
+              child: Wrap(
+                direction: Axis.horizontal,
+                children: [
+                  InputField(
+                    readOnly: false,
+                    hintText: widget.hint,
+                    controller: textEditingController,
+                    onChanged: (String text) {
+                      textEditingController.text = numberFormat(text);
+                      textEditingController.text =
+                          moneyFormat(textEditingController.text);
+                      textEditingController.text =
+                          moneyDollarFormat(textEditingController.text);
+                      widget.onChanged.call(textEditingController.text);
+                      textEditingController.selection =
+                          TextSelection.fromPosition(TextPosition(
+                              offset: textEditingController.text.length));
+                    },
+                    textInputType: widget.textInputType,
+                  ),
+                  Visibility(
+                    visible: widget.showButton,
+                    child: Wrap(
+                      direction: Axis.horizontal,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 50),
+                          child: Container(
+                            width: width > 1100
+                                ? width / 5
+                                : width > 650
+                                    ? width / 2.5
+                                    : width / 1.1,
+                            child: RoundedButton(
+                              title: 'continue',
+                              height: 60,
+                              textColor: Colors.white,
+                              colour: Color(0xff705aa7),
+                              buttonRadius: 10,
+                              onPressed: () {
+                                widget.nextFocus.requestFocus();
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+//
+// class TextFieldPercentageCard extends StatefulWidget {
+//   TextFieldPercentageCard(
+//       {this.textInputType,
+//       this.label,
+//       this.hint,
+//       this.value,
+//       this.onChanged,
+//       this.showButton});
+//   final String label;
+//   final String value;
+//   final String hint;
+//   final Function onChanged;
+//   final TextInputType textInputType;
+//   final bool showButton;
+//   FocusNode nextFocus;
+//   @override
+//   _TextFieldPercentageCardState createState() =>
+//       _TextFieldPercentageCardState();
+// }
+//
+// class _TextFieldPercentageCardState extends State<TextFieldPercentageCard> {
+//   TextEditingController textEditingController = TextEditingController();
+//   @override
+//   void initState() {
+//     super.initState();
+//     textEditingController.text = widget.value;
+//     print("updated" + TextInputType.text.toString());
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     double width = MediaQuery.of(context).size.width;
+//     return Container(
+//       width: width > 900 ? width / 2 : width,
+//       child: Padding(
+//         padding: EdgeInsets.only(left: 30, right: 30),
+//         child: Wrap(
+//           direction: width > 1100
+//               ? Axis.horizontal
+//               : width > 650
+//                   ? Axis.horizontal
+//                   : Axis.vertical,
+//           children: [
+//             Container(
+//               width: width > 1100
+//                   ? width / 5
+//                   : width > 650
+//                       ? width / 2.5
+//                       : width,
+//               child: LabelCard(
+//                 label: widget.label,
+//               ),
+//             ),
+//             SizedBox(
+//               height: 20,
+//               width: 60,
+//             ),
+//             Container(
+//               width: width > 1100
+//                   ? width / 5
+//                   : width > 650
+//                       ? width / 2.5
+//                       : width / 1.1,
+//               child: Wrap(
+//                 direction: Axis.horizontal,
+//                 children: [
+//                   InputField(
+//                     hintText: widget.hint,
+//                     readOnly: false,
+//                     controller: textEditingController,
+//                     onChanged: (String text) {
+//                       textEditingController.text = moneyPercentageFormat(text);
+//                       // textEditingController.text = moneyDollarFormat(textEditingController.text);
+//                       widget.onChanged.call(textEditingController.text);
+//                       textEditingController.selection =
+//                           TextSelection.fromPosition(TextPosition(
+//                               offset: textEditingController.text.length));
+//                     },
+//                     textInputType: widget.textInputType,
+//                   ),
+//                   Visibility(
+//                     visible: widget.showButton,
+//                     child: Wrap(
+//                       direction: Axis.horizontal,
+//                       children: [
+//                         Padding(
+//                           padding: const EdgeInsets.only(top: 50),
+//                           child: Container(
+//                             width: width > 1100
+//                                 ? width / 5
+//                                 : width > 650
+//                                     ? width / 2.5
+//                                     : width / 1.1,
+//                             child: RoundedButton(
+//                               title: 'continue',
+//                               height: 60,
+//                               textColor: Colors.white,
+//                               colour: Color(0xff705aa7),
+//                               buttonRadius: 10,
+//                               onPressed: () {
+//                                 widget.nextFocus.requestFocus();
+//                               },
+//                             ),
+//                           ),
+//                         ),
+//                       ],
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }

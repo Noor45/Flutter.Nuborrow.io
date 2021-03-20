@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -34,6 +32,12 @@ void kNavigateAndPopAll({BuildContext context, Widget widget}) {
           ctx: context));
 }
 
+String numberFormat(String price){
+    var value = price;
+    value = value.replaceAll(RegExp('[^0-9]'), '');
+    return value;
+}
+
 String moneyFormat(String price) {
   if (price.length > 2) {
     var value = price;
@@ -42,6 +46,29 @@ String moneyFormat(String price) {
     return value;
   }
 }
+
+String moneyDollarFormat(String price) {
+  price = price.replaceAll("\$", "");
+  if (price.length > 2) {
+    var value = price;
+    value = value.replaceAll(RegExp(r'\D'), '');
+    value = value.replaceAll(RegExp(r'\B(?=(\d{3})+(?!\d))'), ',');
+    return "\$" + value;
+  }
+  return "\$" + price;
+}
+
+String moneyPercentageFormat(String price) {
+  price = price.replaceAll("", "%");
+  if (price.length > 2) {
+    var value = price;
+    value = value.replaceAll(RegExp(r'\D'), '');
+    value = value.replaceAll(RegExp(r'\B(?=(\d{3})+(?!\d))'), '');
+    return  value + "%" ;
+  }
+  return  price + "%";
+}
+
 
 class Constants {
   static Future<DateTime> showDate(BuildContext context) async{
@@ -69,3 +96,9 @@ class Constants {
   }
 }
 
+class ConstantValue{
+  static String purchaseValue = '';
+  static String percentageValue = '';
+  static String obtainedValue = '';
+  static String totalValue = '';
+}

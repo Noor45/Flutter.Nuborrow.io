@@ -159,13 +159,14 @@ class _ViewContentState extends State<ViewContent> {
                       colour: Color(0xfffecf09),
                       buttonRadius: 5,
                       height: 60,
-                      onPressed: (){
-                        Navigator.pushAndRemoveUntil(context,
+                      onPressed: () {
+                        Navigator.pushAndRemoveUntil(
+                            context,
                             PageTransition(
                                 type: PageTransitionType.rightToLeft,
                                 duration: Duration(seconds: 1),
-                                child: NextIntroPageFirstFlow()
-                            ), (route) => false);
+                                child: NextIntroPageFirstFlow()),
+                            (route) => false);
                       },
                     ),
                   ),

@@ -1,16 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nuborrow/cards/left_card.dart';
 import 'package:nuborrow/first_flow/amount_detail_first_flow.dart';
-import 'package:nuborrow/first_flow/contact_detail_first_flow.dart';
-import 'package:nuborrow/first_flow/pick_mortgage_term_first_flow.dart';
 import 'package:nuborrow/utils/style.dart';
 import 'package:nuborrow/widgets/input_fields.dart';
 import 'package:nuborrow/widgets/round_button.dart';
 import 'package:page_transition/page_transition.dart';
 import '../utils/strings.dart';
+// import 'package:flutter_dotenv/flutter_dotenv.dart';
+// import 'package:google_place/google_place.dart';
+import 'dart:async';
+
+const kGoogleApiKey = "AIzaSyDKhj1caiJVMeNgBAqbOjV97q0oMyAuRiQ";
 
 class BasicDetailFirstFlow extends StatefulWidget {
   static const BasicDetailPageFirstFlowId = 'basic_detail';
@@ -61,6 +63,7 @@ class ViewContent extends StatefulWidget {
 }
 
 class _ViewContentState extends State<ViewContent> {
+  TextEditingController cityController = TextEditingController();
   List tabList = [
     'Owner occupied',
     'Owner occupied with rental income',
@@ -68,6 +71,15 @@ class _ViewContentState extends State<ViewContent> {
     'Second home/Cottage'
   ];
   String selectedValue;
+  // GooglePlace googlePlace;
+  // List<AutocompletePrediction> predictions = [];
+  @override
+  void initState() {
+    // String apiKey = DotEnv().env['API_KEY'];
+    // googlePlace = GooglePlace(apiKey);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -97,7 +109,13 @@ class _ViewContentState extends State<ViewContent> {
                     child: Padding(
                       padding: EdgeInsets.only(left: 30, right: 30),
                       child: Wrap(
-                        direction: width > 1350 ? Axis.horizontal : width > 800 ? Axis.vertical :   width >  650 ? Axis.horizontal : Axis.vertical ,
+                        direction: width > 1350
+                            ? Axis.horizontal
+                            : width > 800
+                                ? Axis.vertical
+                                : width > 650
+                                    ? Axis.horizontal
+                                    : Axis.vertical,
                         children: [
                           AutoSizeText(
                             'What city is the property in?',
@@ -113,8 +131,26 @@ class _ViewContentState extends State<ViewContent> {
                           ),
                           SizedBox(height: 20, width: 50),
                           Container(
-                            width: width > 1350 ? width / 4 : width > 800 ? width/2.5 :  width > 650 ? width/2.5  : width/1.1,
+                            width: width > 1350
+                                ? width / 4
+                                : width > 800
+                                    ? width / 2.5
+                                    : width > 650
+                                        ? width / 2.5
+                                        : width / 1.1,
+
+                            // child: PlacesAutocompleteResult(
+                            //   onTap: (p) {
+                            //     displayPrediction(p);
+                            //   },
+                            //   logo: Row(
+                            //     children: [FlutterLogo()],
+                            //     mainAxisAlignment: MainAxisAlignment.center,
+                            //   ),
+                            // ),
                             child: InputField(
+                              readOnly: true,
+                              controller: cityController,
                               hintText: 'Enter here',
                               onChanged: (value) {},
                               textInputType: TextInputType.text,
@@ -130,8 +166,13 @@ class _ViewContentState extends State<ViewContent> {
                     child: Padding(
                       padding: EdgeInsets.only(left: 30, right: 30),
                       child: Wrap(
-                        direction:
-                        width > 1350 ? Axis.horizontal : width > 800 ? Axis.vertical :   width >  650 ? Axis.horizontal : Axis.vertical ,
+                        direction: width > 1350
+                            ? Axis.horizontal
+                            : width > 800
+                                ? Axis.vertical
+                                : width > 650
+                                    ? Axis.horizontal
+                                    : Axis.vertical,
                         children: [
                           AutoSizeText(
                             'Is this Property going to be?',
@@ -182,7 +223,13 @@ class _ViewContentState extends State<ViewContent> {
                               ),
                               SizedBox(height: 50),
                               Container(
-                                width: width > 1350 ? width / 4 : width > 800 ? width/2.5 :  width > 650 ? width/2.5  : width/1.1,
+                                width: width > 1350
+                                    ? width / 4
+                                    : width > 800
+                                        ? width / 2.5
+                                        : width > 650
+                                            ? width / 2.5
+                                            : width / 1.1,
                                 child: RoundedButton(
                                   title: 'continue',
                                   textColor: Colors.white,
@@ -190,7 +237,13 @@ class _ViewContentState extends State<ViewContent> {
                                   height: 60,
                                   buttonRadius: 10,
                                   onPressed: () {
-                                    Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: AmountDetailFirstFlow()));
+                                    Navigator.push(
+                                        context,
+                                        PageTransition(
+                                            type:
+                                                PageTransitionType.rightToLeft,
+                                            duration: Duration(seconds: 1),
+                                            child: AmountDetailFirstFlow()));
                                   },
                                 ),
                               ),
@@ -208,6 +261,14 @@ class _ViewContentState extends State<ViewContent> {
       ),
     );
   }
+  // void autoCompleteSearch(String value) async {
+  //   var result = await googlePlace.autocomplete.get(value);
+  //   if (result != null && result.predictions != null && mounted) {
+  //     setState(() {
+  //       predictions = result.predictions;
+  //     });
+  //   }
+  // }
 }
 
 class TabCard extends StatefulWidget {
@@ -225,7 +286,13 @@ class _TabCardState extends State<TabCard> {
     double width = MediaQuery.of(context).size.width;
     return InkWell(
       child: Container(
-        width: width > 1350 ? width / 4 : width > 800 ? width/2.5 :  width > 650 ? width/2.5  : width/1.1,
+        width: width > 1350
+            ? width / 4
+            : width > 800
+                ? width / 2.5
+                : width > 650
+                    ? width / 2.5
+                    : width / 1.1,
         height: 50,
         decoration:
             StyleRefer.kTabDecoration.copyWith(color: widget.labelColor),

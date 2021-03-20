@@ -11,6 +11,7 @@ import 'package:nuborrow/forth_flow/complete_application_forth_flow.dart';
 import 'package:nuborrow/forth_flow/contact_detail_forth_flow.dart';
 import 'package:nuborrow/forth_flow/intro_page_forth_flow.dart';
 import 'package:nuborrow/forth_flow/rates_page_forth_flow.dart';
+import 'package:nuborrow/main_page.dart';
 import 'package:nuborrow/second_flow/amount_detail_second_flow.dart';
 import 'package:nuborrow/second_flow/basic_detail_second_flow.dart';
 import 'package:nuborrow/second_flow/complete_application_second_flow.dart';
@@ -24,7 +25,6 @@ import 'first_flow/basic_detail_first_flow.dart';
 import 'first_flow/second_intro_first_flow.dart';
 import 'second_flow/second_intro_second_flow.dart';
 import 'second_flow/intro_page_second_flow.dart';
-
 import 'dart:async';
 
 Future<void> main() async {
@@ -56,39 +56,51 @@ class _MyAppState extends State<MyApp> {
         background: Container(color: Color(0xFFF5F5F5)),
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: IntroPageFirstFlow.IntroPageFirstFlowId,
+      initialRoute: AmountDetailFirstFlow.AmountDetailPageFirstFlowId,
       routes: {
+        MainPage.MainPagePageId: (context) => MainPage(),
         //First Flow Pages
-        IntroPageFirstFlow.IntroPageFirstFlowId: (context) => IntroPageFirstFlow(),
-        NextIntroPageFirstFlow.SecondIntroPageFirstFlowId: (context) => NextIntroPageFirstFlow(),
-        BasicDetailFirstFlow.BasicDetailPageFirstFlowId: (context) => BasicDetailFirstFlow(),
+        IntroPageFirstFlow.IntroPageFirstFlowId: (context) =>
+            IntroPageFirstFlow(),
+        NextIntroPageFirstFlow.SecondIntroPageFirstFlowId: (context) =>
+            NextIntroPageFirstFlow(),
+        BasicDetailFirstFlow.BasicDetailPageFirstFlowId: (context) =>
+            BasicDetailFirstFlow(),
         MortgageTerms.MortgageTermsPageId: (context) => MortgageTerms(),
         ContactDetail.ContactDetailPageId: (context) => ContactDetail(),
-        AmountDetailFirstFlow.AmountDetailPageFirstFlowId: (context) => AmountDetailFirstFlow(),
-        RatesPageFirstFlow.RatesPageFirstFlowId: (context) => RatesPageFirstFlow(),
+        AmountDetailFirstFlow.AmountDetailPageFirstFlowId: (context) =>
+            AmountDetailFirstFlow(),
+        RatesPageFirstFlow.RatesPageFirstFlowId: (context) =>
+            RatesPageFirstFlow(),
         LastPageFirstFlow.LastPageFirstFlowId: (context) => LastPageFirstFlow(),
 
         //Second Flow Pages
         IntroPage2ndFlow.IntroPageId2ndFlow: (context) => IntroPage2ndFlow(),
-        NextIntroPage2ndFlow.SecondIntroPage2ndFlowId: (context) => NextIntroPage2ndFlow(),
-        BasicDetail2ndFlow.BasicDetailPageSecondFlowId: (context) => BasicDetail2ndFlow(),
-        AmountDetail2ndFlow.AmountDetail2ndFlowPageId: (context) => AmountDetail2ndFlow(),
-        MortgageTerms2ndFlow.MortgageTerms2ndFlowPageId: (context) => MortgageTerms2ndFlow(),
-        ContactDetail2ndFlow.ContactDetail2ndFlowPageId: (context) => ContactDetail2ndFlow(),
+        NextIntroPage2ndFlow.SecondIntroPage2ndFlowId: (context) =>
+            NextIntroPage2ndFlow(),
+        BasicDetail2ndFlow.BasicDetailPageSecondFlowId: (context) =>
+            BasicDetail2ndFlow(),
+        AmountDetail2ndFlow.AmountDetail2ndFlowPageId: (context) =>
+            AmountDetail2ndFlow(),
+        MortgageTerms2ndFlow.MortgageTerms2ndFlowPageId: (context) =>
+            MortgageTerms2ndFlow(),
+        ContactDetail2ndFlow.ContactDetail2ndFlowPageId: (context) =>
+            ContactDetail2ndFlow(),
         RatesPage2ndFlow.RatesPage2ndFlowId: (context) => RatesPage2ndFlow(),
         LastPage2ndFlow.LastPage2ndFlowId: (context) => LastPage2ndFlow(),
 
         //Forth Flow Pages
-        IntroPageForthFlow.IntroPageIdForthFlow: (context) => IntroPageForthFlow(),
-        BasicDetailForthFlow.BasicDetailPageForthFlowId: (context) => BasicDetailForthFlow(),
-        AmountDetailForthFlow.AmountDetailForthFlowPageId: (context) => AmountDetailForthFlow(),
-        ContactDetailForthFlow.ContactDetailForthFlowPageId: (context) => ContactDetailForthFlow(),
-        RatesPageForthFlow.RatesPageForthFlowId: (context) => RatesPageForthFlow(),
+        IntroPageForthFlow.IntroPageIdForthFlow: (context) =>
+            IntroPageForthFlow(),
+        BasicDetailForthFlow.BasicDetailPageForthFlowId: (context) =>
+            BasicDetailForthFlow(),
+        AmountDetailForthFlow.AmountDetailForthFlowPageId: (context) =>
+            AmountDetailForthFlow(),
+        ContactDetailForthFlow.ContactDetailForthFlowPageId: (context) =>
+            ContactDetailForthFlow(),
+        RatesPageForthFlow.RatesPageForthFlowId: (context) =>
+            RatesPageForthFlow(),
         LastPageForthFlow.LastPageForthFlowId: (context) => LastPageForthFlow(),
-
-
-
-
       },
     );
   }

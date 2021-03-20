@@ -14,23 +14,28 @@ class InputField extends StatefulWidget {
       this.hintText,
       this.onChanged,
       this.validator,
+      this.readOnly,
       this.textInputType,
       this.maxLength});
   final TextEditingController controller;
   final TextInputType textInputType;
   final String hintText;
   final String label;
+  final bool readOnly;
   final int maxLength;
   final Function onChanged;
   final Function validator;
+
   @override
   _InputFieldState createState() => _InputFieldState();
 }
 
 class _InputFieldState extends State<InputField> {
+
   @override
   Widget build(BuildContext context) {
     return TextField(
+      readOnly: widget.readOnly,
       controller: widget.controller,
       keyboardType: widget.textInputType,
       onChanged: widget.onChanged,
