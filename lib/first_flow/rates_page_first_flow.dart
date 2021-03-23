@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:nuborrow/cards/left_card.dart';
 import 'package:nuborrow/first_flow/complete_application_first_flow.dart';
+import 'package:nuborrow/models/api_response.dart';
+import 'package:nuborrow/models/bank_detail.dart';
+import 'package:nuborrow/models/product.dart';
 import 'package:nuborrow/utils/colors.dart';
 import 'package:nuborrow/widgets/input_fields.dart';
 import 'package:page_transition/page_transition.dart';
@@ -67,6 +70,9 @@ class _ViewContentState extends State<ViewContent> {
   String selectedRateValue;
   List<String> selectTermList = ['5 Year', '3 Year'];
   String selectedTermValue;
+  Product products = new Product();
+  List<dynamic> bankList  = [];
+
   @override
   void initState() {
     loadProductRate();
@@ -90,339 +96,357 @@ class _ViewContentState extends State<ViewContent> {
               subtitleFont:25,
             ),
             Container(
-              width: width > 800 ? width / 2 : width,
+              width: width > 800 ? width /2 : width,
               color: Color(0xfff7f9fc),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(height: 30),
-                  // Container(
-                  //   width: width > 800 ? width / 2 : width,
-                  //   child: Padding(
-                  //     padding: EdgeInsets.only(left: 30, right: 30),
-                  //     child: Wrap(
-                  //       direction: width > 800 ? Axis.horizontal :   width >  650 ? Axis.horizontal: Axis.vertical ,
-                  //       children: [
-                  //         Column(
-                  //           crossAxisAlignment: CrossAxisAlignment.start,
-                  //           children: [
-                  //             AutoSizeText(
-                  //               'Purchase Price',
-                  //               style: TextStyle(
-                  //                   fontSize: 18,
-                  //                   fontFamily: StringRefer.SegoeUI,
-                  //                   fontWeight: FontWeight.bold,
-                  //                   color: Colors.black),
-                  //               softWrap: true,
-                  //               maxLines: 3,
-                  //               overflow: TextOverflow.visible,
-                  //             ),
-                  //             SizedBox(height: 14),
-                  //             Container(
-                  //               width: width > 1200 ? width / 5 : width > 800 ? width : width > 650 ? width/2.5 : width/1.1,
-                  //               child: InputField(
-                  //                 hintText: 'Enter here xxx',
-                  //                 onChanged: (value) {},
-                  //                 textInputType: TextInputType.text,
-                  //               ),
-                  //             ),
-                  //           ],
-                  //         ),
-                  //         SizedBox(height: 20, width: 50),
-                  //         Column(
-                  //           crossAxisAlignment: CrossAxisAlignment.start,
-                  //           children: [
-                  //             AutoSizeText(
-                  //               'Amount of down payment',
-                  //               style: TextStyle(
-                  //                   fontSize: 18,
-                  //                   fontFamily: StringRefer.SegoeUI,
-                  //                   fontWeight: FontWeight.bold,
-                  //                   color: Colors.black),
-                  //               softWrap: true,
-                  //               maxLines: 3,
-                  //               overflow: TextOverflow.visible,
-                  //             ),
-                  //             SizedBox(height: 14),
-                  //             Container(
-                  //               width: width > 1200 ? width / 5 : width > 800 ? width :  width > 650 ? width/2.5  : width/1.1,
-                  //               child: InputField(
-                  //                 hintText: 'Enter amount',
-                  //                 onChanged: (value) {},
-                  //                 textInputType: TextInputType.text,
-                  //               ),
-                  //             ),
-                  //           ],
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
-                  // SizedBox(height: 20),
-                  // Container(
-                  //   width: width > 800 ? width / 2 : width,
-                  //   child: Padding(
-                  //     padding: EdgeInsets.only(left: 30, right: 30),
-                  //     child: Wrap(
-                  //       direction: width > 800 ? Axis.horizontal :   width >  650 ? Axis.horizontal: Axis.vertical ,
-                  //       children: [
-                  //         Column(
-                  //           crossAxisAlignment: CrossAxisAlignment.start,
-                  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //           children: [
-                  //             Container(
-                  //               width: width > 1200 ? width / 5 : width > 800 ? width : width > 650 ? width/2.5 : width/1.1,
-                  //               child: AutoSizeText(
-                  //                 'How much do you have as a down payment? ',
-                  //                 style: TextStyle(
-                  //                     fontSize: 18,
-                  //                     fontFamily: StringRefer.SegoeUI,
-                  //                     fontWeight: FontWeight.bold,
-                  //                     color: Colors.black),
-                  //                 softWrap: true,
-                  //                 maxLines: 3,
-                  //                 overflow: TextOverflow.visible,
-                  //               ),
-                  //             ),
-                  //             SizedBox(height: 14),
-                  //             Container(
-                  //               width: width > 1200 ? width / 5 : width > 800 ? width : width > 650 ? width/2.5 : width/1.1,
-                  //               child: InputField(
-                  //                 hintText: 'Enter a %',
-                  //                 onChanged: (value) {},
-                  //                 textInputType: TextInputType.text,
-                  //               ),
-                  //             ),
-                  //           ],
-                  //         ),
-                  //         SizedBox(height: 20, width: 50),
-                  //         Column(
-                  //           crossAxisAlignment: CrossAxisAlignment.start,
-                  //           mainAxisAlignment: MainAxisAlignment.end,
-                  //           children: [
-                  //             Container(
-                  //               width: width > 1200 ? width / 5 : width > 800 ? width : width > 650 ? width/2.5 : width/1.1,
-                  //               child: AutoSizeText(
-                  //                 'Rate Type                                    ',
-                  //                 style: TextStyle(
-                  //                     fontSize: 18,
-                  //                     fontFamily: StringRefer.SegoeUI,
-                  //                     fontWeight: FontWeight.bold,
-                  //                     color: Colors.black),
-                  //                 softWrap: true,
-                  //                 maxLines: 3,
-                  //                 overflow: TextOverflow.visible,
-                  //               ),
-                  //             ),
-                  //             SizedBox(height: width > 1200 ? 36 : width > 800 ? 14: width > 650 ? 36: 14),
-                  //             Container(
-                  //               width: width > 1200 ? width / 5 : width > 800 ? width :  width > 650 ? width/2.5  : width/1.1,
-                  //               child:   SelectField(
-                  //                 hintText: 'Select Rate Type',
-                  //                 value: selectedRateValue,
-                  //                 selectionList: selectRateList,
-                  //                 onChanged: (String newValue){
-                  //                   setState(() {
-                  //                     selectedRateValue = newValue;
-                  //                   });
-                  //                 },
-                  //               ),
-                  //             ),
-                  //           ],
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
-                  // SizedBox(height: 20),
-                  // Container(
-                  //   width: width > 800 ? width / 2 : width,
-                  //   child: Padding(
-                  //     padding: EdgeInsets.only(left: 30, right: 30),
-                  //     child: Wrap(
-                  //       direction: width > 800 ? Axis.horizontal :   width >  650 ? Axis.horizontal : Axis.vertical ,
-                  //       spacing: width > 800 ? 50 : width >  650 ?  50 : 20 ,
-                  //       children: [
-                  //         Column(
-                  //           crossAxisAlignment: CrossAxisAlignment.start,
-                  //           children: [
-                  //             AutoSizeText(
-                  //               'Term',
-                  //               style: TextStyle(
-                  //                   fontSize: 18,
-                  //                   fontFamily: StringRefer.SegoeUI,
-                  //                   fontWeight: FontWeight.bold,
-                  //                   color: Colors.black),
-                  //               softWrap: true,
-                  //               maxLines: 3,
-                  //               overflow: TextOverflow.visible,
-                  //             ),
-                  //             SizedBox(height: 14),
-                  //             Container(
-                  //               width: width > 1200 ? width / 5 : width > 800 ? width :  width > 650 ? width/2.5  : width/1.1,
-                  //               child:   SelectField(
-                  //                 hintText: 'Select Terms',
-                  //                 value: selectedTermValue,
-                  //                 selectionList: selectTermList,
-                  //                 onChanged: (String newValue){
-                  //                   setState(() {
-                  //                     selectedTermValue = newValue;
-                  //                   });
-                  //                 },
-                  //               ),
-                  //             ),
-                  //           ],
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
-                  // SizedBox(height: 30),
-                  Container(
-                    child: width > 1350 ?
-                    DesktopRateCard(
-                        cardWidth: width/7.5,
-                        total: 1.74,
-                        monthlyPayment: 20,
-                        preApproval: 'Available',
-                        prePayment: 20,
-                        rateHold: 'Available',
-                        onPressed: (){
-                          Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: LastPageFirstFlow()));
-                        },
-                    ):
-                    width > 800 ? MobileViewRateCard(
-                      cardWidth: width/7.5,
-                      total: 1.74,
-                      monthlyPayment: 20,
-                      preApproval: 'Available',
-                      prePayment: 20,
-                      rateHold: 'Available',
-                      onPressed: (){
-                        Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft,duration: Duration(seconds: 1), child: LastPageFirstFlow()));
-                      },
-                    ) : width > 650 ?
-                    DesktopRateCard(
-                      cardWidth: width/4,
-                      total: 1.74,
-                      monthlyPayment: 20,
-                      preApproval: 'Available',
-                      prePayment: 20,
-                      rateHold: 'Available',
-                      onPressed: (){
-                        Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft,duration: Duration(seconds: 1), child: LastPageFirstFlow()));
-                      },
-                    ) : MobileViewRateCard(
-                      cardWidth: width/4,
-                      total: 1.74,
-                      monthlyPayment: 20,
-                      preApproval: 'Available',
-                      prePayment: 20,
-                      rateHold: 'Available',
-                      onPressed: (){
-                        Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft,duration: Duration(seconds: 1), child: LastPageFirstFlow()));
-                      },
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    child: width > 1350 ?
-                    DesktopRateCard(
-                      cardWidth: width/7.5,
-                      total: 1.79,
-                      monthlyPayment: 20,
-                      preApproval: 'Available',
-                      prePayment: 20,
-                      rateHold: 'Available',
-                      onPressed: (){
-                        Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft,duration: Duration(seconds: 1), child: LastPageFirstFlow()));
-                      },
-                    ):
-                    width > 800 ? MobileViewRateCard(
-                      cardWidth: width/7.5,
-                      total: 1.79,
-                      monthlyPayment: 20,
-                      preApproval: 'Available',
-                      prePayment: 20,
-                      rateHold: 'Available',
-                      onPressed: (){
-                        Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: LastPageFirstFlow()));
-                      },
-                    ) : width > 650 ?
-                    DesktopRateCard(
-                      cardWidth: width/4,
-                      total: 1.79,
-                      monthlyPayment: 20,
-                      preApproval: 'Available',
-                      prePayment: 20,
-                      rateHold: 'Available',
-                      onPressed: (){
-                        Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: LastPageFirstFlow()));
-                      },
-                    ) : MobileViewRateCard(
-                      cardWidth: width/4,
-                      total: 1.79,
-                      monthlyPayment: 20,
-                      preApproval: 'Available',
-                      prePayment: 20,
-                      rateHold: 'Available',
-                      onPressed: (){
-                        Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: LastPageFirstFlow()));
-                      },
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    child: width > 1350 ?
-                    DesktopRateCard(
-                      cardWidth: width/7.5,
-                      total: 1.79,
-                      monthlyPayment: 20,
-                      preApproval: 'Available',
-                      prePayment: 20,
-                      rateHold: 'Available',
-                      onPressed: (){
-                        Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: LastPageFirstFlow()));
-                      },
-                    ):
-                    width > 800 ? MobileViewRateCard(
-                      cardWidth: width/7.5,
-                      total: 1.89,
-                      monthlyPayment: 20,
-                      preApproval: 'Available',
-                      prePayment: 20,
-                      rateHold: 'Available',
-                      onPressed: (){
-                        Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: LastPageFirstFlow()));
-                      },
-                    ) : width > 650 ?
-                    DesktopRateCard(
-                      cardWidth: width/4,
-                      total: 1.89,
-                      monthlyPayment: 20,
-                      preApproval: 'Available',
-                      prePayment: 20,
-                      rateHold: 'Available',
-                      onPressed: (){
-                        Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: LastPageFirstFlow()));
-                      },
-                    ) : MobileViewRateCard(
-                      cardWidth: width/4,
-                      total: 1.89,
-                      monthlyPayment: 20,
-                      preApproval: 'Available',
-                      prePayment: 20,
-                      rateHold: 'Available',
-                      onPressed: (){
-                        Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: LastPageFirstFlow()));
-                      },
-                    ),
-                  ),
-
-
-                ],
+                children: products.banks == null || products.banks.length == 0 ? [Container()] :
+                    products.banks.map((element) {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(height: 30),
+                          // Container(
+                          //   width: width > 800 ? width / 2 : width,
+                          //   child: Padding(
+                          //     padding: EdgeInsets.only(left: 30, right: 30),
+                          //     child: Wrap(
+                          //       direction: width > 800 ? Axis.horizontal :   width >  650 ? Axis.horizontal: Axis.vertical ,
+                          //       children: [
+                          //         Column(
+                          //           crossAxisAlignment: CrossAxisAlignment.start,
+                          //           children: [
+                          //             AutoSizeText(
+                          //               'Purchase Price',
+                          //               style: TextStyle(
+                          //                   fontSize: 18,
+                          //                   fontFamily: StringRefer.SegoeUI,
+                          //                   fontWeight: FontWeight.bold,
+                          //                   color: Colors.black),
+                          //               softWrap: true,
+                          //               maxLines: 3,
+                          //               overflow: TextOverflow.visible,
+                          //             ),
+                          //             SizedBox(height: 14),
+                          //             Container(
+                          //               width: width > 1200 ? width / 5 : width > 800 ? width : width > 650 ? width/2.5 : width/1.1,
+                          //               child: InputField(
+                          //                 hintText: 'Enter here xxx',
+                          //                 onChanged: (value) {},
+                          //                 textInputType: TextInputType.text,
+                          //               ),
+                          //             ),
+                          //           ],
+                          //         ),
+                          //         SizedBox(height: 20, width: 50),
+                          //         Column(
+                          //           crossAxisAlignment: CrossAxisAlignment.start,
+                          //           children: [
+                          //             AutoSizeText(
+                          //               'Amount of down payment',
+                          //               style: TextStyle(
+                          //                   fontSize: 18,
+                          //                   fontFamily: StringRefer.SegoeUI,
+                          //                   fontWeight: FontWeight.bold,
+                          //                   color: Colors.black),
+                          //               softWrap: true,
+                          //               maxLines: 3,
+                          //               overflow: TextOverflow.visible,
+                          //             ),
+                          //             SizedBox(height: 14),
+                          //             Container(
+                          //               width: width > 1200 ? width / 5 : width > 800 ? width :  width > 650 ? width/2.5  : width/1.1,
+                          //               child: InputField(
+                          //                 hintText: 'Enter amount',
+                          //                 onChanged: (value) {},
+                          //                 textInputType: TextInputType.text,
+                          //               ),
+                          //             ),
+                          //           ],
+                          //         ),
+                          //       ],
+                          //     ),
+                          //   ),
+                          // ),
+                          // SizedBox(height: 20),
+                          // Container(
+                          //   width: width > 800 ? width / 2 : width,
+                          //   child: Padding(
+                          //     padding: EdgeInsets.only(left: 30, right: 30),
+                          //     child: Wrap(
+                          //       direction: width > 800 ? Axis.horizontal :   width >  650 ? Axis.horizontal: Axis.vertical ,
+                          //       children: [
+                          //         Column(
+                          //           crossAxisAlignment: CrossAxisAlignment.start,
+                          //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          //           children: [
+                          //             Container(
+                          //               width: width > 1200 ? width / 5 : width > 800 ? width : width > 650 ? width/2.5 : width/1.1,
+                          //               child: AutoSizeText(
+                          //                 'How much do you have as a down payment? ',
+                          //                 style: TextStyle(
+                          //                     fontSize: 18,
+                          //                     fontFamily: StringRefer.SegoeUI,
+                          //                     fontWeight: FontWeight.bold,
+                          //                     color: Colors.black),
+                          //                 softWrap: true,
+                          //                 maxLines: 3,
+                          //                 overflow: TextOverflow.visible,
+                          //               ),
+                          //             ),
+                          //             SizedBox(height: 14),
+                          //             Container(
+                          //               width: width > 1200 ? width / 5 : width > 800 ? width : width > 650 ? width/2.5 : width/1.1,
+                          //               child: InputField(
+                          //                 hintText: 'Enter a %',
+                          //                 onChanged: (value) {},
+                          //                 textInputType: TextInputType.text,
+                          //               ),
+                          //             ),
+                          //           ],
+                          //         ),
+                          //         SizedBox(height: 20, width: 50),
+                          //         Column(
+                          //           crossAxisAlignment: CrossAxisAlignment.start,
+                          //           mainAxisAlignment: MainAxisAlignment.end,
+                          //           children: [
+                          //             Container(
+                          //               width: width > 1200 ? width / 5 : width > 800 ? width : width > 650 ? width/2.5 : width/1.1,
+                          //               child: AutoSizeText(
+                          //                 'Rate Type                                    ',
+                          //                 style: TextStyle(
+                          //                     fontSize: 18,
+                          //                     fontFamily: StringRefer.SegoeUI,
+                          //                     fontWeight: FontWeight.bold,
+                          //                     color: Colors.black),
+                          //                 softWrap: true,
+                          //                 maxLines: 3,
+                          //                 overflow: TextOverflow.visible,
+                          //               ),
+                          //             ),
+                          //             SizedBox(height: width > 1200 ? 36 : width > 800 ? 14: width > 650 ? 36: 14),
+                          //             Container(
+                          //               width: width > 1200 ? width / 5 : width > 800 ? width :  width > 650 ? width/2.5  : width/1.1,
+                          //               child:   SelectField(
+                          //                 hintText: 'Select Rate Type',
+                          //                 value: selectedRateValue,
+                          //                 selectionList: selectRateList,
+                          //                 onChanged: (String newValue){
+                          //                   setState(() {
+                          //                     selectedRateValue = newValue;
+                          //                   });
+                          //                 },
+                          //               ),
+                          //             ),
+                          //           ],
+                          //         ),
+                          //       ],
+                          //     ),
+                          //   ),
+                          // ),
+                          // SizedBox(height: 20),
+                          // Container(
+                          //   width: width > 800 ? width / 2 : width,
+                          //   child: Padding(
+                          //     padding: EdgeInsets.only(left: 30, right: 30),
+                          //     child: Wrap(
+                          //       direction: width > 800 ? Axis.horizontal :   width >  650 ? Axis.horizontal : Axis.vertical ,
+                          //       spacing: width > 800 ? 50 : width >  650 ?  50 : 20 ,
+                          //       children: [
+                          //         Column(
+                          //           crossAxisAlignment: CrossAxisAlignment.start,
+                          //           children: [
+                          //             AutoSizeText(
+                          //               'Term',
+                          //               style: TextStyle(
+                          //                   fontSize: 18,
+                          //                   fontFamily: StringRefer.SegoeUI,
+                          //                   fontWeight: FontWeight.bold,
+                          //                   color: Colors.black),
+                          //               softWrap: true,
+                          //               maxLines: 3,
+                          //               overflow: TextOverflow.visible,
+                          //             ),
+                          //             SizedBox(height: 14),
+                          //             Container(
+                          //               width: width > 1200 ? width / 5 : width > 800 ? width :  width > 650 ? width/2.5  : width/1.1,
+                          //               child:   SelectField(
+                          //                 hintText: 'Select Terms',
+                          //                 value: selectedTermValue,
+                          //                 selectionList: selectTermList,
+                          //                 onChanged: (String newValue){
+                          //                   setState(() {
+                          //                     selectedTermValue = newValue;
+                          //                   });
+                          //                 },
+                          //               ),
+                          //             ),
+                          //           ],
+                          //         ),
+                          //       ],
+                          //     ),
+                          //   ),
+                          // ),
+                          // SizedBox(height: 30),
+                          Container(
+                            child: width > 1350 ?
+                            DesktopRateCard(
+                              bankName: element['bank_name'],
+                              icon: element['bank_logo'],
+                              cardWidth: width/7.5,
+                              total: element['bank_rate'],
+                              monthlyPayment: 20,
+                              preApproval: 'Available',
+                              prePayment: 20,
+                              rateHold: 'Available',
+                              onPressed: (){
+                                Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: LastPageFirstFlow()));
+                              },
+                            ):
+                            width > 800 ? MobileViewRateCard(
+                              bankName: element['bank_name'],
+                              icon: element['bank_logo'],
+                              cardWidth: width/7.5,
+                              total: element['bank_rate'],
+                              monthlyPayment: 20,
+                              preApproval: 'Available',
+                              prePayment: 20,
+                              rateHold: 'Available',
+                              onPressed: (){
+                                Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft,duration: Duration(seconds: 1), child: LastPageFirstFlow()));
+                              },
+                            ) : width > 650 ?
+                            DesktopRateCard(
+                              bankName: element['bank_name'],
+                              icon: element['bank_logo'],
+                              cardWidth: width/4,
+                              total: element['bank_rate'],
+                              monthlyPayment: 20,
+                              preApproval: 'Available',
+                              prePayment: 20,
+                              rateHold: 'Available',
+                              onPressed: (){
+                                Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft,duration: Duration(seconds: 1), child: LastPageFirstFlow()));
+                              },
+                            ) : MobileViewRateCard(
+                              bankName: element['bank_name'],
+                              icon: element['bank_logo'],
+                              cardWidth: width/4,
+                              total: element['bank_rate'],
+                              monthlyPayment: 20,
+                              preApproval: 'Available',
+                              prePayment: 20,
+                              rateHold: 'Available',
+                              onPressed: (){
+                                Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft,duration: Duration(seconds: 1), child: LastPageFirstFlow()));
+                              },
+                            ),
+                          ),
+                        ],
+                      );
+                    }).toList(),
               ),
             ),
+            // Constants.favoriteChapterList == null || Constants.favoriteChapterList.length == 0
+            //     ? [Container()] :
+            // Container(
+            //   width: width > 800 ? width / 2 : width,
+            //   color: Color(0xfff7f9fc),
+            //   child: ,
+            // ),
+            // SizedBox(height: 20),
+            // Container(
+            //   child: width > 1350 ?
+            //   DesktopRateCard(
+            //     cardWidth: width/7.5,
+            //     total: 1.79,
+            //     monthlyPayment: 20,
+            //     preApproval: 'Available',
+            //     prePayment: 20,
+            //     rateHold: 'Available',
+            //     onPressed: (){
+            //       Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft,duration: Duration(seconds: 1), child: LastPageFirstFlow()));
+            //     },
+            //   ):
+            //   width > 800 ? MobileViewRateCard(
+            //     cardWidth: width/7.5,
+            //     total: 1.79,
+            //     monthlyPayment: 20,
+            //     preApproval: 'Available',
+            //     prePayment: 20,
+            //     rateHold: 'Available',
+            //     onPressed: (){
+            //       Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: LastPageFirstFlow()));
+            //     },
+            //   ) : width > 650 ?
+            //   DesktopRateCard(
+            //     cardWidth: width/4,
+            //     total: 1.79,
+            //     monthlyPayment: 20,
+            //     preApproval: 'Available',
+            //     prePayment: 20,
+            //     rateHold: 'Available',
+            //     onPressed: (){
+            //       Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: LastPageFirstFlow()));
+            //     },
+            //   ) : MobileViewRateCard(
+            //     cardWidth: width/4,
+            //     total: 1.79,
+            //     monthlyPayment: 20,
+            //     preApproval: 'Available',
+            //     prePayment: 20,
+            //     rateHold: 'Available',
+            //     onPressed: (){
+            //       Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: LastPageFirstFlow()));
+            //     },
+            //   ),
+            // ),
+            // SizedBox(height: 20),
+            // Container(
+            //   child: width > 1350 ?
+            //   DesktopRateCard(
+            //     cardWidth: width/7.5,
+            //     total: 1.79,
+            //     monthlyPayment: 20,
+            //     preApproval: 'Available',
+            //     prePayment: 20,
+            //     rateHold: 'Available',
+            //     onPressed: (){
+            //       Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: LastPageFirstFlow()));
+            //     },
+            //   ):
+            //   width > 800 ? MobileViewRateCard(
+            //     cardWidth: width/7.5,
+            //     total: 1.89,
+            //     monthlyPayment: 20,
+            //     preApproval: 'Available',
+            //     prePayment: 20,
+            //     rateHold: 'Available',
+            //     onPressed: (){
+            //       Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: LastPageFirstFlow()));
+            //     },
+            //   ) : width > 650 ?
+            //   DesktopRateCard(
+            //     cardWidth: width/4,
+            //     total: 1.89,
+            //     monthlyPayment: 20,
+            //     preApproval: 'Available',
+            //     prePayment: 20,
+            //     rateHold: 'Available',
+            //     onPressed: (){
+            //       Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: LastPageFirstFlow()));
+            //     },
+            //   ) : MobileViewRateCard(
+            //     cardWidth: width/4,
+            //     total: 1.89,
+            //     monthlyPayment: 20,
+            //     preApproval: 'Available',
+            //     prePayment: 20,
+            //     rateHold: 'Available',
+            //     onPressed: (){
+            //       Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: LastPageFirstFlow()));
+            //     },
+            //   ),
+            // ),
           ],
         ),
       ),
@@ -430,12 +454,27 @@ class _ViewContentState extends State<ViewContent> {
   }
   void loadProductRate() async {
     Map<String, dynamic> response = await NetworkUtil.internal().get("products/rates");
-    print(response);
-    // APIResponse apiResponse = APIResponse.fromJson(response);
-    // print(apiResponse.rates);
-    // setState(() {
-    //   rates = apiResponse.rates;
-    // });
+    print('show list of the bank');
+    APIResponse apiResponse = APIResponse.fromJson(response);
+    setState(() {
+      products = apiResponse.products[0];
+
+    });
+    apiResponse.products.forEach((element) {
+      print('name: '+element.name);
+      print('description: '+element.description);
+      // print('status: '+element.status);
+      // print('icon: '+element.icon);
+      // print('id: '+element.id);
+      element.banks.forEach((e) {
+        print(e);
+      });
+      // print('shortDescription: '+element.shortDescription);
+      // print('tagline: '+element.tagline);
+      // print(bankList);
+
+    });
+
   }
 
 }

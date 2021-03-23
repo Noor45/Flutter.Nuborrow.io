@@ -31,7 +31,9 @@ dependencies:
   build_runner: ^1.11.5
   build_daemon: ^2.1.9
   auto_size_text: ^2.1.0
+  google_maps_webservice: ^0.0.19
   http: ^0.12.2
+  flutter_google_places_web: ^0.0.10
 #  date_time_picker: "^1.1.0"
   flutter_svg: ^0.19.3
   responsive_builder: ^0.3.0
@@ -39,8 +41,7 @@ dependencies:
   responsive_layout_builder: ^0.5.0
   flutter_date_pickers: ^0.2.1
   page_transition: ^1.1.7+6
-#  google_place: ^0.4.0
-#  flutter_dotenv: ^3.1.0
+
 
 dev_dependencies:
   flutter_test:
@@ -61,6 +62,7 @@ flutter:
   assets:
     - assets/images/
     - assets/svg/
+    - assets/.env
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

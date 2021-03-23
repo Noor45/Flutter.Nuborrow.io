@@ -114,6 +114,7 @@ class _ViewContentState extends State<ViewContent> {
                           Container(
                             width: width > 1350 ? width / 4 : width > 800 ? width/2.5 :  width > 650 ? width/2.5  : width/1.1,
                             child: InputField(
+                              readOnly: false,
                               hintText: 'Enter here',
                               onChanged: (value) {},
                               textInputType: TextInputType.text,

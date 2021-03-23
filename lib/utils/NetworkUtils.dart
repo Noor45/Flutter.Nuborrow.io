@@ -14,7 +14,7 @@ class NetworkUtil {
   final JsonDecoder _decoder = new JsonDecoder();
 
   Future<dynamic> get(String url,
-      {Map<String, String> headers, encoding, String baseURL}) {
+      {Map<String, String> headers, encoding, Uri baseURL}) {
     return http
         .get(
       baseURL == null ? BASE_URL + url : baseURL,
@@ -23,7 +23,7 @@ class NetworkUtil {
         .then((http.Response response) {
       String res = response.body;
       int statusCode = response.statusCode;
-      print("API Response: " + res);
+      // print("API Response: " + res);
       if (statusCode < 200 || statusCode > 400 || json == null) {
         res = "{\"status\":" +
             statusCode.toString() +
@@ -37,14 +37,14 @@ class NetworkUtil {
   }
 
   Future<dynamic> post(String url,
-      {Map<String, String> headers, body, encoding, String baseURL}) {
+      {Map<String, String> headers, body, encoding, Uri baseURL}) {
     return http
         .post(baseURL == null ? (BASE_URL + url) : baseURL,
         body: body, headers: headers, encoding: encoding)
         .then((http.Response response) {
       String res = response.body;
       int statusCode = response.statusCode;
-      print("\n\n\n\API Response: " + res + "\n\n\n");
+      // print("\n\n\n\API Response: " + res + "\n\n\n");
       /* if (statusCode < 200 || statusCode > 400 || json == null) {
         res = "{\"status\":" +
             statusCode.toString() +

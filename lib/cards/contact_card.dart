@@ -31,8 +31,10 @@ class TextFieldCard extends StatefulWidget {
         this.hint,
         this.onChanged,
         this.showButton,
-        this.onPressed
+        this.onPressed,
+        this.controller,
       });
+  final TextEditingController controller;
   final String label;
   final String hint;
   final Function onChanged;
@@ -67,7 +69,8 @@ class _TextFieldCardState extends State<TextFieldCard> {
                 direction: Axis.horizontal,
                 children: [
                   InputField(
-                    readOnly: true,
+                    controller: widget.controller,
+                    readOnly: false,
                     hintText: widget.hint,
                     onChanged: widget.onChanged,
                     textInputType: widget.textInputType,

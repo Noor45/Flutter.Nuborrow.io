@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:nuborrow/cards/contact_card.dart';
 import 'package:nuborrow/cards/left_card.dart';
 import 'package:nuborrow/first_flow/rates_page_first_flow.dart';
+import 'package:nuborrow/utils/constants.dart';
 import 'package:page_transition/page_transition.dart';
 
 import '../utils/strings.dart';
@@ -62,6 +63,17 @@ class _ViewContentState extends State<ViewContent> {
   String selectedRateValue;
   List<String> selectTermList = ['5 Year', '3 Year'];
   String selectedTermValue;
+
+  TextEditingController textDownPaymentController = TextEditingController();
+  TextEditingController textPercentageController = TextEditingController();
+  TextEditingController textPurchaseController = TextEditingController();
+  @override
+  void initState() {
+    textPurchaseController.text = ConstantValue.purchaseValue;
+    textPercentageController.text = ConstantValue.percentageValue;
+    textDownPaymentController.text = ConstantValue.obtainedValue;
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -113,6 +125,7 @@ class _ViewContentState extends State<ViewContent> {
                   ),
                   SizedBox(height: 30),
                   TextFieldCard(
+                    controller: textPurchaseController,
                     label: 'Purchase Price',
                     hint: 'Enter xxx',
                     textInputType: TextInputType.number,
@@ -121,6 +134,7 @@ class _ViewContentState extends State<ViewContent> {
                   ),
                   SizedBox(height: 30),
                   TextFieldCard(
+                    controller: textDownPaymentController,
                     label: 'Amount of down payment',
                     hint: 'Enter xxx',
                     textInputType: TextInputType.number,
@@ -129,6 +143,7 @@ class _ViewContentState extends State<ViewContent> {
                   ),
                   SizedBox(height: 30),
                   TextFieldCard(
+                    controller: textPercentageController,
                     label: 'How much do you have as a down payment? ',
                     hint: 'Enter a %',
                     textInputType: TextInputType.number,

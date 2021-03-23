@@ -9,13 +9,15 @@ import 'package:nuborrow/widgets/round_button.dart';
 import '../utils/strings.dart';
 
 class DesktopRateCard extends StatefulWidget {
-  DesktopRateCard({this.cardWidth, this.monthlyPayment, this.preApproval, this.prePayment, this.rateHold, this.total, this.onPressed,});
+  DesktopRateCard({this.cardWidth, this.monthlyPayment, this.preApproval, this.prePayment, this.rateHold, this.total, this.icon, this.bankName, this.onPressed,});
   final double cardWidth;
   final double monthlyPayment;
   final String rateHold;
   final double prePayment;
   final String preApproval;
   final double total;
+  final String icon;
+  final String bankName;
   final Function onPressed;
   @override
   _DesktopRateCardState createState() => _DesktopRateCardState();
@@ -36,7 +38,7 @@ class _DesktopRateCardState extends State<DesktopRateCard> {
           borderRadius: BorderRadius.all(Radius.circular(4.0)),
         ),
         child: Padding(
-          padding: EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 20),
+          padding: EdgeInsets.only(left: 20, top: 10, right: 20, bottom: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -46,11 +48,10 @@ class _DesktopRateCardState extends State<DesktopRateCard> {
                 children: [
                   Row(
                     children: [
-                      Image.asset('assets/images/sideIcon.png', width: 30, height: 30,),
-                      SizedBox(width: 15),
-                      AutoSizeText('Lorem ipsum', style: TextStyle(fontFamily: StringRefer.PoppinMedium, fontSize: 14),)
+                      Container(child: widget.icon == null ? Image.asset('assets/images/sideIcon.png', width: 50, height: 50,): Image.network(widget.icon, fit: BoxFit.fill, height: 50, width: 140,)),
                     ],
                   ),
+                  AutoSizeText(widget.bankName, style: TextStyle(fontFamily: StringRefer.PoppinMedium, fontSize: 18),),
                   AutoSizeText('About this rate', style: TextStyle(fontFamily: StringRefer.PoppinMedium, fontSize: 14),),
                   Row(
                     children: [
@@ -74,12 +75,11 @@ class _DesktopRateCardState extends State<DesktopRateCard> {
                 children: [
                   Row(
                     children: [
-                      Image.asset('assets/images/sideIcon.png', width: 25, height: 25, color: Colors.white,),
-                      SizedBox(width: 15),
-                      AutoSizeText('Lorem ipsum', style: TextStyle(fontFamily: StringRefer.PoppinMedium, fontSize: 14, color: Colors.white),)
+                      Image.asset('assets/images/sideIcon.png', width: 50, height: 50, color: Colors.white,),
                     ],
                   ),
-                  AutoSizeText('About this rate', style: TextStyle(fontFamily: StringRefer.PoppinMedium, fontSize: 14, color: Colors.white,),),
+                  AutoSizeText(widget.bankName, style: TextStyle(fontFamily: StringRefer.PoppinMedium, fontSize: 18, color: Colors.white),),
+                  AutoSizeText('About this rate', style: TextStyle(fontFamily: StringRefer.PoppinMedium, fontSize: 14, color: Colors.white),),
                   Row(
                     children: [
                       AutoSizeText('Lump sum prepayment:', style: TextStyle(fontFamily: StringRefer.PoppinMedium, fontSize: 14)),
@@ -89,7 +89,7 @@ class _DesktopRateCardState extends State<DesktopRateCard> {
                   ),
                   Row(
                     children: [
-                      AutoSizeText('Rate hold:', style: TextStyle(fontFamily: StringRefer.PoppinMedium, fontSize: 14),),
+                      AutoSizeText('Pre-approval:', style: TextStyle(fontFamily: StringRefer.PoppinMedium, fontSize: 14),),
                       SizedBox(width: 2),
                       AutoSizeText(widget.preApproval, style: TextStyle(fontFamily: StringRefer.PoppinMedium, fontWeight: FontWeight.w900, fontSize: 14),)
                     ],
@@ -147,13 +147,15 @@ class _DesktopRateCardState extends State<DesktopRateCard> {
 }
 
 class MobileViewRateCard extends StatefulWidget {
-  MobileViewRateCard({this.cardWidth, this.monthlyPayment, this.preApproval, this.prePayment, this.rateHold, this.total, this.onPressed});
+  MobileViewRateCard({this.cardWidth, this.monthlyPayment, this.preApproval, this.prePayment, this.rateHold, this.total,  this.icon, this.bankName, this.onPressed});
   final double cardWidth;
   final double monthlyPayment;
   final String rateHold;
   final double prePayment;
   final String preApproval;
   final double total;
+  final String icon;
+  final String bankName;
   final Function onPressed;
   @override
   _MobileViewRateCardState createState() => _MobileViewRateCardState();
@@ -185,11 +187,13 @@ class _MobileViewRateCardState extends State<MobileViewRateCard> {
                 children: [
                   Row(
                     children: [
-                      Image.asset('assets/images/sideIcon.png', width: 20, height: 20,),
-                      SizedBox(width: 15),
-                      AutoSizeText('Lorem ipsum', style: TextStyle(fontFamily: StringRefer.PoppinMedium, fontSize: 14),)
+                      Container(child: widget.icon == null ? Image.asset('assets/images/sideIcon.png', width: 60, height: 50,): Image.network(widget.icon, fit: BoxFit.fill, height: 60, width: 140,)),
+                      SizedBox(width: 20),
+                      AutoSizeText(widget.bankName, style: TextStyle(fontFamily: StringRefer.PoppinMedium, fontSize: 14),),
+
                     ],
                   ),
+
                   AutoSizeText('About this rate', style: TextStyle(fontFamily: StringRefer.PoppinMedium, fontSize: 14),),
                   Row(
                     children: [
@@ -214,7 +218,7 @@ class _MobileViewRateCardState extends State<MobileViewRateCard> {
                   ),
                   Row(
                     children: [
-                      AutoSizeText('Rate hold:', style: TextStyle(fontFamily: StringRefer.PoppinMedium, fontSize: 14),),
+                      AutoSizeText('Pre-approval:', style: TextStyle(fontFamily: StringRefer.PoppinMedium, fontSize: 14),),
                       SizedBox(width: 2),
                       AutoSizeText(widget.preApproval, style: TextStyle(fontFamily: StringRefer.PoppinMedium, fontWeight: FontWeight.w900, fontSize: 14),)
                     ],

@@ -108,11 +108,7 @@ class _ViewContentState extends State<ViewContent> {
                     value: price,
                     onChanged: (value) {
                       setState(() {
-                        value = value.replaceAll(RegExp(','), '');
-                        value = value.replaceAll(RegExp('\$'), '');
-                        ConstantValue.purchaseValue =
-                            value.replaceAll('\$', '');
-                        print(ConstantValue.purchaseValue);
+                        ConstantValue.purchaseValue = value.replaceAll('\$', '');
                       });
                     },
                     showButton: false,
@@ -163,35 +159,7 @@ class _ViewContentState extends State<ViewContent> {
                                               ? true
                                               : false,
                                       onChanged: (String value) {
-                                        textPercentageController.text =
-                                            numberFormat(value);
-                                        textPercentageController.text = moneyPercentageFormat(textPercentageController.text);
-                                        textPercentageController.selection =
-                                            TextSelection.fromPosition(
-                                                TextPosition(
-                                                    offset:
-                                                        textPercentageController
-                                                            .text.length));
-                                        setState(() {
-                                          String text = numberFormat(value);
-                                          print(text);
-                                          double purchaseValue = double.parse(
-                                              ConstantValue.purchaseValue);
-                                          print(purchaseValue);
-                                          double percentage =
-                                              double.parse(text);
-                                          double obtained = purchaseValue *
-                                              (percentage / 100);
-                                          print(obtained);
-                                          double totalMortgage =
-                                              purchaseValue - obtained;
-                                          ConstantValue.totalValue =
-                                              totalMortgage.toString();
-                                          ConstantValue.obtainedValue =
-                                              obtained.toString();
-                                          textDownPaymentController.text =
-                                              ConstantValue.obtainedValue;
-                                        });
+                                        getPercentage(value);
                                       },
                                       textInputType: TextInputType.number,
                                     ),
@@ -204,30 +172,7 @@ class _ViewContentState extends State<ViewContent> {
                                               : false,
                                       controller: textDownPaymentController,
                                       onChanged: (String value) {
-                                        textDownPaymentController.text =
-                                            numberFormat(value);
-                                        textDownPaymentController.selection =
-                                            TextSelection.fromPosition(
-                                                TextPosition(
-                                                    offset:
-                                                        textDownPaymentController
-                                                            .text.length));
-                                        String text = numberFormat(value);
-                                        setState(() {
-                                          double purchaseValue = double.parse(
-                                              ConstantValue.purchaseValue);
-                                          double obtained = double.parse(text);
-                                          double percentage =
-                                              (obtained / purchaseValue) * 100;
-                                          double totalMortgage =
-                                              purchaseValue - obtained;
-                                          ConstantValue.totalValue =
-                                              totalMortgage.toString();
-                                          ConstantValue.obtainedValue =
-                                              obtained.toString();
-                                          textPercentageController.text =
-                                              percentage.toStringAsFixed(2);
-                                        });
+                                        getValue(value);
                                       },
                                       textInputType: TextInputType.number,
                                     ),
@@ -367,6 +312,53 @@ class _ViewContentState extends State<ViewContent> {
       ),
     );
   }
+
+  getPercentage(String value){
+    textPercentageController.text = numberFormat(value);
+    textPercentageController.text = moneyPercentageFormat(textPercentageController.text);
+    textPercentageController.selection =
+        TextSelection.fromPosition(
+            TextPosition(
+                offset:
+                textPercentageController
+                    .text.length));
+    setState(() {
+      String text = numberFormat(value);
+      ConstantValue.purchaseValue = ConstantValue.purchaseValue.replaceAll(RegExp(','), '');
+      double purchaseValue = double.parse(ConstantValue.purchaseValue);
+      double percentage =
+      double.parse(text);
+      double obtained = purchaseValue *
+          (percentage / 100);
+      double totalMortgage = purchaseValue - obtained;
+      ConstantValue.totalValue = moneyFormat(totalMortgage.toString());
+      ConstantValue.obtainedValue = moneyFormat(obtained.toString());
+      print(moneyFormat(obtained.toString()));
+      ConstantValue.percentageValue = percentage.toString();
+      textDownPaymentController.text = ConstantValue.obtainedValue;
+      textDownPaymentController.text = moneyFormat(textDownPaymentController.text);
+      textDownPaymentController.text = moneyDollarFormat(textDownPaymentController.text);
+    });
+  }
+
+  getValue(String value){
+    textDownPaymentController.text = numberFormat(value);
+    textDownPaymentController.text = moneyFormat(textDownPaymentController.text);
+    textDownPaymentController.text = moneyDollarFormat(textDownPaymentController.text);
+    textDownPaymentController.selection = TextSelection.fromPosition(TextPosition(offset: textDownPaymentController.text.length));
+    String text = numberFormat(value);
+    setState(() {
+      String purchase = ConstantValue.purchaseValue.replaceAll(RegExp(','), '');
+      double purchaseValue = double.parse(purchase);
+      double obtained = double.parse(text);
+      double percentage = (obtained / purchaseValue) * 100;
+      double totalMortgage = purchaseValue - obtained;
+      ConstantValue.totalValue = moneyFormat(totalMortgage.toString());
+      ConstantValue.obtainedValue = moneyFormat(obtained.toString());
+      textPercentageController.text = moneyPercentageFormat(percentage.toStringAsFixed(2));
+    });
+  }
+
 }
 
 class MortgageCard extends StatefulWidget {
@@ -480,7 +472,6 @@ class _TextFieldCardCurrencyState extends State<TextFieldCardCurrency> {
   void initState() {
     super.initState();
     textEditingController.text = widget.value;
-    print("updated" + TextInputType.text.toString());
   }
 
   @override
@@ -526,10 +517,8 @@ class _TextFieldCardCurrencyState extends State<TextFieldCardCurrency> {
                     controller: textEditingController,
                     onChanged: (String text) {
                       textEditingController.text = numberFormat(text);
-                      textEditingController.text =
-                          moneyFormat(textEditingController.text);
-                      textEditingController.text =
-                          moneyDollarFormat(textEditingController.text);
+                      textEditingController.text = moneyFormat(textEditingController.text);
+                      textEditingController.text = moneyDollarFormat(textEditingController.text);
                       widget.onChanged.call(textEditingController.text);
                       textEditingController.selection =
                           TextSelection.fromPosition(TextPosition(

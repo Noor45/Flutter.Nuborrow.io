@@ -56,7 +56,7 @@ class _MyAppState extends State<MyApp> {
         background: Container(color: Color(0xFFF5F5F5)),
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: AmountDetailFirstFlow.AmountDetailPageFirstFlowId,
+      initialRoute: MainPage.MainPagePageId,
       routes: {
         MainPage.MainPagePageId: (context) => MainPage(),
         //First Flow Pages

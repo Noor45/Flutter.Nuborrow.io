@@ -86,7 +86,7 @@ class _ViewContentState extends State<ViewContent> {
                         width: width > 900 ? width / 5 : width > 800 ? width/3 :  width/2,
                         child: InkWell(
                           onTap: (){
-                            Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: NextIntroPage2ndFlow()));
+                            // Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: NextIntroPage2ndFlow()));
                           },
                           child: Image.asset('assets/images/2.png'),
                         ),

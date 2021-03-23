@@ -39,12 +39,12 @@ String numberFormat(String price){
 }
 
 String moneyFormat(String price) {
-  if (price.length > 2) {
+  // if (price.length > 1) {
     var value = price;
     value = value.replaceAll(RegExp(r'\D'), '');
     value = value.replaceAll(RegExp(r'\B(?=(\d{3})+(?!\d))'), ',');
     return value;
-  }
+  // }
 }
 
 String moneyDollarFormat(String price) {
@@ -59,13 +59,13 @@ String moneyDollarFormat(String price) {
 }
 
 String moneyPercentageFormat(String price) {
-  price = price.replaceAll("", "%");
-  if (price.length > 2) {
-    var value = price;
-    value = value.replaceAll(RegExp(r'\D'), '');
-    value = value.replaceAll(RegExp(r'\B(?=(\d{3})+(?!\d))'), '');
-    return  value + "%" ;
-  }
+  // price = price.replaceAll("", "%");
+  // if (price.length > 2) {
+  //   var value = price;
+  //   // value = value.replaceAll(RegExp(r'\D'), '');
+  //   // value = value.replaceAll(RegExp(r'\B(?=(\d{3})+(?!\d))'), '');
+  //   // return  value + "%" ;
+  // }
   return  price + "%";
 }
 
