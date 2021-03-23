@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/services.dart';
 import 'package:nuborrow/utils/colors.dart';
 import 'package:nuborrow/utils/style.dart';
 import 'package:nuborrow/widgets/input_fields.dart';
@@ -36,15 +37,21 @@ class TextFieldCard extends StatefulWidget {
         this.value,
         this.onChanged,
         this.onPressed,
-        this.showButton
+        this.showButton,
+        this.readOnly,
+        this.inputFormatters,
+        this.controller,
       });
 
   final String label;
   final String value;
   final String hint;
+  final bool readOnly;
+  final TextEditingController controller;
   final Function onChanged;
   final TextInputType textInputType;
   final Function onPressed;
+  final List<TextInputFormatter> inputFormatters;
   final bool showButton;
 
   @override
@@ -52,7 +59,6 @@ class TextFieldCard extends StatefulWidget {
 }
 
 class _TextFieldCardState extends State<TextFieldCard> {
-  TextEditingController textEditingController = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -81,9 +87,10 @@ class _TextFieldCardState extends State<TextFieldCard> {
                 direction: Axis.horizontal,
                 children: [
                   InputField(
-                    readOnly: false,
+                    formatter: widget.inputFormatters,
+                    readOnly: widget.readOnly,
                     hintText: widget.hint,
-                    controller: textEditingController,
+                    controller: widget.controller,
                     onChanged: widget.onChanged,
                     textInputType: widget.textInputType,
                   ),

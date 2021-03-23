@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/services.dart';
 import 'package:nuborrow/cards/amount_page_card.dart';
 import 'package:nuborrow/cards/left_card.dart';
 import 'package:nuborrow/first_flow/pick_mortgage_term_first_flow.dart';
@@ -9,6 +10,7 @@ import 'package:intl/intl.dart';
 import 'package:nuborrow/widgets/input_fields.dart';
 import 'package:nuborrow/widgets/round_button.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:simple_tooltip/simple_tooltip.dart';
 import '../utils/constants.dart';
 import '../utils/constants.dart';
 import '../utils/constants.dart';
@@ -41,7 +43,7 @@ class _AmountDetailFirstFlowState extends State<AmountDetailFirstFlow> {
         child: Container(
           height: height,
           width: width,
-          color: Colors.white,
+          color: Color(0xfff7f9fc),
           margin: EdgeInsets.only(
               top: width > 1100 ? 50 : 0, bottom: width > 1100 ? 50 : 0),
           child: width > 800
@@ -77,6 +79,8 @@ class _ViewContentState extends State<ViewContent> {
   TextEditingController textPercentageController = TextEditingController();
   String price = '';
   String percentage = '';
+  String message = '';
+  bool show = false;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -108,7 +112,7 @@ class _ViewContentState extends State<ViewContent> {
                     value: price,
                     onChanged: (value) {
                       setState(() {
-                        ConstantValue.purchaseValue = value.replaceAll('\$', '');
+                        ConstantValueFirst.purchaseValue = value.replaceAll('\$', '');
                       });
                     },
                     showButton: false,
@@ -153,9 +157,12 @@ class _ViewContentState extends State<ViewContent> {
                                   children: [
                                     InputField(
                                       hintText: '% Enter Percentage',
+                                      formatter:   [
+                                        FilteringTextInputFormatter.allow(RegExp('[0-9\$,.]')),
+                                      ],
                                       controller: textPercentageController,
                                       readOnly:
-                                          ConstantValue.purchaseValue == ''
+                                          ConstantValueFirst.purchaseValue == ''
                                               ? true
                                               : false,
                                       onChanged: (String value) {
@@ -165,9 +172,12 @@ class _ViewContentState extends State<ViewContent> {
                                     ),
                                     SizedBox(height: 5),
                                     InputField(
+                                      formatter:   [
+                                          FilteringTextInputFormatter.allow(RegExp('[0-9\$,.]')),
+                                      ],
                                       hintText: '\$ Enter amount',
                                       readOnly:
-                                          ConstantValue.purchaseValue == ''
+                                          ConstantValueFirst.purchaseValue == ''
                                               ? true
                                               : false,
                                       controller: textDownPaymentController,
@@ -197,6 +207,7 @@ class _ViewContentState extends State<ViewContent> {
                       setState(() {
                         dateController.text =
                             DateFormat('yyyy-MM-dd').format(date);
+                        ConstantValueFirst.date = dateController.text;
                       });
                     },
                     showButton: false,
@@ -251,6 +262,7 @@ class _ViewContentState extends State<ViewContent> {
                                               onTap: () {
                                                 setState(() {
                                                   firstSelectedValue = element;
+                                                  ConstantValueFirst.firstTime = firstSelectedValue;
                                                 });
                                               },
                                               child: TabCard(
@@ -277,26 +289,74 @@ class _ViewContentState extends State<ViewContent> {
                                   width: width > 1100
                                       ? width / 5
                                       : width > 650
-                                          ? width / 2.5
-                                          : width / 1.1,
-                                  child: RoundedButton(
-                                    title: 'continue',
-                                    textColor: Colors.white,
-                                    colour: Color(0xff705aa7),
-                                    buttonRadius: 10,
-                                    height: 60,
-                                    onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          PageTransition(
-                                              type: PageTransitionType
-                                                  .rightToLeft,
-                                              duration: Duration(seconds: 1),
-                                              child: MortgageTerms()));
-                                    },
+                                      ? width / 2.5
+                                      : width / 1.1,
+                                  child: SimpleTooltip(
+                                    ballonPadding: EdgeInsets.all(3),
+                                    arrowTipDistance: 3,
+                                    backgroundColor: Colors.black54,
+                                    borderColor: Colors.black26,
+                                    animationDuration: Duration(seconds: 1),
+                                    show: show,
+                                    tooltipDirection: width > 1350
+                                        ? TooltipDirection.left
+                                        : width > 800
+                                        ? TooltipDirection.up
+                                        : width > 650
+                                        ? TooltipDirection.left
+                                        : TooltipDirection.up,
+                                    child: RoundedButton(
+                                      title: 'continue',
+                                      textColor: Colors.white,
+                                      colour: Color(0xff705aa7),
+                                      buttonRadius: 10,
+                                      height: 60,
+                                      onPressed: () {
+                                        setState(() {
+                                          if(ConstantValueFirst.purchaseValue == ''){
+                                            message = 'Enter Price';
+                                            show = true;
+                                            hideToolTip();
+                                          }else if(ConstantValueFirst.totalValue == ''){
+                                            message = 'Calculate total mortgage required';
+                                            show = true;
+                                            hideToolTip();
+                                          }else if(ConstantValueFirst.date == ''){
+                                            message = 'Select Date';
+                                            show = true;
+                                            hideToolTip();
+                                          }else if(ConstantValueFirst.firstTime == ''){
+                                            message = 'Select option';
+                                            show = true;
+                                            hideToolTip();
+                                          }else{
+                                            Navigator.push(
+                                                context,
+                                                PageTransition(
+                                                    type: PageTransitionType
+                                                        .rightToLeft,
+                                                    duration: Duration(seconds: 1),
+                                                    child: MortgageTerms()));
+                                          }
+                                        });
+
+
+                                      },
+                                    ),
+                                    content: Text(
+                                      message,
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 13,
+                                          decoration: TextDecoration.none,
+                                          fontFamily: StringRefer.SFProText
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
+
+
                             ],
                           ),
                         ],
@@ -313,50 +373,69 @@ class _ViewContentState extends State<ViewContent> {
     );
   }
 
-  getPercentage(String value){
-    textPercentageController.text = numberFormat(value);
-    textPercentageController.text = moneyPercentageFormat(textPercentageController.text);
-    textPercentageController.selection =
-        TextSelection.fromPosition(
-            TextPosition(
-                offset:
-                textPercentageController
-                    .text.length));
-    setState(() {
-      String text = numberFormat(value);
-      ConstantValue.purchaseValue = ConstantValue.purchaseValue.replaceAll(RegExp(','), '');
-      double purchaseValue = double.parse(ConstantValue.purchaseValue);
-      double percentage =
-      double.parse(text);
-      double obtained = purchaseValue *
-          (percentage / 100);
-      double totalMortgage = purchaseValue - obtained;
-      ConstantValue.totalValue = moneyFormat(totalMortgage.toString());
-      ConstantValue.obtainedValue = moneyFormat(obtained.toString());
-      print(moneyFormat(obtained.toString()));
-      ConstantValue.percentageValue = percentage.toString();
-      textDownPaymentController.text = ConstantValue.obtainedValue;
-      textDownPaymentController.text = moneyFormat(textDownPaymentController.text);
-      textDownPaymentController.text = moneyDollarFormat(textDownPaymentController.text);
+  hideToolTip()async{
+    await Future.delayed(Duration(seconds: 3) , () async {
+      setState(() {
+        show = false;
+      });
     });
   }
 
+  getPercentage(String value){
+    try{
+      textPercentageController.text = numberFormat(value);
+      textPercentageController.text = moneyPercentageFormat(textPercentageController.text);
+      textPercentageController.selection =
+          TextSelection.fromPosition(
+              TextPosition(
+                  offset:
+                  textPercentageController
+                      .text.length));
+      setState(() {
+        String text = numberFormat(value);
+        ConstantValueFirst.purchaseValue = ConstantValueFirst.purchaseValue.replaceAll(RegExp(','), '');
+        double purchaseValue = double.parse(ConstantValueFirst.purchaseValue);
+        double percentage =
+        double.parse(text);
+        double obtained = purchaseValue *
+            (percentage / 100);
+        double totalMortgage = purchaseValue - obtained;
+        ConstantValueFirst.totalValue = moneyFormat(totalMortgage.toString());
+        ConstantValueFirst.obtainedValue = moneyFormat(obtained.toString());
+        print(moneyFormat(obtained.toString()));
+        ConstantValueFirst.percentageValue = percentage.toString();
+        textDownPaymentController.text = ConstantValueFirst.obtainedValue;
+        textDownPaymentController.text = moneyFormat(textDownPaymentController.text);
+        textDownPaymentController.text = moneyDollarFormat(textDownPaymentController.text);
+      });
+
+    }catch(e){
+      print(e);
+    }
+
+  }
+
   getValue(String value){
-    textDownPaymentController.text = numberFormat(value);
-    textDownPaymentController.text = moneyFormat(textDownPaymentController.text);
-    textDownPaymentController.text = moneyDollarFormat(textDownPaymentController.text);
-    textDownPaymentController.selection = TextSelection.fromPosition(TextPosition(offset: textDownPaymentController.text.length));
-    String text = numberFormat(value);
-    setState(() {
-      String purchase = ConstantValue.purchaseValue.replaceAll(RegExp(','), '');
-      double purchaseValue = double.parse(purchase);
-      double obtained = double.parse(text);
-      double percentage = (obtained / purchaseValue) * 100;
-      double totalMortgage = purchaseValue - obtained;
-      ConstantValue.totalValue = moneyFormat(totalMortgage.toString());
-      ConstantValue.obtainedValue = moneyFormat(obtained.toString());
-      textPercentageController.text = moneyPercentageFormat(percentage.toStringAsFixed(2));
-    });
+    try{
+      textDownPaymentController.text = numberFormat(value);
+      textDownPaymentController.text = moneyFormat(textDownPaymentController.text);
+      textDownPaymentController.text = moneyDollarFormat(textDownPaymentController.text);
+      textDownPaymentController.selection = TextSelection.fromPosition(TextPosition(offset: textDownPaymentController.text.length));
+      String text = numberFormat(value);
+      setState(() {
+        String purchase = ConstantValueFirst.purchaseValue.replaceAll(RegExp(','), '');
+        double purchaseValue = double.parse(purchase);
+        double obtained = double.parse(text);
+        double percentage = (obtained / purchaseValue) * 100;
+        double totalMortgage = purchaseValue - obtained;
+        ConstantValueFirst.totalValue = moneyFormat(totalMortgage.toString());
+        ConstantValueFirst.obtainedValue = moneyFormat(obtained.toString());
+        textPercentageController.text = moneyPercentageFormat(percentage.toStringAsFixed(2));
+      });
+    }catch(e){
+      print(e);
+    }
+
   }
 
 }
@@ -407,17 +486,17 @@ class _MortgageCardState extends State<MortgageCard> {
                 children: [
                   PriceCard(
                     title: 'Purchased Price',
-                    value: ConstantValue.purchaseValue == ''
+                    value: ConstantValueFirst.purchaseValue == ''
                         ? '\$0'
-                        : '\$' + ConstantValue.purchaseValue,
+                        : '\$' + ConstantValueFirst.purchaseValue,
                     color: Colors.black,
                   ),
                   SizedBox(height: 10),
                   PriceCard(
                     title: '- Down Payment',
-                    value: ConstantValue.obtainedValue == ''
+                    value: ConstantValueFirst.obtainedValue == ''
                         ? '\$0'
-                        : '\$' + ConstantValue.obtainedValue,
+                        : '\$' + ConstantValueFirst.obtainedValue,
                     color: Colors.black,
                   ),
                   SizedBox(height: 20),
@@ -434,9 +513,9 @@ class _MortgageCardState extends State<MortgageCard> {
               ),
               child: PriceCard(
                 title: '= Total mortgage required',
-                value: ConstantValue.totalValue == ''
+                value: ConstantValueFirst.totalValue == ''
                     ? '\$0'
-                    : '\$' + ConstantValue.totalValue,
+                    : '\$' + ConstantValueFirst.totalValue,
                 color: Colors.white,
               ),
             ),
@@ -513,6 +592,9 @@ class _TextFieldCardCurrencyState extends State<TextFieldCardCurrency> {
                 children: [
                   InputField(
                     readOnly: false,
+                    formatter:   [
+                      FilteringTextInputFormatter.allow(RegExp('[0-9\$,.]')),
+                    ],
                     hintText: widget.hint,
                     controller: textEditingController,
                     onChanged: (String text) {

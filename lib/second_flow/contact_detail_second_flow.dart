@@ -1,9 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:nuborrow/cards/contact_card.dart';
 import 'package:nuborrow/cards/left_card.dart';
 import 'package:nuborrow/second_flow/rates_page_second_flow.dart';
+import 'package:nuborrow/utils/constants.dart';
+import 'package:nuborrow/utils/strings.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:simple_tooltip/simple_tooltip.dart';
 
 class ContactDetail2ndFlow extends StatefulWidget {
   static const ContactDetail2ndFlowPageId = 'contact_detail2';
@@ -53,6 +58,9 @@ class ViewContent extends StatefulWidget {
 }
 
 class _ViewContentState extends State<ViewContent> {
+  var maskFormatter = new MaskTextInputFormatter(mask: '###-###-####', filter: { "#": RegExp(r'[0-9]') });
+  String message = '';
+  bool show = false;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -81,7 +89,9 @@ class _ViewContentState extends State<ViewContent> {
                     label: 'What’s you name?',
                     hint: 'Enter your name',
                     textInputType: TextInputType.text,
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      ConstantValueSecond.name = value;
+                    },
                     showButton: false,
                   ),
                   SizedBox(height: 30),
@@ -89,24 +99,68 @@ class _ViewContentState extends State<ViewContent> {
                     label: 'Your best contact number?',
                     hint: 'Enter your contact number',
                     textInputType: TextInputType.number,
-                    onChanged: (value) {},
+                    inputFormatters: <TextInputFormatter>[
+                      maskFormatter
+                    ],
+                    onChanged: (value) {
+                      ConstantValueSecond.number = value;
+                    },
                     showButton: false,
                   ),
                   SizedBox(height: 30),
-                  TextFieldCard(
-                    label: 'Your email?',
-                    hint: 'Enter your email',
-                    textInputType: TextInputType.emailAddress,
-                    onChanged: (value) {},
-                    showButton: true,
-                    onPressed: () {
-                      Navigator.push(context, PageTransition(
-                          type: PageTransitionType.rightToLeft,
-                          duration: Duration(seconds: 1),
-                          child: RatesPage2ndFlow())
-                      );
-                    },
+                  SimpleTooltip(
+                    ballonPadding: EdgeInsets.all(3),
+                    arrowTipDistance: 3,
+                    backgroundColor: Colors.black54,
+                    borderColor: Colors.black26,
+                    animationDuration: Duration(seconds: 1),
+                    show: show,
+                    tooltipDirection: width > 1350
+                        ? TooltipDirection.left
+                        : width > 800
+                        ? TooltipDirection.up
+                        : width > 650
+                        ? TooltipDirection.left
+                        : TooltipDirection.up,
+                    child: TextFieldCard(
+                      label: 'Your email?',
+                      hint: 'Enter your email',
+                      textInputType: TextInputType.emailAddress,
+                      onChanged: (value) {
+                        ConstantValueSecond.email = value;
+                      },
+                      showButton: true,
+                      onPressed: () {
+                        setState(() {
+                          if(ConstantValueSecond.name == ''){
+                            message = 'Enter your Name';
+                            show = true;
+                            hideToolTip();
+                          }else if(ConstantValueSecond.number == ''){
+                            message = 'Enter your Number';
+                            show = true;
+                            hideToolTip();
+                          }else if(ConstantValueSecond.email == ''){
+                            message = 'Enter your Email';
+                            show = true;
+                            hideToolTip();
+                          }else{
+                            Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: RatesPage2ndFlow()));
+                          }
+                        });
+                      },
+                    ),
+                    content: Text(
+                      message,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 13,
+                          decoration: TextDecoration.none,
+                          fontFamily: StringRefer.SFProText
+                      ),
+                    ),
                   ),
+
                   SizedBox(height: 30),
                 ],
               ),
@@ -115,6 +169,13 @@ class _ViewContentState extends State<ViewContent> {
         ),
       ),
     );
+  }
+  hideToolTip()async{
+    await Future.delayed(Duration(seconds: 3) , () async {
+      setState(() {
+        show = false;
+      });
+    });
   }
 }
 

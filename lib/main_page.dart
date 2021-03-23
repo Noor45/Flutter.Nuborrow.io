@@ -2,7 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nuborrow/first_flow/second_intro_first_flow.dart';
 import 'package:nuborrow/second_flow/second_intro_second_flow.dart';
+import 'package:nuborrow/third_flow/intro_page_third_flow.dart';
 import 'package:page_transition/page_transition.dart';
+
+import 'forth_flow/intro_page_forth_flow.dart';
 
 class MainPage extends StatefulWidget {
   static const MainPagePageId = 'main';
@@ -86,7 +89,7 @@ class _ViewContentState extends State<ViewContent> {
                         width: width > 900 ? width / 5 : width > 800 ? width/3 :  width/2,
                         child: InkWell(
                           onTap: (){
-                            // Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: NextIntroPage2ndFlow()));
+                            Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: NextIntroPage2ndFlow()));
                           },
                           child: Image.asset('assets/images/2.png'),
                         ),
@@ -107,7 +110,7 @@ class _ViewContentState extends State<ViewContent> {
                     width: width > 900 ? width / 5 : width > 800 ? width/3  : width/2,
                     child: InkWell(
                       onTap: (){
-                        // Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: IntroPage3rdFlow()));
+                        Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: IntroPage3rdFlow()));
                       },
                       child: Image.asset('assets/images/3.png'),
                     ),
@@ -116,7 +119,7 @@ class _ViewContentState extends State<ViewContent> {
                     width: width > 900 ? width / 5 : width > 800 ? width/3 :  width/2,
                     child: InkWell(
                       onTap: (){
-                        // Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: IntroPageForthFlow()));
+                        Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: IntroPageForthFlow()));
                       },
                       child: Image.asset('assets/images/4.png'),
                     ),

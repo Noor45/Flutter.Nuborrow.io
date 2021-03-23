@@ -1,15 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_google_places_web/flutter_google_places_web.dart';
 import 'package:nuborrow/cards/left_card.dart';
 import 'package:nuborrow/first_flow/amount_detail_first_flow.dart';
 import 'package:nuborrow/first_flow/pick_mortgage_term_first_flow.dart';
 import 'package:nuborrow/second_flow/amount_detail_second_flow.dart';
+import 'package:nuborrow/utils/colors.dart';
+import 'package:nuborrow/utils/constants.dart';
 import 'package:nuborrow/utils/style.dart';
 import 'package:nuborrow/widgets/input_fields.dart';
 import 'package:nuborrow/widgets/round_button.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:simple_tooltip/simple_tooltip.dart';
 import '../utils/strings.dart';
 
 class BasicDetail2ndFlow extends StatefulWidget {
@@ -70,6 +73,8 @@ class _ViewContentState extends State<ViewContent> {
     'Second home/Cottage'
   ];
   String selectedValue;
+  String message = '';
+  bool show = false;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -116,11 +121,15 @@ class _ViewContentState extends State<ViewContent> {
                           SizedBox(height: 20, width: 50),
                           Container(
                             width: width > 1350 ? width / 4 : width > 800 ? width/2.5 :  width > 650 ? width/2.5  : width/1.1,
-                            child: InputField(
-                              readOnly: false,
-                              hintText: 'Enter here',
-                              onChanged: (value) {},
-                              textInputType: TextInputType.text,
+                            child: FlutterGooglePlacesWeb(
+                              apiKey: "AIzaSyDKhj1caiJVMeNgBAqbOjV97q0oMyAuRiQ",
+                              components: 'country:us',
+                              decoration: StyleRefer.kTextFieldDecoration
+                                  .copyWith(
+                                  hintText: 'Enter here',
+                                  hintStyle: TextStyle(
+                                      fontSize: 15,
+                                      color: ColorRefer.kLabelColor)),
                             ),
                           ),
                         ],
@@ -184,21 +193,68 @@ class _ViewContentState extends State<ViewContent> {
                                       }).toList(),
                               ),
                               SizedBox(height: 50),
-                              Container(
-                                width: width > 1350 ? width / 4 : width > 800 ? width/2.5 :  width > 650 ? width/2.5  : width/1.1,
-                                child: RoundedButton(
-                                  title: 'continue',
-                                  textColor: Colors.white,
-                                  colour: Color(0xff705aa7),
-                                  height: 60,
-                                  buttonRadius: 10,
-                                  onPressed: () {
-                                    Navigator.push(context, PageTransition(
-                                        type: PageTransitionType.rightToLeft,
-                                        duration: Duration(seconds: 1),
-                                        child: AmountDetail2ndFlow())
-                                    );
-                                  },
+                              SimpleTooltip(
+                                ballonPadding: EdgeInsets.all(3),
+                                arrowTipDistance: 3,
+                                backgroundColor: Colors.black54,
+                                borderColor: Colors.black26,
+                                animationDuration: Duration(seconds: 1),
+                                show: show,
+                                tooltipDirection: width > 1350
+                                    ? TooltipDirection.left
+                                    : width > 800
+                                    ? TooltipDirection.up
+                                    : width > 650
+                                    ? TooltipDirection.left
+                                    : TooltipDirection.up,
+                                child: Container(
+                                  width: width > 1350
+                                      ? width / 4
+                                      : width > 800
+                                      ? width / 2.5
+                                      : width > 650
+                                      ? width / 2.5
+                                      : width / 1.1,
+                                  child: RoundedButton(
+                                    title: 'continue',
+                                    textColor: Colors.white,
+                                    colour: Color(0xff705aa7),
+                                    height: 60,
+                                    buttonRadius: 10,
+                                    onPressed: () {
+                                      ConstantValueSecond.place = FlutterGooglePlacesWeb.value['name'];
+                                      ConstantValueSecond.propertyType = selectedValue;
+                                      // if (ConstantValueFirst.place == null) {
+                                      //   Toast.show("Enter the city name", context,
+                                      //       duration: Toast.LENGTH_SHORT,
+                                      //       gravity: Toast.BOTTOM);
+                                      // } else
+                                      if (ConstantValueSecond.propertyType == null) {
+                                        setState(() {
+                                          message = 'Select the options';
+                                          show = true;
+                                          hideToolTip();
+                                        });
+                                      } else {
+                                        Navigator.push(
+                                            context,
+                                            PageTransition(
+                                                type: PageTransitionType
+                                                    .rightToLeft,
+                                                duration: Duration(seconds: 1),
+                                                child:
+                                                AmountDetail2ndFlow()));
+                                      }
+                                    },
+                                  ),
+                                ),
+                                content: Text(
+                                  message,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 13,
+                                      decoration: TextDecoration.none,
+                                      fontFamily: StringRefer.SFProText),
                                 ),
                               ),
                             ],
@@ -214,6 +270,13 @@ class _ViewContentState extends State<ViewContent> {
         ),
       ),
     );
+  }
+  hideToolTip() async {
+    await Future.delayed(Duration(seconds: 3), () async {
+      setState(() {
+        show = false;
+      });
+    });
   }
 }
 

@@ -1,12 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:nuborrow/cards/contact_card.dart';
 import 'package:nuborrow/cards/left_card.dart';
 import 'package:nuborrow/first_flow/rates_page_first_flow.dart';
 import 'package:nuborrow/utils/constants.dart';
 import 'package:page_transition/page_transition.dart';
-
+import 'package:simple_tooltip/simple_tooltip.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../utils/strings.dart';
 import '../widgets/input_fields.dart';
 import '../widgets/round_button.dart';
@@ -63,15 +65,29 @@ class _ViewContentState extends State<ViewContent> {
   String selectedRateValue;
   List<String> selectTermList = ['5 Year', '3 Year'];
   String selectedTermValue;
-
+  var maskFormatter = new MaskTextInputFormatter(mask: '###-###-####', filter: { "#": RegExp(r'[0-9]') });
   TextEditingController textDownPaymentController = TextEditingController();
   TextEditingController textPercentageController = TextEditingController();
   TextEditingController textPurchaseController = TextEditingController();
+  String message = '';
+  bool show = false;
+
+  getDate(){
+    textPurchaseController.text = ConstantValueFirst.purchaseValue;
+    textPurchaseController.text = moneyFormat(textPurchaseController.text);
+    textPurchaseController.text = moneyDollarFormat(textPurchaseController.text);
+    textPercentageController.text = ConstantValueFirst.percentageValue;
+    textPercentageController.text = moneyPercentageFormat(textPercentageController.text);
+    textDownPaymentController.text = ConstantValueFirst.obtainedValue;
+    textDownPaymentController.text = moneyFormat(textDownPaymentController.text);
+    textDownPaymentController.text = moneyDollarFormat(textDownPaymentController.text);
+    selectedRateValue = ConstantValueFirst.mortgageType;
+    selectedTermValue = ConstantValueFirst.mortgageTerm;
+  }
+
   @override
   void initState() {
-    textPurchaseController.text = ConstantValue.purchaseValue;
-    textPercentageController.text = ConstantValue.percentageValue;
-    textDownPaymentController.text = ConstantValue.obtainedValue;
+    getDate();
     super.initState();
   }
   @override
@@ -103,7 +119,9 @@ class _ViewContentState extends State<ViewContent> {
                     label: 'What’s you name?',
                     hint: 'Enter your name',
                     textInputType: TextInputType.text,
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      ConstantValueFirst.name = value;
+                    },
                     showButton: false,
 
                   ),
@@ -112,7 +130,13 @@ class _ViewContentState extends State<ViewContent> {
                     label: 'Your best Contact Number',
                     hint: 'Enter your contact number',
                     textInputType: TextInputType.number,
-                    onChanged: (value) {},
+                    // textInputType: TextInputType.numberWithOptions(decimal: true),
+                    inputFormatters: <TextInputFormatter>[
+                      maskFormatter
+                    ],
+                    onChanged: (value) {
+                      ConstantValueFirst.number = value;
+                    },
                     showButton: false,
                   ),
                   SizedBox(height: 20),
@@ -120,7 +144,9 @@ class _ViewContentState extends State<ViewContent> {
                     label: 'Your email?',
                     hint: 'Enter your email',
                     textInputType: TextInputType.emailAddress,
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      ConstantValueFirst.email = value;
+                    },
                     showButton: false,
                   ),
                   SizedBox(height: 30),
@@ -129,7 +155,12 @@ class _ViewContentState extends State<ViewContent> {
                     label: 'Purchase Price',
                     hint: 'Enter xxx',
                     textInputType: TextInputType.number,
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      ConstantValueFirst.purchaseValue = value.replaceAll('\$', '');
+                      textPurchaseController.text = numberFormat(value);
+                      textPurchaseController.text = moneyFormat(textPurchaseController.text);
+                      textPurchaseController.text = moneyDollarFormat(textPurchaseController.text);
+                    },
                     showButton: false,
                   ),
                   SizedBox(height: 30),
@@ -138,7 +169,9 @@ class _ViewContentState extends State<ViewContent> {
                     label: 'Amount of down payment',
                     hint: 'Enter xxx',
                     textInputType: TextInputType.number,
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      getValue(value);
+                    },
                     showButton: false,
                   ),
                   SizedBox(height: 30),
@@ -147,7 +180,9 @@ class _ViewContentState extends State<ViewContent> {
                     label: 'How much do you have as a down payment? ',
                     hint: 'Enter a %',
                     textInputType: TextInputType.number,
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      getPercentage(value);
+                    },
                     showButton: false,
                   ),
                   SizedBox(height: 30),
@@ -227,17 +262,55 @@ class _ViewContentState extends State<ViewContent> {
                                       padding: const EdgeInsets.only(top: 50),
                                       child: Container(
                                         width: width > 1100 ? width / 5 :  width > 650 ? width/2.5  : width/1.1,
-                                        child: RoundedButton(
-                                          title: 'Yes, show me my rates  ',
-                                          textColor: Colors.white,
-                                          height: 60,
-                                          colour: Color(0xff705aa7),
-                                          buttonRadius: 10,
-                                          onPressed: () {
-                                            Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: RatesPageFirstFlow()));
-                                            // Navigator.pushNamed(
-                                            //     context, RatesPageFirstFlow.RatesPageFirstFlowId);
-                                          },
+                                        child: SimpleTooltip(
+                                          ballonPadding: EdgeInsets.all(3),
+                                          arrowTipDistance: 3,
+                                          backgroundColor: Colors.black54,
+                                          borderColor: Colors.black26,
+                                          animationDuration: Duration(seconds: 1),
+                                          show: show,
+                                          tooltipDirection: width > 1350
+                                              ? TooltipDirection.left
+                                              : width > 800
+                                              ? TooltipDirection.up
+                                              : width > 650
+                                              ? TooltipDirection.left
+                                              : TooltipDirection.up,
+                                          child: RoundedButton(
+                                            title: 'Yes, show me my rates',
+                                            textColor: Colors.white,
+                                            height: 60,
+                                            colour: Color(0xff705aa7),
+                                            buttonRadius: 10,
+                                            onPressed: () {
+                                              setState(() {
+                                                if(ConstantValueFirst.name == ''){
+                                                  message = 'Enter your Name';
+                                                  show = true;
+                                                  hideToolTip();
+                                                }else if(ConstantValueFirst.number == ''){
+                                                  message = 'Enter your Number';
+                                                  show = true;
+                                                  hideToolTip();
+                                                }else if(ConstantValueFirst.email == ''){
+                                                  message = 'Enter your Email';
+                                                  show = true;
+                                                  hideToolTip();
+                                                }else{
+                                                  Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: RatesPageFirstFlow()));
+                                                }
+                                              });
+                                            },
+                                          ),
+                                          content: Text(
+                                            message,
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 13,
+                                                decoration: TextDecoration.none,
+                                                fontFamily: StringRefer.SFProText
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -250,7 +323,6 @@ class _ViewContentState extends State<ViewContent> {
                       ),
                     ),
                   ),
-
                   SizedBox(height: 30),
                 ],
               ),
@@ -260,6 +332,60 @@ class _ViewContentState extends State<ViewContent> {
       ),
     );
   }
+  hideToolTip()async{
+    await Future.delayed(Duration(seconds: 3) , () async {
+      setState(() {
+        show = false;
+      });
+    });
+  }
+
+  getPercentage(String value){
+    textPercentageController.text = numberFormat(value);
+    textPercentageController.text = moneyPercentageFormat(textPercentageController.text);
+    textPercentageController.selection =
+        TextSelection.fromPosition(
+            TextPosition(
+                offset:
+                textPercentageController
+                    .text.length));
+    setState(() {
+      String text = numberFormat(value);
+      ConstantValueFirst.purchaseValue = ConstantValueFirst.purchaseValue.replaceAll(RegExp(','), '');
+      double purchaseValue = double.parse(ConstantValueFirst.purchaseValue);
+      double percentage =
+      double.parse(text);
+      double obtained = purchaseValue *
+          (percentage / 100);
+      double totalMortgage = purchaseValue - obtained;
+      ConstantValueFirst.totalValue = moneyFormat(totalMortgage.toString());
+      ConstantValueFirst.obtainedValue = moneyFormat(obtained.toString());
+      print(moneyFormat(obtained.toString()));
+      ConstantValueFirst.percentageValue = percentage.toString();
+      textDownPaymentController.text = ConstantValueFirst.obtainedValue;
+      textDownPaymentController.text = moneyFormat(textDownPaymentController.text);
+      textDownPaymentController.text = moneyDollarFormat(textDownPaymentController.text);
+    });
+  }
+
+  getValue(String value){
+    textDownPaymentController.text = numberFormat(value);
+    textDownPaymentController.text = moneyFormat(textDownPaymentController.text);
+    textDownPaymentController.text = moneyDollarFormat(textDownPaymentController.text);
+    textDownPaymentController.selection = TextSelection.fromPosition(TextPosition(offset: textDownPaymentController.text.length));
+    String text = numberFormat(value);
+    setState(() {
+      String purchase = ConstantValueFirst.purchaseValue.replaceAll(RegExp(','), '');
+      double purchaseValue = double.parse(purchase);
+      double obtained = double.parse(text);
+      double percentage = (obtained / purchaseValue) * 100;
+      double totalMortgage = purchaseValue - obtained;
+      ConstantValueFirst.totalValue = moneyFormat(totalMortgage.toString());
+      ConstantValueFirst.obtainedValue = moneyFormat(obtained.toString());
+      textPercentageController.text = moneyPercentageFormat(percentage.toStringAsFixed(2));
+    });
+  }
+
 }
 
 

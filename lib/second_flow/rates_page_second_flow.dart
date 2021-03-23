@@ -10,6 +10,10 @@ import 'package:page_transition/page_transition.dart';
 import '../cards/rate_page_card.dart';
 import 'package:nuborrow/widgets/round_button.dart';
 import '../utils/strings.dart';
+import 'package:nuborrow/models/api_response.dart';
+import 'package:nuborrow/models/bank_detail.dart';
+import 'package:nuborrow/models/product.dart';
+import '../utils/NetworkUtils.dart';
 
 class RatesPage2ndFlow extends StatefulWidget {
   static const RatesPage2ndFlowId = 'rates2';
@@ -65,6 +69,13 @@ class _ViewContentState extends State<ViewContent> {
   String selectedRateValue;
   List<String> selectTermList = ['5 Year', '3 Year'];
   String selectedTermValue;
+  Product products = new Product();
+  List<dynamic> bankList  = [];
+  @override
+  void initState() {
+    loadProductRate();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -83,153 +94,72 @@ class _ViewContentState extends State<ViewContent> {
               subtitleFont:25,
             ),
             Container(
-              width: width > 800 ? width / 2 : width,
+              width: width > 800 ? width /2 : width,
               color: Color(0xfff7f9fc),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(height: 30),
-                  Container(
-                    child: width > 1350 ?
-                    DesktopRateCard(
-                        cardWidth: width/7.5,
-                        total: 1.74,
-                        monthlyPayment: 20,
-                        preApproval: 'Available',
-                        prePayment: 20,
-                        rateHold: 'Available',
-                        onPressed: (){
-                          navigate();
-                        },
-                    ):
-                    width > 800 ? MobileViewRateCard(
-                      cardWidth: width/7.5,
-                      total: 1.74,
-                      monthlyPayment: 20,
-                      preApproval: 'Available',
-                      prePayment: 20,
-                      rateHold: 'Available',
-                      onPressed: (){
-                      },
-                    ) : width > 650 ?
-                    DesktopRateCard(
-                      cardWidth: width/4,
-                      total: 1.74,
-                      monthlyPayment: 20,
-                      preApproval: 'Available',
-                      prePayment: 20,
-                      rateHold: 'Available',
-                      onPressed: (){
-                        navigate();
-                      },
-                    ) : MobileViewRateCard(
-                      cardWidth: width/4,
-                      total: 1.74,
-                      monthlyPayment: 20,
-                      preApproval: 'Available',
-                      prePayment: 20,
-                      rateHold: 'Available',
-                      onPressed: (){
-                        navigate();
-                      },
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    child: width > 1350 ?
-                    DesktopRateCard(
-                      cardWidth: width/7.5,
-                      total: 1.79,
-                      monthlyPayment: 20,
-                      preApproval: 'Available',
-                      prePayment: 20,
-                      rateHold: 'Available',
-                      onPressed: (){
-                        navigate();
-                      },
-                    ):
-                    width > 800 ? MobileViewRateCard(
-                      cardWidth: width/7.5,
-                      total: 1.79,
-                      monthlyPayment: 20,
-                      preApproval: 'Available',
-                      prePayment: 20,
-                      rateHold: 'Available',
-                      onPressed: (){
-                        navigate();
-                      },
-                    ) : width > 650 ?
-                    DesktopRateCard(
-                      cardWidth: width/4,
-                      total: 1.79,
-                      monthlyPayment: 20,
-                      preApproval: 'Available',
-                      prePayment: 20,
-                      rateHold: 'Available',
-                      onPressed: (){
-                        navigate();
-                      },
-                    ) : MobileViewRateCard(
-                      cardWidth: width/4,
-                      total: 1.79,
-                      monthlyPayment: 20,
-                      preApproval: 'Available',
-                      prePayment: 20,
-                      rateHold: 'Available',
-                      onPressed: (){
-                        navigate();
-                      },
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    child: width > 1350 ?
-                    DesktopRateCard(
-                      cardWidth: width/7.5,
-                      total: 1.79,
-                      monthlyPayment: 20,
-                      preApproval: 'Available',
-                      prePayment: 20,
-                      rateHold: 'Available',
-                      onPressed: (){
-                        navigate();
-                      },
-                    ):
-                    width > 800 ? MobileViewRateCard(
-                      cardWidth: width/7.5,
-                      total: 1.89,
-                      monthlyPayment: 20,
-                      preApproval: 'Available',
-                      prePayment: 20,
-                      rateHold: 'Available',
-                      onPressed: (){
-                        navigate();
-                      },
-                    ) : width > 650 ?
-                    DesktopRateCard(
-                      cardWidth: width/4,
-                      total: 1.89,
-                      monthlyPayment: 20,
-                      preApproval: 'Available',
-                      prePayment: 20,
-                      rateHold: 'Available',
-                      onPressed: (){
-                        navigate();
-                      },
-                    ) : MobileViewRateCard(
-                      cardWidth: width/4,
-                      total: 1.89,
-                      monthlyPayment: 20,
-                      preApproval: 'Available',
-                      prePayment: 20,
-                      rateHold: 'Available',
-                      onPressed: (){
-                        navigate();
-                      },
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                ],
+                children: products.banks == null || products.banks.length == 0 ? [Container()] :
+                products.banks.map((element) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(height: 30),
+                      Container(
+                        child: width > 1350 ?
+                        DesktopRateCard(
+                          bankName: element['bank_name'],
+                          icon: element['bank_logo'],
+                          cardWidth: width/7.5,
+                          total: element['bank_rate'],
+                          monthlyPayment: 0,
+                          preApproval: 'N/A',
+                          prePayment: 0,
+                          rateHold: 'N/A',
+                          onPressed: (){
+                            navigate();
+                          },
+                        ):
+                        width > 800 ? MobileViewRateCard(
+                          bankName: element['bank_name'],
+                          icon: element['bank_logo'],
+                          cardWidth: width/7.5,
+                          total: element['bank_rate'],
+                          monthlyPayment: 0,
+                          preApproval: 'N/A',
+                          prePayment: 0,
+                          rateHold: 'N/A',
+                          onPressed: (){
+                            navigate();
+                          },
+                        ) : width > 650 ?
+                        DesktopRateCard(
+                          bankName: element['bank_name'],
+                          icon: element['bank_logo'],
+                          cardWidth: width/4,
+                          total: element['bank_rate'],
+                          monthlyPayment: 0,
+                          preApproval: 'N/A',
+                          prePayment: 0,
+                          rateHold: 'N/A',
+                          onPressed: (){
+                            navigate();
+                          },
+                        ) : MobileViewRateCard(
+                          bankName: element['bank_name'],
+                          icon: element['bank_logo'],
+                          cardWidth: width/4,
+                          total: element['bank_rate'],
+                          monthlyPayment: 0,
+                          preApproval: 'N/A',
+                          prePayment: 0,
+                          rateHold: 'N/A',
+                          onPressed: (){
+                            navigate();
+                          },
+                        ),
+                      ),
+                    ],
+                  );
+                }).toList(),
               ),
             ),
           ],
@@ -239,6 +169,24 @@ class _ViewContentState extends State<ViewContent> {
   }
   navigate(){
     Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: LastPage2ndFlow()));
+  }
+
+  void loadProductRate() async {
+    Map<String, dynamic> response = await NetworkUtil.internal().get("products/rates");
+    print('show list of the bank');
+    APIResponse apiResponse = APIResponse.fromJson(response);
+    setState(() {
+      products = apiResponse.products[0];
+    });
+    apiResponse.products.forEach((element) {
+      print('name: '+element.name);
+      print('description: '+element.description);
+      element.banks.forEach((e) {
+        print(e);
+      });
+
+    });
+
   }
 }
 

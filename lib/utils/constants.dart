@@ -48,13 +48,13 @@ String moneyFormat(String price) {
 }
 
 String moneyDollarFormat(String price) {
-  price = price.replaceAll("\$", "");
-  if (price.length > 2) {
-    var value = price;
-    value = value.replaceAll(RegExp(r'\D'), '');
-    value = value.replaceAll(RegExp(r'\B(?=(\d{3})+(?!\d))'), ',');
-    return "\$" + value;
-  }
+  // price = price.replaceAll("\$", "");
+  // if (price.length > 2) {
+  //   var value = price;
+  //   value = value.replaceAll(RegExp(r'\D'), '');
+  //   value = value.replaceAll(RegExp(r'\B(?=(\d{3})+(?!\d))'), ',');
+  //   return "\$" + value;
+  // }
   return "\$" + price;
 }
 
@@ -96,9 +96,71 @@ class Constants {
   }
 }
 
-class ConstantValue{
+class ConstantValueFirst{
   static String purchaseValue = '';
   static String percentageValue = '';
   static String obtainedValue = '';
   static String totalValue = '';
+  static String place = '';
+  static String propertyType = '';
+  static String date = '';
+  static String firstTime = '';
+  static String mortgageType = '';
+  static String mortgageTerm = '';
+  static String name = '';
+  static String number = '';
+  static String email = '';
+}
+
+class ConstantValueSecond{
+  static String purchaseValue = '';
+  static String percentageValue = '';
+  static String equityValue = '';
+  static String mortgageValue = '';
+  static String currentHomeValue = '';
+  static String currentMortgageValue = '';
+  static String currentHomePercentage = '';
+  static String totalBorrowAmount = '';
+  static String totalValue = '';
+  static String place = '';
+  static String propertyType = '';
+  static String date = '';
+  static String firstTime = '';
+  static String mortgageType = '';
+  static String mortgageTerm = '';
+  static String name = '';
+  static String number = '';
+  static String email = '';
+}
+
+class ConstantValueThird{
+  static String purchaseValue = '';
+  static String percentageValue = '';
+  static String obtainedValue = '';
+  static String totalValue = '';
+  static String place = '';
+  static String propertyType = '';
+  static String date = '';
+  static String firstTime = '';
+  static String mortgageType = '';
+  static String mortgageTerm = '';
+  static String name = '';
+  static String number = '';
+  static String email = '';
+}
+
+class ConstantValueForth{
+  static String purchaseValue = '';
+  static String percentageValue = '';
+  static String obtainedValue = '';
+  static String totalValue = '';
+  static String place = '';
+  static String propertyType = '';
+  static String date = '';
+  static String firstTime = '';
+  static String mortgageType = '';
+  static String mortgageTerm = '';
+  static String name = '';
+  static String number = '';
+  static String email = '';
 }

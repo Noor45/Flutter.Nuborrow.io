@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/services.dart';
 import 'package:nuborrow/widgets/input_fields.dart';
 import 'package:nuborrow/widgets/round_button.dart';
 import '../utils/strings.dart';
@@ -32,6 +33,7 @@ class TextFieldCard extends StatefulWidget {
         this.onChanged,
         this.showButton,
         this.onPressed,
+        this.inputFormatters,
         this.controller,
       });
   final TextEditingController controller;
@@ -41,6 +43,7 @@ class TextFieldCard extends StatefulWidget {
   final TextInputType textInputType;
   final bool showButton;
   final Function onPressed;
+  final List<TextInputFormatter> inputFormatters;
   @override
   _TextFieldCardState createState() => _TextFieldCardState();
 }
@@ -72,6 +75,7 @@ class _TextFieldCardState extends State<TextFieldCard> {
                     controller: widget.controller,
                     readOnly: false,
                     hintText: widget.hint,
+                    formatter: widget.inputFormatters,
                     onChanged: widget.onChanged,
                     textInputType: widget.textInputType,
                   ),

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:nuborrow/cards/left_card.dart';
 import 'package:nuborrow/cards/pick_mortgage_card.dart';
+import 'package:nuborrow/utils/constants.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:simple_tooltip/simple_tooltip.dart';
 import 'contact_detail_first_flow.dart';
 import 'package:nuborrow/widgets/round_button.dart';
 import '../utils/strings.dart';
@@ -64,6 +66,8 @@ class _ViewContentState extends State<ViewContent> {
     '3 Year',
     '5 Year',
   ];
+  String message = '';
+  bool show = false;
   String firstSelectedValue;
   String secondSelectedValue;
   @override
@@ -130,6 +134,7 @@ class _ViewContentState extends State<ViewContent> {
                                           onTap: () {
                                             setState(() {
                                               firstSelectedValue = element;
+                                              ConstantValueFirst.mortgageType = firstSelectedValue;
                                             });
                                           },
                                           child: TabCard(
@@ -197,6 +202,7 @@ class _ViewContentState extends State<ViewContent> {
                                           onTap: () {
                                             setState(() {
                                               secondSelectedValue = element;
+                                              ConstantValueFirst.mortgageTerm = secondSelectedValue;
                                             });
                                           },
                                           child: TabCard(
@@ -217,21 +223,57 @@ class _ViewContentState extends State<ViewContent> {
                                   }).toList(),
                                 ),
                                 SizedBox(height: 50),
-                                Container(
-                                  width: width > 1150 ? width / 5 : width > 800 ? width/2.5 :  width > 650 ? width/2.5  : width/1.1,
-                                  child: RoundedButton(
-                                    title: 'continue',
-                                    textColor: Colors.white,
-                                    height: 60,
-                                    colour: Color(0xff705aa7),
-                                    buttonRadius: 10,
-                                    onPressed: () {
-                                      Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: ContactDetail()));
-                                      // Navigator.pushNamed(context,
-                                      //     ContactDetail.ContactDetailPageId);
-                                    },
+                                SimpleTooltip(
+                                  ballonPadding: EdgeInsets.all(3),
+                                  arrowTipDistance: 3,
+                                  backgroundColor: Colors.black54,
+                                  borderColor: Colors.black26,
+                                  animationDuration: Duration(seconds: 1),
+                                  show: show,
+                                  tooltipDirection: width > 1350
+                                      ? TooltipDirection.left
+                                      : width > 800
+                                      ? TooltipDirection.up
+                                      : width > 650
+                                      ? TooltipDirection.left
+                                      : TooltipDirection.up,
+                                  child: Container(
+                                    width: width > 1150 ? width / 5 : width > 800 ? width/2.5 :  width > 650 ? width/2.5  : width/1.1,
+                                    child: RoundedButton(
+                                      title: 'continue',
+                                      textColor: Colors.white,
+                                      height: 60,
+                                      colour: Color(0xff705aa7),
+                                      buttonRadius: 10,
+                                      onPressed: () {
+                                        setState(() {
+                                          if(ConstantValueFirst.mortgageType == ''){
+                                            message = 'Select Mortgage Type';
+                                            show = true;
+                                            hideToolTip();
+                                          }else if(ConstantValueFirst.mortgageTerm == ''){
+                                            message = 'Select Mortgage Term';
+                                            show = true;
+                                            hideToolTip();
+                                          }else{
+                                            Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, duration: Duration(seconds: 1), child: ContactDetail()));
+                                          }
+                                        });
+
+                                      },
+                                    ),
+                                  ),
+                                  content: Text(
+                                    message,
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 13,
+                                        decoration: TextDecoration.none,
+                                        fontFamily: StringRefer.SFProText
+                                    ),
                                   ),
                                 ),
+
                               ],
                             ),
                           )
@@ -246,6 +288,13 @@ class _ViewContentState extends State<ViewContent> {
         ),
       ),
     );
+  }
+  hideToolTip()async{
+    await Future.delayed(Duration(seconds: 3) , () async {
+      setState(() {
+        show = false;
+      });
+    });
   }
 }
 

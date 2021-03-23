@@ -1,18 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_google_places_web/flutter_google_places_web.dart';
-import 'package:google_maps_webservice/places.dart';
+import 'package:nuborrow/utils/constants.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:nuborrow/cards/left_card.dart';
 import 'package:nuborrow/first_flow/amount_detail_first_flow.dart';
 import 'package:nuborrow/utils/colors.dart';
 import 'package:nuborrow/utils/style.dart';
-import 'package:nuborrow/widgets/input_fields.dart';
 import 'package:nuborrow/widgets/round_button.dart';
+import 'package:simple_tooltip/simple_tooltip.dart';
 import 'package:page_transition/page_transition.dart';
 import '../utils/strings.dart';
 import 'dart:async';
-import 'dart:convert';
 
 class BasicDetailFirstFlow extends StatefulWidget {
   static const BasicDetailPageFirstFlowId = 'basic_detail';
@@ -72,6 +71,8 @@ class _ViewContentState extends State<ViewContent> {
     'Second home/Cottage'
   ];
   String selectedValue;
+  String message = '';
+  bool show = false;
 
   @override
   void initState() {
@@ -137,7 +138,6 @@ class _ViewContentState extends State<ViewContent> {
                                     : width > 650
                                         ? width / 2.5
                                         : width / 1.1,
-
                             child: FlutterGooglePlacesWeb(
                               apiKey: "AIzaSyDKhj1caiJVMeNgBAqbOjV97q0oMyAuRiQ",
                               components: 'country:us',
@@ -148,18 +148,6 @@ class _ViewContentState extends State<ViewContent> {
                                           fontSize: 15,
                                           color: ColorRefer.kLabelColor)),
                             ),
-                            // child: InputField(
-                            //   readOnly: false,
-                            //   controller: cityController,
-                            //   hintText: 'Enter here',
-                            //   onChanged: (value) {
-                            //     if (value.isNotEmpty) {
-                            //       autoCompleteSearch(value);
-                            //     }
-                            //
-                            //   },
-                            //   textInputType: TextInputType.text,
-                            // ),
                           ),
                         ],
                       ),
@@ -227,37 +215,72 @@ class _ViewContentState extends State<ViewContent> {
                                       }).toList(),
                               ),
                               SizedBox(height: 50),
-                              Container(
-                                width: width > 1350
-                                    ? width / 4
+                              SimpleTooltip(
+                                ballonPadding: EdgeInsets.all(3),
+                                arrowTipDistance: 3,
+                                backgroundColor: Colors.black54,
+                                borderColor: Colors.black26,
+                                animationDuration: Duration(seconds: 1),
+                                show: show,
+                                tooltipDirection: width > 1350
+                                    ? TooltipDirection.left
                                     : width > 800
-                                        ? width / 2.5
+                                        ? TooltipDirection.up
                                         : width > 650
-                                            ? width / 2.5
-                                            : width / 1.1,
-                                child: RoundedButton(
-                                  title: 'continue',
-                                  textColor: Colors.white,
-                                  colour: Color(0xff705aa7),
-                                  height: 60,
-                                  buttonRadius: 10,
-                                  onPressed: () {
-                                    print(FlutterGooglePlacesWeb.value[
-                                        'name']); // '1600 Amphitheatre Parkway, Mountain View, CA, USA'
-                                    print(FlutterGooglePlacesWeb.value[
-                                        'streetAddress']); // '1600 Amphitheatre Parkway'
-                                    print(FlutterGooglePlacesWeb
-                                        .value['city']); // 'CA'
-                                    print(FlutterGooglePlacesWeb
-                                        .value['country']);
-                                    Navigator.push(
-                                        context,
-                                        PageTransition(
-                                            type:
-                                                PageTransitionType.rightToLeft,
-                                            duration: Duration(seconds: 1),
-                                            child: AmountDetailFirstFlow()));
-                                  },
+                                            ? TooltipDirection.left
+                                            : TooltipDirection.up,
+                                child: Container(
+                                  width: width > 1350
+                                      ? width / 4
+                                      : width > 800
+                                          ? width / 2.5
+                                          : width > 650
+                                              ? width / 2.5
+                                              : width / 1.1,
+                                  child: RoundedButton(
+                                    title: 'continue',
+                                    textColor: Colors.white,
+                                    colour: Color(0xff705aa7),
+                                    height: 60,
+                                    buttonRadius: 10,
+                                    onPressed: () {
+                                      ConstantValueFirst.place =
+                                          FlutterGooglePlacesWeb.value['name'];
+                                      ConstantValueFirst.propertyType =
+                                          selectedValue;
+                                      print(ConstantValueFirst.place);
+                                      // if (ConstantValueFirst.place == null) {
+                                      //   Toast.show("Enter the city name", context,
+                                      //       duration: Toast.LENGTH_SHORT,
+                                      //       gravity: Toast.BOTTOM);
+                                      // } else
+                                      if (ConstantValueFirst.propertyType ==
+                                          null) {
+                                        setState(() {
+                                          message = 'Select the options';
+                                          show = true;
+                                          hideToolTip();
+                                        });
+                                      } else {
+                                        Navigator.push(
+                                            context,
+                                            PageTransition(
+                                                type: PageTransitionType
+                                                    .rightToLeft,
+                                                duration: Duration(seconds: 1),
+                                                child:
+                                                    AmountDetailFirstFlow()));
+                                      }
+                                    },
+                                  ),
+                                ),
+                                content: Text(
+                                  message,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 13,
+                                      decoration: TextDecoration.none,
+                                      fontFamily: StringRefer.SFProText),
                                 ),
                               ),
                             ],
@@ -276,31 +299,13 @@ class _ViewContentState extends State<ViewContent> {
     );
   }
 
-  // void autoCompleteSearch(String value) async {
-  //   const apiKey = "AIzaSyDKhj1caiJVMeNgBAqbOjV97q0oMyAuRiQ";
-  //   final places = new GoogleMapsPlaces(apiKey: apiKey);
-  //   // // final places = new GoogleMapsPlaces(apiKey: "<API_KEY>", httpClient: new BrowserClient());
-  //   // final places = new GoogleMapsPlaces(baseUrl: 'https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/autocomplete/xml?input=Amoeba&types=establishment&location=37.76999,-122.44696&radius=500&key=$apiKey');
-  //   var response = await places.autocomplete(value);
-  //
-  //   // print(places.autocomplete(value));
-  //   print(response.predictions.map((e) => e.description));
-  //   // places.autocomplete(value)
-  //   // PlacesSearchResponse response = await places.searchByText(value);
-  //   // Place place = await FlutterPlaces.show(
-  //   //   context: context,
-  //   //   apiKey: apiKey,
-  //   //   modeType: ModeType.OVERLAY,
-  //   // );
-  //   // print(response);
-  //
-  //   // if (result != null && result.predictions != null && mounted) {
-  //   //   setState(() {
-  //   //     predictions = result.predictions;
-  //   //     print(predictions);
-  //   //   });
-  //   // }
-  // }
+  hideToolTip() async {
+    await Future.delayed(Duration(seconds: 3), () async {
+      setState(() {
+        show = false;
+      });
+    });
+  }
 }
 
 class TabCard extends StatefulWidget {

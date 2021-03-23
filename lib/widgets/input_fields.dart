@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:nuborrow/utils/colors.dart';
 import 'package:nuborrow/utils/strings.dart';
 import '../utils/style.dart';
@@ -15,6 +16,7 @@ class InputField extends StatefulWidget {
       this.onChanged,
       this.validator,
       this.readOnly,
+      this.formatter,
       this.textInputType,
       this.maxLength});
   final TextEditingController controller;
@@ -25,7 +27,7 @@ class InputField extends StatefulWidget {
   final int maxLength;
   final Function onChanged;
   final Function validator;
-
+  final List<TextInputFormatter> formatter;
   @override
   _InputFieldState createState() => _InputFieldState();
 }
@@ -40,6 +42,7 @@ class _InputFieldState extends State<InputField> {
       keyboardType: widget.textInputType,
       onChanged: widget.onChanged,
       maxLength: widget.maxLength,
+      inputFormatters: widget.formatter,
       decoration: StyleRefer.kTextFieldDecoration.copyWith(
           hintText: widget.hintText,
           hintStyle: TextStyle(fontSize: 15, color: ColorRefer.kLabelColor)),
